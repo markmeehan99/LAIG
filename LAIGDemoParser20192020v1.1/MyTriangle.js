@@ -53,4 +53,35 @@ class MyTriangle extends CGFobject {
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.initGLBuffers();
     }
+
+    applyTextures(factorS, factorT) {
+        factorS = factorS || 1;
+        factorT = factorT || 1;
+
+        this.texCoords = [];
+
+        var a = Math.sqrt( 
+                    Math.pow( this.x1 - this.x3 , 2) + 
+                    Math.pow( this.y1 - this.y3 , 2) +
+                    Math.pow( this.z1 - this.z3 , 2));
+
+        var b = Math.sqrt(
+                    Math.pow( this.x2 - this.x1 , 2) +
+                    Math.pow( this.y2 - this.y1 , 2) +
+                    Math.pow( this.z2 - this.z1 , 2));
+
+        var c = Math.sqrt(
+                    Math.pow( this.x3 - this.x2 , 2) +
+                    Math.pow( this.y3 - this.y2 , 2) +
+                    Math.pow( this.z3 - this.z2 , 2));
+
+        var cosBeta = ( Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(c, 2) ) / (2 * a * c);
+        var aSinBeta = Math.sqrt( Math.pow(a, 2) - Math.pow( a * cosBeta , 2) );
+
+        this.texCoords.push( (c - a * cosBeta) / factorS, (1 - aSinBeta) / factorT );
+        this.texCoords.push(0, 1 / factorT);
+        this.texCoords.push(c / factorS, 1 / factorT);
+
+        this.updateTexCoordsGLBuffers();
+    }
 }
