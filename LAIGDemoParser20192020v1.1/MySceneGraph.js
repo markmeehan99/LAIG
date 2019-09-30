@@ -581,6 +581,7 @@ class MySceneGraph {
                 // if (!(stacks != null && !isNaN(stacks)))
                 //     return "unable to parse stacks of the primitive coordinates for ID = " + primitiveId;
                
+                
                 var slices = this.reader.getFloat(grandChildren[0], "slices");
                 if (!(slices != null && !isNaN(slices)))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
