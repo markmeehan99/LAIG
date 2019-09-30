@@ -54,7 +54,6 @@ class MyTriangle extends CGFobject {
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
-        this.enableNormalViz();
     }
 
     calculateNormals() {
