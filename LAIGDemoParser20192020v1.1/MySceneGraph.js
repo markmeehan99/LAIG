@@ -630,24 +630,29 @@ class MySceneGraph {
                 this.primitives[primitiveId] = sphere;
             }
             if (primitiveType == 'torus') {
-                // radius
-                var radius = this.reader.getFloat(grandChildren[0], 'radius');
-                if (!(radius != null && !isNaN(radius)))
-                    return "unable to parse radius of the primitive coordinates for ID = " + primitiveId;
+                // inner
+                var inner = this.reader.getFloat(grandChildren[0], 'inner');
+                if (!(inner != null && !isNaN(inner)))
+                    return "unable to parse inner of the primitive coordinates for ID = " + primitiveId;
+
+                // outer
+                var outer = this.reader.getFloat(grandChildren[0], 'outer');
+                if (!(outer != null && !isNaN(outer)))
+                    return "unable to parse outer of the primitive coordinates for ID = " + primitiveId;
 
                 // slices
                 var slices = this.reader.getFloat(grandChildren[0], 'slices');
                 if (!(slices != null && !isNaN(slices)))
                     return "unable to parse slices of the primitive coordinates for ID = " + primitiveId;
 
-                // stacks
-                var stacks = this.reader.getFloat(grandChildren[0], 'stacks');
-                if (!(stacks != null && !isNaN(stacks)))
-                    return "unable to parse stacks of the primitive coordinates for ID = " + primitiveId;
+                // loops
+                var loops = this.reader.getFloat(grandChildren[0], 'loops');
+                if (!(loops != null && !isNaN(loops)))
+                    return "unable to parse loops of the primitive coordinates for ID = " + primitiveId;
 
-                var sphere = new MyTorus(this.scene, radius, slices, stacks);
+                var torus = new MyTorus(this.scene, inner, outer, slices, loops);
 
-                this.primitives[primitiveId] = sphere;
+                this.primitives[primitiveId] = torus;
             }
 
             else {
@@ -833,6 +838,7 @@ class MySceneGraph {
         //To test the parsing/creation of the primitives, call the display function directly
         // this.primitives['demoRectangle'].display();
         // this.primitives['demoTriangle'].display();
-        this.primitives['demoSphere'].display();
+        // this.primitives['demoSphere'].display();
+        this.primitives['demoTorus'].display();
     }
 }

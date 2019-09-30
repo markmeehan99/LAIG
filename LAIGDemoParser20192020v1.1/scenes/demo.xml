@@ -53,11 +53,11 @@
         </primitive>
 
         <primitive id="demoSphere">
-            <sphere radius="2" slices="20" stacks="20" />
+            <sphere radius="2" slices="5" stacks="5" />
         </primitive>
 
         <primitive id="demoTorus">
-            <torus inner="1" outer="5" slices="10" loops="20" />
+            <torus inner="1" outer="2" slices="10" loops="20" />
         </primitive>
     </primitives>
 
