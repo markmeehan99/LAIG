@@ -742,4 +742,4 @@ class MySceneGraph {
         //To test the parsing/creation of the primitives, call the display function directly
         this.primitives['demoRectangle'].display();
     }
-}
+}x\\
