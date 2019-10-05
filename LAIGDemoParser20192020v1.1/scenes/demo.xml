@@ -49,7 +49,7 @@
         </primitive>
     
         <primitive id="cylinder">
-            <cylinder slices="5" height="5" radius="2" stacks="5" />
+            <cylinder slices="10" height="3" top="4" base="1" stacks="3" />
         </primitive>
     </primitives>
 
