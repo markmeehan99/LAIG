@@ -55,13 +55,17 @@
         <primitive id="sphere">
             <sphere radius="2" slices="20" stacks="20" />
         </primitive>
+    
+        <primitive id="lamp_head">
+            <cylinder slices="16" height="2" top="2" base="3" stacks="3" />
+        </primitive>
     </primitives>
 
     <components>
-        <component id="demoRoot">
+
+        <component id="lamp_head">
             <transformation>
-                <translate x="0" y="0" z="1" />
-                <scale x="2" y="1" z="1" />
+                <translate x="0" y="0" z="2" />
             </transformation>
             <materials>
                 <material id="demoMaterial" />
@@ -71,5 +75,20 @@
                 <primitiveref id="triangle" />
             </children>
         </component>
+
+        <component id="root">
+            <transformation>
+                <!-- <translate x="0" y="0" z="1" /> -->
+                <!-- <scale x="2" y="1" z="1" /> -->
+            </transformation>
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+            <texture id="demoTexture"/>
+            <children>
+                <primitiveref id="triangle" />
+            </children>
+        </component>
+
     </components>
 </lxs>
