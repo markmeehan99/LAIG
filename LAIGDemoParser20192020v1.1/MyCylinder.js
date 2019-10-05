@@ -21,7 +21,7 @@ class MyCylinder extends CGFobject {
 		this.texCoords = [];
 		
 		var n = 2 * Math.PI / this.slices;
-		var radius_diff = Math.abs(this.top - this.base) / this.stacks;
+		var radius_diff = (this.top - this.base) / this.stacks;
 		var stack_height = this.height / this.stacks;
 
 		for (var stack_counter = 0; stack_counter < this.stacks+1 ; stack_counter++) {
@@ -30,8 +30,8 @@ class MyCylinder extends CGFobject {
 			
             for (var i = 0; i <= this.slices; i++) {
                 this.vertices.push(inc * Math.cos(i * n), inc * Math.sin(i * n), stack_counter * stack_height);
-                this.normals.push(Math.cos(i * n), Math.sin(i * n), -Math.tan((this.top - this.base)/this.height));  
-            }
+				this.calculateNormal(n, i);
+			}
 		}
 		
 		var sides = this.slices +1;
@@ -50,5 +50,19 @@ class MyCylinder extends CGFobject {
 		this.primitiveType = this.scene.gl.TRIANGLES;
 		this.enableNormalViz();
 		this.initGLBuffers();
+	}
+
+	calculateNormal(n, i) {
+		var x = Math.cos(i * n);
+		var y = Math.sin(i * n);
+		var z = -(this.top - this.base)/(this.height);
+
+		var size = Math.sqrt( x*x + y*y + z*z );
+
+		x /= size;
+		y /= size;
+		z /= size;
+
+		this.normals.push(x, y, z);
 	}
 }
