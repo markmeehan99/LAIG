@@ -839,6 +839,6 @@ class MySceneGraph {
         //To test the parsing/creation of the primitives, call the display function directly
 
         this.primitives['cylinder'].display();
-        this.primitives['demoSphere'].display();
+        // this.primitives['sphere'].display();
     }
 }
