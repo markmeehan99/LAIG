@@ -46,7 +46,7 @@
     <primitives>
 
         <primitive id="big_thin_torus">
-            <torus inner="0.5" outer="5" slices="8" loops="20" />
+            <torus inner="0.5" outer="5" slices="16" loops="60" />
         </primitive>
 
         <primitive id="regular_torus">
@@ -73,6 +73,14 @@
             <triangle x1="0" y1="0" z1="-1" x2="-1.732" y2="0" z2="0" x3="0" y3="0" z3="1" />
         </primitive>
 
+        <primitive id="lamp_cylinder">
+            <cylinder top="0.6" base="0.6" height="35" slices="8" stacks="4" /> 
+        </primitive>
+
+        <primitive id="lamp_sphere">
+            <sphere radius="2" stacks="10" slices="10" />
+        </primitive>
+
 
     </primitives>
 
@@ -91,12 +99,14 @@
 
             <children>
                 <componentref id="bicycle"/>
+                <componentref id="posts"/>
             </children>
 
         </component>
 
         <component id="bicycle">
             <transformation>
+                <translate x="0" y="5.5" z="0"/>            
             </transformation>
 
             <materials>
@@ -109,6 +119,34 @@
                 <componentref id="front_wheel" />
                 <componentref id="rear_wheel" />
                 <componentref id="chassis" />
+            </children>
+        </component>
+
+        <component id="posts">
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="post1" />
+                <componentref id="post2" />
+                <componentref id="post3" />
+                <componentref id="post4" />
+                <componentref id="post5" />
+                <componentref id="post6" />
+                <componentref id="post7" />
+                <componentref id="post8" />
+                <componentref id="post9" />
+                <componentref id="post10" />
+                <componentref id="post11" />
+                <componentref id="post12" />
+                <componentref id="post13" />
+                <componentref id="post14" />
             </children>
         </component>
 
@@ -163,6 +201,39 @@
                 <componentref id="wheel_radius_5" />
                 <componentref id="wheel_radius_6" />
                 <componentref id="axis_bolt" />
+            </children>
+        </component>
+
+        <component id="light_post">
+            <transformation>0
+                <!-- <translate x="0" y="0" z="29.5" />
+                <rotate axis="y" angle="180" /> -->
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="lamp_cylinder" />
+            </children>
+        </component>
+
+        <component id="light_bulb">
+            <transformation>
+                <translate x="0" y="0" z="35" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="lamp_sphere" />
             </children>
         </component>
 
@@ -691,6 +762,258 @@
 
             <children>
                 <primitiveref id="regular_torus"/>
+            </children>
+        </component>
+
+        <component id="post1">
+            <transformation>
+                <translate x="0" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post2">
+            <transformation>
+                <translate x="-30" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post3">
+            <transformation>
+                <translate x="30" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post4">
+            <transformation>
+                <translate x="-60" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post5">
+            <transformation>
+                <translate x="60" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post6">
+            <transformation>
+                <translate x="-90" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post7">
+            <transformation>
+                <translate x="90" y="0" z="-20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post8">
+            <transformation>
+                <translate x="0" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post9">
+            <transformation>
+                <translate x="-30" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post10">
+            <transformation>
+                <translate x="30" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post11">
+            <transformation>
+                <translate x="-60" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post12">
+            <transformation>
+                <translate x="60" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post13">
+            <transformation>
+                <translate x="-90" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
+            </children>
+        </component>
+
+        <component id="post14">
+            <transformation>
+                <translate x="90" y="0" z="20" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none"/>
+
+            <children>
+                <componentref id="light_post"/>
+                <componentref id="light_bulb"/>
             </children>
         </component>
 

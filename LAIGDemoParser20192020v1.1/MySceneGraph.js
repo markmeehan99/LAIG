@@ -865,8 +865,8 @@ class MySceneGraph {
         //To test the parsing/creation of the primitives, call the display function directly
 
         // this.primitives['cylinder'].display();
-        this.primitives['lamp_head'].display();
-        this.primitives['bulb'].display();
+        // this.primitives['lamp_head'].display();
+        // this.primitives['bulb'].display();
         // this.primitives['sphere'].display();
     }
 }

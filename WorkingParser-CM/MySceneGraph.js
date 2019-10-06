@@ -1294,8 +1294,6 @@ class MySceneGraph {
                     }
                 }
             }
-
-
         }
 
         if (materialIndex != -1) {
@@ -1311,7 +1309,6 @@ class MySceneGraph {
                     this.onXMLMinorError("No material for ID : " + matId);
                 }
             }
-
         }
 
         if (textureIndex != -1) {
@@ -1450,11 +1447,6 @@ class MySceneGraph {
             this.scene.popMatrix();
 
         }
-
-
-
-
-
     }
 
     /**
