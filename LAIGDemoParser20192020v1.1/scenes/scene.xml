@@ -65,6 +65,15 @@
             <sphere radius="2" stacks="8" slices="8" />
         </primitive>
 
+        <primitive id="cone1.5_2.5">
+            <cylinder top="1.5" base="2.5" height="2" slices="8" stacks="4" /> 
+        </primitive>
+
+        <primitive id="equi_triangle_xz">
+            <triangle x1="0" y1="0" z1="-1" x2="-1.732" y2="0" z2="0" x3="0" y3="0" z3="1" />
+        </primitive>
+
+
     </primitives>
 
     <components>
@@ -294,6 +303,22 @@
 
         <component id="main_chassis" >
             <transformation>
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="main_bar" />
+                <componentref id="seat_chassis" />
+            </children>
+        </component>
+
+        <component id="main_bar">
+            <transformation>
                 <translate x="-8" y="6.5" z="0" />
                 <rotate axis="z" angle="-24" />
                 <rotate axis="y" angle="90" />
@@ -310,6 +335,132 @@
                 <primitiveref id="regular_cylinder" />
             </children>
         </component>
+
+        <component id="seat_chassis">
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="vertical_seat_bar" />
+                <componentref id="seat" />
+            </children>
+        </component>
+
+        <component id="vertical_seat_bar">
+            <transformation>
+                <translate x="0" y="-1" z="0"/>
+                <rotate axis="x" angle="-90" />
+                <scale x="0.4" y="0.4" z="3.5" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+        </component>
+
+        <component id="seat">
+            <transformation>
+                <translate x="0" y="6" z="0" />
+                <rotate axis="z" angle="-10" />
+                <translate x="0" y="-6" z="0" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="left_seat" />
+                <componentref id="right_seat" />
+                <componentref id="front_left_seat" />
+                <componentref id="front_right_seat" />
+            </children>
+        </component>
+
+        <component id="left_seat">
+            <transformation>
+                <translate x="0.6" y="6" z="0.7" />
+                <scale x="0.35" y="0.35" z="0.35" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="sphere2" />
+            </children>
+        </component>
+
+        <component id="right_seat">
+            <transformation>
+                <translate x="0.6" y="6" z="-0.7" />
+                <scale x="0.35" y="0.35" z="0.35" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="sphere2" />
+            </children>
+        </component>
+
+        <component id="front_left_seat">
+            <transformation>
+                <translate x="0.5" y="6.1" z="0.5" />
+                <rotate axis="y" angle="-103" />
+                <scale x="0.3" y="0.2" z="1.2" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="cone1.5_2.5" />
+            </children>
+        </component>
+
+        <component id="front_right_seat">
+            <transformation>
+                <translate x="0.5" y="6.1" z="-0.5" />
+                <rotate axis="y" angle="-77" />
+                <scale x="0.3" y="0.2" z="1.2" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="cone1.5_2.5" />
+            </children>
+        </component>
+
 
         <component id="rear_chassis" >
             <transformation>
