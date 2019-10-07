@@ -106,12 +106,19 @@ class MyTriangle extends CGFobject {
                     Math.pow( this.y3 - this.y2 , 2) +
                     Math.pow( this.z3 - this.z2 , 2));
 
-        var cosBeta = ( Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(c, 2) ) / (2 * a * c);
-        var aSinBeta = Math.sqrt( Math.pow(a, 2) - Math.pow( a * cosBeta , 2) );
+        // var cosBeta = ( Math.pow(a, 2) - Math.pow(b, 2) + Math.pow(c, 2) ) / (2 * a * c);
+        // var aSinBeta = Math.sqrt( Math.pow(a, 2) - Math.pow( a * cosBeta , 2) );
 
-        this.texCoords.push( (c - a * cosBeta) / factorS, (1 - aSinBeta) / factorT );
-        this.texCoords.push(0, 1 / factorT);
-        this.texCoords.push(c / factorS, 1 / factorT);
+        var cosAlpha = ( a*a - b*b + c*c) / (2*a*c) ;
+        var sinAlpha = Math.sqrt( 1 - cosAlpha*cosAlpha );
+
+        // this.texCoords.push( (c - a * cosBeta) / factorS, (1 - aSinBeta) / factorT );
+        // this.texCoords.push(0, 1 / factorT);
+        // this.texCoords.push(c / factorS, 1 / factorT);
+
+        this.texCoords.push(0, 0);
+        this.texCoords.push(a / factorS, 0);
+        this.texCoords.push( c * cosAlpha / factorS , c * sinAlpha / factorT);
 
         this.updateTexCoordsGLBuffers();
     }

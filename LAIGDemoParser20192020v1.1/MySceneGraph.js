@@ -112,12 +112,12 @@ class MySceneGraph {
                 return error;
         }
 
-        // <ambient>
-        if ((index = nodeNames.indexOf("ambient")) == -1)
-            return "tag <ambient> missing";
+        // <globals>
+        if ((index = nodeNames.indexOf("globals")) == -1)
+            return "tag <globals> missing";
         else {
             if (index != AMBIENT_INDEX)
-                this.onXMLMinorError("tag <ambient> out of order");
+                this.onXMLMinorError("tag <globals> out of order");
 
             //Parse ambient block
             if ((error = this.parseAmbient(nodes[index])) != null)
@@ -476,11 +476,29 @@ class MySceneGraph {
 
                         transfMatrix = mat4.translate(transfMatrix, transfMatrix, coordinates);
                         break;
-                    case 'scale':                        
-                        this.onXMLMinorError("To do: Parse scale transformations.");
+                    case 'scale':
+                        var coordinates = this.parseCoordinates3D(grandChildren[j], "scale transformation for ID " + transformationID);
+                        if (!Array.isArray(coordinates))
+                            return coordinates;
+
+                        transfMatrix = mat4.scale(transfMatrix, transfMatrix, coordinates);
                         break;
                     case 'rotate':
                         // angle
+                        var angle = this.reader.getFloat(grandChildren[j], "angle");
+                        if (!(angle != null && !isNaN(angle))) {
+                            console.log("unable to parse transformation rotate for ID " + transformationID);
+                            return null;
+                        }
+                        //axis
+                        var axis = this.reader.getString(grandChildren[j], "axis");
+                        if(!(axis != null)) {
+                            console.log("unable to parse transformation rotate for ID " + transformationID);
+                            return null;
+                        } 
+                        if (axis == 'x') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [1, 0, 0]);
+                        if (axis == 'y') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 1, 0]);
+                        if (axis == 'z') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 0, 1]);
                         this.onXMLMinorError("To do: Parse rotate transformations.");
                         break;
                 }
@@ -572,7 +590,7 @@ class MySceneGraph {
                 var stacks = this.reader.getFloat(grandChildren[0], "stacks");
                 if (!(stacks != null && !isNaN(stacks)))
                     return "unable to parse stacks of the primitive coordinates for ID = " + primitiveId;
-               
+
 
                 var slices = this.reader.getFloat(grandChildren[0], "slices");
                 if (!(slices != null && !isNaN(slices)))
@@ -744,6 +762,13 @@ class MySceneGraph {
         }
     }
 
+    /**
+     * Parse the nodes of the graph
+     * @param {nodes ID} nodesId 
+     */
+    parseNodes(nodesId) {
+
+    }
 
     /**
      * Parse the coordinates from a node with ID = id
