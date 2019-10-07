@@ -2,7 +2,7 @@
  * MyGraphNode
  * @constructor
  */
-class MyGraphNode {
+class MyComponent {
     constructor(scene, nodeId) {
         this.scene = scene;
         this.nodeId = nodeId;
@@ -18,7 +18,7 @@ class MyGraphNode {
 
         //children
         this.childrenId = [];
-        this.leafsId = [];
+        this.primitivesId = [];
     }
 
     addTransformation(transId) {

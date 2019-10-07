@@ -227,7 +227,128 @@ class MySceneGraph {
      * @param {view block element} viewsNode
      */
     parseView(viewsNode) {
-        this.onXMLMinorError("To do: Parse views and create cameras.");
+        var children = viewsNode.children;
+
+        this.defaultView = this.reader.getString(viewsNode, "default");
+        if (this.defaultView == null)
+                return "no ID defined for default view";
+        // TODO: verificar erro 
+
+        this.views = [];
+        var numViews = 0;
+
+        var grandChildren = [];
+        var nodeNames = [];
+
+        // Any number of views.
+        for (var i = 0; i < children.length; i++) {
+            
+            if (children[i].nodeName != "perspective" && children[i].nodeName != "ortho") {
+                this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
+                continue;
+            }
+
+            // Get id of the current view.
+            var viewId = this.reader.getString(children[i], 'id');
+            if (viewId == null)
+                return "no ID defined for view";
+
+            // Checks for repeated IDs.
+            if (this.views[viewId] != null)
+                return "ID must be unique for each view (conflict: ID = " + viewId + ")";
+
+            grandChildren = children[i].children;
+
+            nodeNames = [];
+            for (var j = 0; j < grandChildren.length; j++) {
+                nodeNames.push(grandChildren[j].nodeName);
+            }
+            
+            // near
+            var near = this.reader.getFloat(children[i], 'near');
+            if (!(near != null && !isNaN(near)))
+                return "unable to parse near of the view coordinates for ID = " + viewId;
+
+            // far
+            var far = this.reader.getFloat(children[i], 'far');
+            if (!(far != null && !isNaN(far)))
+                return "unable to parse far of the view coordinates for ID = " + viewId;
+
+            var fromIndex = nodeNames.indexOf("from");
+            var toIndex = nodeNames.indexOf("to");
+
+            if (fromIndex == -1 || toIndex == -1) {
+                this.onXMLMinorError("from or to in views are not defined in view for ID " + viewId);
+                continue;
+            }
+
+            var from = this.parseCoordinates3D(grandChildren[fromIndex], "from view for ID " + viewId);
+            if(!Array.isArray(from))
+                return from;
+
+            var to = this.parseCoordinates3D(grandChildren[toIndex], "to view for ID " + viewId);
+            if(!Array.isArray(to))
+                return to;
+
+            // Specifications for the current view.
+            var viewType = children[i].nodeName;
+
+            var cam; 
+            // Retrieves the view parameters.
+            if (viewType == 'perspective') {
+
+                //angle
+                var angle = this.reader.getFloat(children[i], "angle");
+                if (!(angle != null && !isNaN(angle)))
+                return "unable to parse angle of the view coordinates for ID = " + viewId;
+
+                angle *= DEGREE_TO_RAD;
+                cam = new CGFcamera(angle, near, far, vec3.fromValues(...from), vec3.fromValues(...to));
+            }
+            if (viewType == 'ortho') {
+
+                //left
+                var left = this.reader.getFloat(children[i], "left");
+                if (!(left != null && !isNaN(left)))
+                return "unable to parse left of the view coordinates for ID = " + viewId;
+
+                //right
+                var right = this.reader.getFloat(children[i], "right");
+                if (!(right != null && !isNaN(right)))
+                return "unable to parse right of the view coordinates for ID = " + viewId;
+
+                //top
+                var top = this.reader.getFloat(children[i], "top");
+                if (!(top != null && !isNaN(top)))
+                return "unable to parse top of the view coordinates for ID = " + viewId;
+
+                //bottom
+                var bottom = this.reader.getFloat(children[i], "bottom");
+                if (!(bottom != null && !isNaN(bottom)))
+                return "unable to parse bottom of the view coordinates for ID = " + viewId;
+
+                //up
+                var upIndex = nodeNames.indexOf("up");
+                var up = [0, 1, 0];
+                if (upIndex != -1) {
+                    up = this.parseCoordinates3D(grandChildren[toIndex], "up view for ID " + viewId);
+                    if (!Array.isArray(up))
+                        return up;
+                } 
+
+                cam = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
+            }
+            this.views[viewId] = cam;
+            
+            numViews++;
+        }
+
+        if (this.views[this.defaultView] == null) {
+            return "the default view doesn't correspond to any view ID";
+        }
+
+        if(numViews == 0) 
+            return "there must be at least one view";
 
         return null;
     }
@@ -392,8 +513,41 @@ class MySceneGraph {
      */
     parseTextures(texturesNode) {
 
-        //For each texture in textures block, check ID and file URL
-        this.onXMLMinorError("To do: Parse textures.");
+        var children = texturesNode.children;
+
+        this.textures = [];
+        var numTextures = 0;
+
+        // Any number of textures.
+        for (var i = 0; i < children.length; i++) {
+
+            //Check texture
+            if (children[i].nodeName != "texture") {
+                this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
+                continue;
+            }
+
+            // Get id of the current texture.
+            var textureId = this.reader.getString(children[i], 'id');
+            if (textureId == null)
+                return "no ID defined for texture";
+
+            // Checks for repeated IDs.
+            if (this.textures[textureId] != null)
+                return "ID must be unique for each texture (conflict: ID = " + textureId + ")";
+
+            //file
+            var file = this.reader.getString(children[i], 'file');
+            if (file == null)
+                return "no file defined for texture to ID " + textureId;
+
+            if (file.match(/\.png$/) == null && file.match(/\.jpg$/) == null) 
+                this.onXMLMinorError("the file for texture ID " + textureId + " is in a wrong format {png or jpg}\n");
+
+            var text = new CGFtexture(this.scene, file);
+            this.textures[textureId] = text;
+        }
+        
         return null;
     }
 
