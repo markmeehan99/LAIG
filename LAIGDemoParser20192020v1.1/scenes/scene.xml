@@ -1,4 +1,4 @@
-<lxs>
+<yas>
     <scene root="scene" axis_length="5" />
 
     <views default="defaultCamera">
@@ -14,12 +14,43 @@
     </ambient>
 
     <lights>
-        <omni id="demoLight" enabled="1">
-            <location x="9.8" y="11.9" z="10" w="1.0" />
-            <ambient r="0" g="0" b="0" a="1.0" />
-            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
-            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        <omni id="poleLight1" enabled="1">
+            <location x="-30" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
         </omni>
+        <omni id="poleLight2" enabled="1">
+            <location x="30" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+        </omni>
+        <omni id="poleLight3" enabled="1">
+            <location x="-90" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+        </omni>
+        <omni id="poleLight4" enabled="1">
+            <location x="-30" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+        </omni>
+        <omni id="poleLight5" enabled="1">
+            <location x="30" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="1.0" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+        </omni>
+        <omni id="poleLight6" enabled="1">
+            <location x="-90" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+        </omni>
+
     </lights>
 
     <textures>
@@ -156,36 +187,10 @@
                 <componentref id="post4" />
                 <componentref id="post5" />
                 <componentref id="post6" />
-                <componentref id="post7" />
-                <componentref id="post8" />
-                <componentref id="post9" />
-                <componentref id="post10" />
-                <componentref id="post11" />
-                <componentref id="post12" />
-                <componentref id="post13" />
-                <componentref id="post14" />
             </children>
         </component>
 
         <component id="post1">
-            <transformation>
-                <translate x="0" y="0" z="-20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post2">
             <transformation>
                 <translate x="-30" y="0" z="-20" />
                 <rotate axis="x" angle="-90" />
@@ -203,7 +208,7 @@
             </children>
         </component>
 
-        <component id="post3">
+        <component id="post2">
             <transformation>
                 <translate x="30" y="0" z="-20" />
                 <rotate axis="x" angle="-90" />
@@ -221,43 +226,7 @@
             </children>
         </component>
 
-        <component id="post4">
-            <transformation>
-                <translate x="-60" y="0" z="-20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post5">
-            <transformation>
-                <translate x="60" y="0" z="-20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post6">
+        <component id="post3">
             <transformation>
                 <translate x="-90" y="0" z="-20" />
                 <rotate axis="x" angle="-90" />
@@ -275,43 +244,7 @@
             </children>
         </component>
 
-        <component id="post7">
-            <transformation>
-                <translate x="90" y="0" z="-20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post8">
-            <transformation>
-                <translate x="0" y="0" z="20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post9">
+        <component id="post4">
             <transformation>
                 <translate x="-30" y="0" z="20" />
                 <rotate axis="x" angle="-90" />
@@ -329,7 +262,7 @@
             </children>
         </component>
 
-        <component id="post10">
+        <component id="post5">
             <transformation>
                 <translate x="30" y="0" z="20" />
                 <rotate axis="x" angle="-90" />
@@ -347,43 +280,7 @@
             </children>
         </component>
 
-        <component id="post11">
-            <transformation>
-                <translate x="-60" y="0" z="20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post12">
-            <transformation>
-                <translate x="60" y="0" z="20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
-
-        <component id="post13">
+        <component id="post6">
             <transformation>
                 <translate x="-90" y="0" z="20" />
                 <rotate axis="x" angle="-90" />
@@ -401,28 +298,9 @@
             </children>
         </component>
 
-        <component id="post14">
-            <transformation>
-                <translate x="90" y="0" z="20" />
-                <rotate axis="x" angle="-90" />
-            </transformation>
-
-            <materials>
-                <material id="demoMaterial" />
-            </materials>
-
-            <texture id="none"/>
-
-            <children>
-                <componentref id="light_post"/>
-                <componentref id="light_bulb"/>
-            </children>
-        </component>
 
         <component id="light_post">
             <transformation>
-                <!-- <translate x="0" y="0" z="29.5" />
-                <rotate axis="y" angle="180" /> -->
             </transformation>
 
             <materials>
@@ -1052,4 +930,4 @@
         </component>
 
     </components>
-</lxs>
+</yas>
