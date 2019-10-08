@@ -3,42 +3,17 @@
  * @constructor
  */
 class MyComponent {
-    constructor(scene, nodeId) {
+    constructor(scene, nodeId, transformations, materials, texture, children, primitives) {
         this.scene = scene;
         this.nodeId = nodeId;
-
-        //transformations
-        this.transformationsId = [];
-
-        //material
-        this.materialsId = [];
-
-        //texture
-        this.textureId = null;
-
-        //children
-        this.childrenId = [];
-        this.primitivesId = [];
+        this.transformations = transformations;
+        this.materials = materials;
+        this.texture = texture;
+        this.children = children;
+        this.primitives = primitives;
     }
 
-    addTransformation(transId) {
-        this.transformationsId.push(transId);
+    nextMaterial() {
+        
     }
-
-    addMaterial(mateId) {
-        this.materialsId.push(mateID);
-    }
-
-    setTexture(textId) {
-        this.textureId = textId;
-    }
-
-    addChild(nodeId) {
-        this.childrenId.push(nodeId);
-    }
-
-    addLeaf(leafId) {
-        this.leafsId.push(leafId);
-    }
-
 }
