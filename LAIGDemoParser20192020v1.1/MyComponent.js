@@ -3,17 +3,23 @@
  * @constructor
  */
 class MyComponent {
-    constructor(scene, nodeId, transformations, materials, texture, children, primitives) {
+    constructor(scene, node, transformation, materials, texture, lengthS, lengthT, children, primitives) {
         this.scene = scene;
-        this.nodeId = nodeId;
-        this.transformations = transformations;
-        this.materials = materials;
-        this.texture = texture;
-        this.children = children;
-        this.primitives = primitives;
+        this.nodeID = node;
+        this.transformation = transformation;
+        this.materialIDs = materials;
+        this.textureID = texture;
+        this.lengthS = lengthS;
+        this.lengthT = lengthT;
+        this.childrenID = children;
+        this.primitiveID = primitives;
+
+        this.materialIndex = 0;
+        if(this.materialIDs.length)
+            this.selectedMaterial = this.materialIDs[this.materialIndex];
     }
 
     nextMaterial() {
-        
+        this.materialIndex = (this.materialIndex+1) % this.materialIDs.length;
     }
 }
