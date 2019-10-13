@@ -15,8 +15,6 @@ class MyComponent {
         this.primitiveID = primitives;
 
         this.materialIndex = 0;
-        if(this.materialIDs.length)
-            this.selectedMaterial = this.materialIDs[this.materialIndex];
     }
 
     nextMaterial() {

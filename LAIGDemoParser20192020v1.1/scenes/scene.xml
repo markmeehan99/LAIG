@@ -81,7 +81,7 @@
     <primitives>
 
         <primitive id="big_thin_torus">
-            <torus inner="0.5" outer="5" slices="16" loops="60" />
+            <torus inner="0.5" outer="5" slices="12" loops="30" />
         </primitive>
 
         <primitive id="regular_torus">

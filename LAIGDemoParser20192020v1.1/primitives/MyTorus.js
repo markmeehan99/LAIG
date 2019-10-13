@@ -22,25 +22,25 @@ class MyTorus extends CGFobject {
         var sliceInc = 2 * Math.PI / this.slices;
         var loopInc = 2 * Math.PI / this.loops;
 
-		for (var sliceC = 0; sliceC <= this.slices ; sliceC++) {
-			var sliceAng = sliceInc * sliceC;
+		for (var loopC = 0; loopC <= this.loops ; loopC++) {
+			var loopAng = loopInc * loopC;
 			
-            for (var loopC = 0; loopC <= this.loops; loopC++) {
-                var loopAng = loopInc * loopC;
+            for (var sliceC = 0; sliceC <= this.slices; sliceC++) {
+                var sliceAng = sliceInc * sliceC;
 
                 this.vertices.push( 
-                                    (this.outer + this.inner*Math.cos(loopAng)) * Math.cos(sliceAng),
-                                    (this.outer + this.inner*Math.cos(loopAng)) * Math.sin(sliceAng),
-                                    this.inner * Math.sin(loopAng)  
+                                    (this.outer + this.inner*Math.cos(sliceAng)) * Math.cos(loopAng),
+                                    (this.outer + this.inner*Math.cos(sliceAng)) * Math.sin(loopAng),
+                                    this.inner * Math.sin(sliceAng)  
                                   );
-				this.calculateNormal(sliceAng, loopAng);
+				this.calculateNormal(loopAng, sliceAng);
 			}
 		}
 		
-		var sides = this.loops+1;
+		var sides = this.slices+1;
     
-        for (var stack_counter = 0; stack_counter < this.slices; stack_counter++) {
-            for (var i = 0; i < this.loops; i++) {
+        for (var stack_counter = 0; stack_counter < this.loops; stack_counter++) {
+            for (var i = 0; i < this.slices; i++) {
     
                 this.indices.push(sides*stack_counter+i, sides*(stack_counter+1)+i, sides*stack_counter+i+1);
                 this.indices.push(sides*stack_counter+i+1, sides*(stack_counter+1)+i, sides*(stack_counter+1)+i+1);
@@ -51,15 +51,14 @@ class MyTorus extends CGFobject {
         }
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.enableNormalViz();
 		this.initGLBuffers();
 	}
 
-	calculateNormal(sliceAng, loopAng) {
+	calculateNormal(loopAng, sliceAng) {
         
-        var x = Math.cos(loopAng) * Math.cos(sliceAng);
-        var y = (Math.cos(loopAng)) * Math.sin(sliceAng);
-        var z = Math.sin(loopAng);
+        var x = Math.cos(sliceAng) * Math.cos(loopAng);
+        var y = (Math.cos(sliceAng)) * Math.sin(loopAng);
+        var z = Math.sin(sliceAng);
 
 		var size = Math.sqrt( x*x + y*y + z*z );
 

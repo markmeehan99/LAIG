@@ -616,7 +616,7 @@ class MySceneGraph {
                 return specular;  
                 
             var mat = new CGFappearance(this.scene);
-            mat.setShininess(shininess[0]);
+            mat.setShininess(shininess);
             mat.setEmission(emission[0], emission[1], emission[2], emission[3]);
             mat.setAmbient(ambient[0], ambient[1], ambient[2], ambient[3]);
             mat.setDiffuse(diffuse[0], diffuse[1], diffuse[2], diffuse[3]);
@@ -1025,12 +1025,8 @@ class MySceneGraph {
                     if (materialId == null)
                         return "no ID defined for material in component for ID " + componentID;
 
-                    // Check if material if inherit
-                    if(materialId == "inherit")
-                        this.log("TO DO: material inherit");
-
-                    // Check if ID exists in this.materials
-                    else if (this.materials[materialId] == null)
+                    // Check if material is not inherit or ID dont exists in this.materials
+                    if(materialId != "inherit" && this.materials[materialId] == null)
                         return "ID must have been defined in block material (component ID " + componentID + ")";
 
                     materialIds.push(materialId);
@@ -1230,17 +1226,20 @@ class MySceneGraph {
      * or displayPrimitive of primitives
      * @param {string} id
      * @param {CGFappearance} mat
-     * @param {id} text
+     * @param {CGFtexture} text
      * @param {float} sLength
      * @param {float} tLength
      */
     processNode(id, mat, text, lengthS, lengthT) {
         var component = this.components[id];
 
+        console.log(mat);
         // if material not inherit, defines new material
-        if (component.materialIDs[component.materialsIndex] != 'inherit')
-            mat = this.materials[component.materialIDs[component.materialsIndex]];
-
+        if (component.materialIDs[component.materialIndex] != 'inherit') {
+            console.log(component.materialIDs[component.materialIndex]);
+            mat = this.materials[component.materialIDs[component.materialIndex]];
+        }
+            
         // if texture not 'inherit' or 'none'
         if (component.textureID != 'inherit' && component.textureID != 'none')
             text = this.textures[component.textureID];
@@ -1280,7 +1279,7 @@ class MySceneGraph {
     */
    displayPrimitive(id, lengthS, lengthT) {
        var primitive = this.primitives[id];
-       primitive.applyTextures(lengthS, lengthT);
+    //    primitive.applyTextures(lengthS, lengthT);
        primitive.display();
    }
 }
