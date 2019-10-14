@@ -1,4 +1,4 @@
-<yas>
+<lxs>
     <scene root="scene" axis_length="5" />
 
     <views default="defaultCamera">
@@ -930,4 +930,4 @@
         </component>
 
     </components>
-</yas>
+</lxs>

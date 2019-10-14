@@ -99,6 +99,11 @@ class XMLscene extends CGFscene {
 
         this.initLights();
 
+        this.interface.initKeys();
+
+        this.interface.addLights(this.graph.lights);
+
+
         this.initDefaultView();
 
         this.sceneInited = true;
