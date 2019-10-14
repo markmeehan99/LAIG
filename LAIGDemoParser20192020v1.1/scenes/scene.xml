@@ -1,10 +1,14 @@
 <lxs>
     <scene root="scene" axis_length="5" />
 
-    <views default="defaultCamera">
+    <views default="biciclePOV">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
             <from x="30" y="15" z="30" />
             <to x="0" y="-2" z="0" />
+        </perspective>
+        <perspective id="biciclePOV" near="1" far="500" angle="10">
+            <to x="-100" y="0" z="0" />
+            <from x="20" y="15" z="0" />
         </perspective>
     </views>
 
@@ -650,7 +654,7 @@
 
         <component id="left_seat">
             <transformation>
-                <translate x="0.6" y="6" z="0.7" />
+                <translate x="0.6" y="6" z="0.5" />
                 <scale x="0.35" y="0.35" z="0.35" />
             </transformation>
 
@@ -667,7 +671,7 @@
 
         <component id="right_seat">
             <transformation>
-                <translate x="0.6" y="6" z="-0.7" />
+                <translate x="0.6" y="6" z="-0.5" />
                 <scale x="0.35" y="0.35" z="0.35" />
             </transformation>
 

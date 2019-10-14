@@ -10,6 +10,7 @@ class MySphere extends CGFobject {
         this.stacks = stacks;
 
         this.initBuffers();
+        this.enableNormalViz();
     }
 
     initBuffers() {
