@@ -54,7 +54,7 @@
     </lights>
 
     <textures>
-        <texture id="bank" file="scenes/images/bank.jpg" />
+        <texture id="bank" file="scenes/images/leaves.jpg" />
     </textures>
 
     <materials>
@@ -184,7 +184,7 @@
                 <material id="demoMaterial" />
             </materials>
 
-            <texture id="bank" length_s="1" length_t="1"/>
+            <texture id="bank" length_s="2" length_t="2"/>
 
             <children>
                 <primitiveref id="big_rectangle" />
@@ -432,7 +432,7 @@
                 <material id="lightGrey" />
             </materials>
 
-            <texture id="none" length_s="1" length_t="1"/>
+            <texture id="bank" length_s="1" length_t="1"/>
 
             <children>
                 <primitiveref id="long_cylinder" />

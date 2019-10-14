@@ -69,14 +69,12 @@ class MyCylinder extends CGFobject {
 
 	applyTextures(lengthS, lengthT) {
 		this.texCoords = [];
-		// for( var i = 0; i <= this.stacks; i++){
-		// 	for ( var j = 0; j <= this.slices; j++) {
-		// 		if (this.con) {
-		// 			console.log("stack: " + i + "/" + this.stacks + " slice: " + j + "/" +this.slices + "  vertices: " + this.vertices.length);
-		// 		}
-		// 		this.texCoords.push( j / ( lengthS * this.slices) , i / ( lengthT * this.stacks));
-		// 	}
-		// }
-		// this.con=false;
+		for( var i = 0; i <= this.stacks; i++){
+			for ( var j = 0; j <= this.slices; j++) {
+				this.texCoords.push( j / ( this.slices) , i / ( this.stacks));
+			}
+		}
+		
+		this.updateTexCoordsGLBuffers();
 	}
 }

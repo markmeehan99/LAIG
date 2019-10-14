@@ -1263,7 +1263,7 @@ class MySceneGraph {
         }
 
         for (var i = 0; i < component.primitiveID.length; i++) {
-            this.displayPrimitive(component.primitiveID[i], lengthS, lengthT);
+            this.displayPrimitive(component.primitiveID[i], mat, text, lengthS, lengthT);
         }
 
         this.scene.popMatrix();
@@ -1275,10 +1275,12 @@ class MySceneGraph {
     * @param {float} lengthS 
     * @param {float} lengthT
     */
-   displayPrimitive(id, lengthS, lengthT) {
-       var primitive = this.primitives[id];
-       primitive.applyTextures(lengthS, lengthT);
-       primitive.display();
+   displayPrimitive(id, mat, text, lengthS, lengthT) {
+        var primitive = this.primitives[id];
+        mat.apply();
+        mat.setTexture(text);
+        primitive.applyTextures(lengthS, lengthT);
+        primitive.display();
    }
 }
 
