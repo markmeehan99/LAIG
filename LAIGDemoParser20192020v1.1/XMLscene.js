@@ -12,6 +12,7 @@ class XMLscene extends CGFscene {
         super();
 
         this.interface = myinterface;
+        this.lightValues = {};
     }
 
     /**
@@ -103,7 +104,6 @@ class XMLscene extends CGFscene {
 
         this.interface.addLights(this.graph.lights);
 
-
         this.initDefaultView();
 
         this.sceneInited = true;
@@ -139,12 +139,40 @@ class XMLscene extends CGFscene {
             this.lights[i].enable();
         }
 
+        // if (this.sceneInited) {
+        //     // Draw axis
+        //     this.setDefaultAppearance();
+
+        //     // Displays the scene (MySceneGraph function).
+        //     this.graph.displayScene();
+        // }
+
         if (this.sceneInited) {
             // Draw axis
-            this.setDefaultAppearance();
+            this.axis.display();
+
+            var i = 0;
+            for (var key in this.lightValues) {
+                if (this.lightValues.hasOwnProperty(key)) {
+                    if (this.lightValues[key]) {
+                        this.lights[i].setVisible(true);
+                        this.lights[i].enable();
+                    }
+                    else {
+                        this.lights[i].setVisible(false);
+                        this.lights[i].disable();
+                    }
+                    this.lights[i].update();
+                    i++;
+                }
+            }
 
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
+        }
+        else {
+            // Draw axis
+            this.axis.display();
         }
 
         this.popMatrix();
