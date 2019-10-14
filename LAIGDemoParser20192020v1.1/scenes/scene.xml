@@ -54,7 +54,7 @@
     </lights>
 
     <textures>
-        <texture id="demoTexture" file="scenes/images/aefeup.jpg" />
+        <texture id="bank" file="scenes/images/bank.jpg" />
     </textures>
 
     <materials>
@@ -147,6 +147,9 @@
             <sphere radius="2" stacks="10" slices="10" />
         </primitive>
 
+        <primitive id="big_rectangle">
+            <rectangle x1="-5" y1="-5" x2="5" y2="5" />
+        </primitive>    
 
     </primitives>
 
@@ -164,8 +167,27 @@
             <texture id="none" />
 
             <children>
+                <componentref id="street_walk" />
                 <componentref id="bicycle"/>
                 <componentref id="posts"/>
+            </children>
+
+        </component>
+
+        <component id="street_walk">
+
+            <transformation>
+                <rotate angle="-90" axis="x" />
+            </transformation>
+
+            <materials>
+                <material id="demoMaterial" />
+            </materials>
+
+            <texture id="bank" length_s="1" length_t="1"/>
+
+            <children>
+                <primitiveref id="big_rectangle" />
             </children>
 
         </component>
@@ -298,7 +320,6 @@
             </children>
         </component>
 
-
         <component id="light_post">
             <transformation>
             </transformation>
@@ -411,7 +432,7 @@
                 <material id="lightGrey" />
             </materials>
 
-            <texture id="none" />
+            <texture id="none" length_s="1" length_t="1"/>
 
             <children>
                 <primitiveref id="long_cylinder" />

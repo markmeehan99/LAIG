@@ -1233,10 +1233,8 @@ class MySceneGraph {
     processNode(id, mat, text, lengthS, lengthT) {
         var component = this.components[id];
 
-        console.log(mat);
         // if material not inherit, defines new material
         if (component.materialIDs[component.materialIndex] != 'inherit') {
-            console.log(component.materialIDs[component.materialIndex]);
             mat = this.materials[component.materialIDs[component.materialIndex]];
         }
             
@@ -1279,7 +1277,7 @@ class MySceneGraph {
     */
    displayPrimitive(id, lengthS, lengthT) {
        var primitive = this.primitives[id];
-    //    primitive.applyTextures(lengthS, lengthT);
+       primitive.applyTextures(lengthS, lengthT);
        primitive.display();
    }
 }

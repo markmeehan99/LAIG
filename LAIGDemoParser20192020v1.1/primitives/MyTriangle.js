@@ -85,9 +85,9 @@ class MyTriangle extends CGFobject {
         this.normals.push(nx, ny, nz);
     }
 
-    applyTextures(factorS, factorT) {
-        factorS = factorS || 1;
-        factorT = factorT || 1;
+    applyTextures(lengthS, lengthT) {
+        lengthS = lengthS || 1;
+        lengthT = lengthT || 1;
 
         this.texCoords = [];
 
@@ -112,13 +112,13 @@ class MyTriangle extends CGFobject {
         var cosAlpha = ( a*a - b*b + c*c) / (2*a*c) ;
         var sinAlpha = Math.sqrt( 1 - cosAlpha*cosAlpha );
 
-        // this.texCoords.push( (c - a * cosBeta) / factorS, (1 - aSinBeta) / factorT );
-        // this.texCoords.push(0, 1 / factorT);
-        // this.texCoords.push(c / factorS, 1 / factorT);
+        // this.texCoords.push( (c - a * cosBeta) / lengthS, (1 - aSinBeta) / lengthT );
+        // this.texCoords.push(0, 1 / lengthT);
+        // this.texCoords.push(c / lengthS, 1 / lengthT);
 
         this.texCoords.push(0, 0);
-        this.texCoords.push(a / factorS, 0);
-        this.texCoords.push( c * cosAlpha / factorS , c * sinAlpha / factorT);
+        this.texCoords.push(a / lengthS, 0);
+        this.texCoords.push( c * cosAlpha / lengthS , c * sinAlpha / lengthT);
 
         this.updateTexCoordsGLBuffers();
     }
