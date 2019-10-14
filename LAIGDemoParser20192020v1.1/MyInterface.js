@@ -22,8 +22,6 @@ class MyInterface extends CGFinterface {
 
         // add a group of controls (and open/expand by defult)
 
-        this.initKeys();
-
         return true;
     }
 
@@ -46,6 +44,7 @@ class MyInterface extends CGFinterface {
 
         for (var key in lights) {
             if (lights.hasOwnProperty(key)) {
+                console.log(this.scene.lightValues);
                 this.scene.lightValues[key] = lights[key][0];
                 group.add(this.scene.lightValues, key);
             }
