@@ -76,10 +76,12 @@ class MyTorus extends CGFobject {
      */
     applyTextures(lengthS, lengthT) {
         this.texCoords = [];
-		// for( var i = 0; i <= this.loops; i++){
-		// 	for ( var j = 0; j <= this.slices; j++) {
-		// 		this.texCoords.push( j / ( lengthS * this.slices) , i / ( lengthT * this.loops));
-		// 	}
-		// }
+		for( var i = 0; i <= this.loops; i++){
+			for ( var j = 0; j <= this.slices; j++) {
+				this.texCoords.push( j / ( this.slices) , i / ( this.loops));
+			}
+        }
+        
+		this.updateTexCoordsGLBuffers();
     }
 }
