@@ -103,6 +103,7 @@ class XMLscene extends CGFscene {
         this.interface.initKeys();
 
         this.interface.addLights(this.graph.lights);
+        this.interface.addViews(this.graph.views);
 
         this.initDefaultView();
 
@@ -111,6 +112,11 @@ class XMLscene extends CGFscene {
 
     initDefaultView() {
         this.camera = this.graph.views[this.graph.defaultView];
+        this.interface.setActiveCamera(this.camera);
+    }
+
+    selectView(id){
+        this.camera = this.graph.views[id];
         this.interface.setActiveCamera(this.camera);
     }
 
@@ -138,14 +144,6 @@ class XMLscene extends CGFscene {
             this.lights[i].setVisible(true);
             this.lights[i].enable();
         }
-
-        // if (this.sceneInited) {
-        //     // Draw axis
-        //     this.setDefaultAppearance();
-
-        //     // Displays the scene (MySceneGraph function).
-        //     this.graph.displayScene();
-        // }
 
         if (this.sceneInited) {
             // Draw axis
