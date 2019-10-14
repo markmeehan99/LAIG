@@ -6,9 +6,9 @@
             <from x="30" y="15" z="30" />
             <to x="0" y="-2" z="0" />
         </perspective>
-        <perspective id="biciclePOV" near="1" far="500" angle="10">
-            <to x="-100" y="0" z="0" />
-            <from x="20" y="15" z="0" />
+        <perspective id="biciclePOV" near="1" far="500" angle="45">
+            <to x="-40" y="10" z="0" />
+            <from x="10" y="20" z="0" />
         </perspective>
     </views>
 
@@ -62,7 +62,7 @@
     </textures>
 
     <materials>
-        <material id="demoMaterial" shininess="10">
+        <material id="red" shininess="10">
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
             <ambient r="1.0" g="0.0" b="0.0" a="1.0" />
             <diffuse r="0.6" g="0.0" b="0.0" a="1.0" />
@@ -102,6 +102,20 @@
             <ambient r="0.0" g="0.2" b="0.0" a="1.0" />
             <diffuse r="0.0" g="0.2" b="0.0" a="1.0" />
             <specular r="0.0" g="0.2" b="0.0" a="1.0" />
+        </material>
+
+        <material id="blue" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.0" b="1.0" a="1.0" />
+            <diffuse r="0.0" g="0.2" b="1.0" a="1.0" />
+            <specular r="0.0" g="0.2" b="1.0" a="1.0" />
+        </material>
+
+        <material id="green" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="1.0" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="1.0" b="0.0" a="1.0" />
+            <specular r="0.0" g="1.0" b="0.0" a="1.0" />
         </material>
     </materials>
 
@@ -165,7 +179,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none" />
@@ -203,7 +217,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none" />
@@ -225,7 +239,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -243,7 +257,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -261,7 +275,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -279,7 +293,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -297,7 +311,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -315,7 +329,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -363,7 +377,10 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
+                <material id="orange" />
+                <material id="blue" />
+                <material id="green" />
             </materials>
 
             <texture id="none" />
@@ -381,7 +398,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -397,7 +414,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -552,7 +569,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -569,7 +586,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -589,7 +606,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -604,7 +621,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -623,7 +640,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -690,7 +707,7 @@
 
         <component id="front_left_seat">
             <transformation>
-                <translate x="0.5" y="6.1" z="0.5" />
+                <translate x="0.5" y="6.1" z="0.45" />
                 <rotate axis="y" angle="-103" />
                 <scale x="0.3" y="0.2" z="1.2" />
             </transformation>
@@ -708,7 +725,7 @@
 
         <component id="front_right_seat">
             <transformation>
-                <translate x="0.5" y="6.1" z="-0.5" />
+                <translate x="0.5" y="6.1" z="-0.45" />
                 <rotate axis="y" angle="-77" />
                 <scale x="0.3" y="0.2" z="1.2" />
             </transformation>
@@ -732,7 +749,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -750,7 +767,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -767,7 +784,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -785,7 +802,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -803,7 +820,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -819,7 +836,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -842,7 +859,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -860,7 +877,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -877,7 +894,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -894,7 +911,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -911,7 +928,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -929,7 +946,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -946,7 +963,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
