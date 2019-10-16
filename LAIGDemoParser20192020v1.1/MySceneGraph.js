@@ -329,7 +329,7 @@ class MySceneGraph {
                 var upIndex = nodeNames.indexOf("up");
                 var up = [0, 1, 0];
                 if (upIndex != -1) {
-                    up = this.parseCoordinates3D(grandChildren[toIndex], "up view for ID " + viewId);
+                    up = this.parseCoordinates3D(grandChildren[upIndex], "up view for ID " + viewId);
                     if (!Array.isArray(up))
                         return up;
                 } 
@@ -1281,6 +1281,15 @@ class MySceneGraph {
         mat.setTexture(text);
         primitive.applyTextures(lengthS, lengthT);
         primitive.display();
+   }
+
+   /**
+    * loops through all components to increment the materialIndex of each 
+    */
+   nextMaterial() {
+       for (var key in this.components) {
+           this.components[key].nextMaterial();
+       }
    }
 }
 

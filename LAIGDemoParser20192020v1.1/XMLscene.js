@@ -176,4 +176,11 @@ class XMLscene extends CGFscene {
         this.popMatrix();
         // ---- END Background, camera and axis setup
     }
+
+    /**
+     * call for next material in this.graph
+     */
+    nextMaterial() {
+        this.graph.nextMaterial();
+    }
 }
