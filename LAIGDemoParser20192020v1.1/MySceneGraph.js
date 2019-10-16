@@ -1232,6 +1232,10 @@ class MySceneGraph {
      */
     processNode(id, mat, text, lengthS, lengthT) {
         var component = this.components[id];
+        if(component == null) {
+            this.onXMLError("component for ID " + id + " doesn't exist!");
+            return;
+        }
 
         // if material not inherit, defines new material
         if (component.materialIDs[component.materialIndex] != 'inherit') {

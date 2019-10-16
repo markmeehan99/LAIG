@@ -59,6 +59,7 @@
 
     <textures>
         <texture id="street" file="scenes/images/rocks.jpg" />
+        <texture id="fire_hydrant" file="scenes/images/fire_hydrant.jpg" />
     </textures>
 
     <materials>
@@ -167,7 +168,11 @@
 
         <primitive id="big_rectangle">
             <rectangle x1="-5" y1="-5" x2="5" y2="5" />
-        </primitive>    
+        </primitive>   
+
+        <primitive id="circle2" >
+            <cylinder top="0" base="2" height="0" slices="8" stacks="4" />
+        </primitive> 
 
     </primitives>
 
@@ -188,6 +193,201 @@
                 <componentref id="street_walk" />
                 <componentref id="bicycle"/>
                 <componentref id="posts"/>
+                <componentref id="fire_hydrant"/>
+            </children>
+
+        </component>
+
+        <component id="fire_hydrant">
+
+            <transformation>
+                <translate x="-45" y="0" z="-20" />
+            </transformation>
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="base_fire_hydrant" />
+                <componentref id="top_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="base_fire_hydrant">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="vertical_base_fire_hydrant" />
+                <componentref id="horizontal_base_fire_hydrant" />
+                <componentref id="left_top_horizontal_base_fire_hydrant" />
+                <componentref id="right_top_horizontal_base_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="vertical_base_fire_hydrant">
+
+            <transformation>
+                <scale x="2" y="4" z="2" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="fire_hydrant" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="-3" />
+                <scale x="1.2" y="1.2" z="3" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="left_top_horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="3" />
+                <scale x="0.6" y="0.6" z="1" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
+            </children>
+
+        </component>
+
+        <component id="right_top_horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="-3" />
+                <scale x="0.6" y="0.6" z="1" />
+                <rotate angle="180" axis="y" /> 
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
+            </children>
+
+        </component>
+
+        <component id="top_fire_hydrant">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="round_top_fire_hydrant" />
+                <componentref id="nib_top_fire_hydrant" />
+                <componentref id="top_nib_top_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="round_top_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="8" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="fire_hydrant" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="sphere2" />
+            </children>
+
+        </component>
+
+        <component id="nib_top_fire_hydrant">
+
+            <transformation>
+                <scale x="0.3" y="1" z="0.3" />
+                <translate x="0" y="8.3" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="top_nib_top_fire_hydrant">
+
+            <transformation>
+                <scale x="0.15" y="1" z="0.15" />
+                <translate x="0" y="10.3" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
             </children>
 
         </component>

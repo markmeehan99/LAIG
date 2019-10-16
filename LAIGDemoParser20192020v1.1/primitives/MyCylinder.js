@@ -54,9 +54,13 @@ class MyCylinder extends CGFobject {
 	}
 
 	calculateNormal(n, i) {
+		var height = this.height;
+		if(height == 0) 
+			height = 0.0000001;
+
 		var x = Math.cos(i * n);
 		var y = Math.sin(i * n);
-		var z = -(this.top - this.base)/(this.height);
+		var z = -(this.top - this.base)/(height);
 
 		var size = Math.sqrt( x*x + y*y + z*z );
 
