@@ -1,7 +1,7 @@
 <lxs>
     <scene root="scene" axis_length="5" />
 
-    <views default="randomOrtho">
+    <views default="defaultCamera">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
             <from x="1" y="25" z="1" />
             <to x="0" y="-2" z="0" />
@@ -198,6 +198,27 @@
                 <componentref id="bicycle"/>
                 <componentref id="posts"/>
                 <componentref id="fire_hydrant"/>
+                <componentref id="park"/>
+            </children>
+
+        </component>
+
+        <component id="park">
+
+            <transformation>
+                <translate x="-25" y="0" z="-75" />
+                <scale x="15" y="1" z="10" />
+                <rotate angle="-90" axis="x" />
+            </transformation>
+
+            <materials>
+                <material id="green" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="big_rectangle" />
             </children>
 
         </component>
