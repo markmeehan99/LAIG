@@ -435,7 +435,7 @@ class MySceneGraph {
             if (!(aux != null && !isNaN(aux) && (aux == true || aux == false)))
                 this.onXMLMinorError("unable to parse value component of the 'enable light' field for ID = " + lightId + "; assuming 'value = 1'");
 
-            enableLight = aux || 1;
+            enableLight = aux ? true : false;
 
             //Add enabled boolean and type name to light info
             global.push(enableLight);
@@ -466,6 +466,25 @@ class MySceneGraph {
                 else
                     return "light " + attributeNames[i] + " undefined for ID = " + lightId;
             }
+
+            var attenuationIndex = nodeNames.indexOf('attenuation');
+            if(attenuationIndex == -1)
+                return "no attenuation defined in light for ID " + lightId;
+
+            var constant = this.reader.getFloat(grandChildren[attenuationIndex], 'constant');
+            if (!(constant != null && !isNaN(constant) && constant >= 0 && constant <= 1))
+                return "unable to parse constant attenuation of the light for ID = " + lightId;
+            
+            var linear = this.reader.getFloat(grandChildren[attenuationIndex], 'linear');
+            if (!(linear != null && !isNaN(linear) && linear >= 0 && linear <= 1))
+                return "unable to parse linear attenuation of the light for ID = " + lightId;
+            
+            var quadratic = this.reader.getFloat(grandChildren[attenuationIndex], 'quadratic');
+            if (!(quadratic != null && !isNaN(quadratic) && quadratic >= 0 && quadratic <= 1))
+                return "unable to parse quadratic attenuation of the light for ID = " + lightId;
+    
+            global.push(...[constant, linear, quadratic]);
+    
 
             // Gets the additional attributes of the spot light
             if (children[i].nodeName == "spot") {
@@ -616,6 +635,7 @@ class MySceneGraph {
                 return specular;  
                 
             var mat = new CGFappearance(this.scene);
+            mat.setTextureWrap('REPEAT', 'REPEAT');
             mat.setShininess(shininess);
             mat.setEmission(emission[0], emission[1], emission[2], emission[3]);
             mat.setAmbient(ambient[0], ambient[1], ambient[2], ambient[3]);
