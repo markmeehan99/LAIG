@@ -78,7 +78,7 @@ class MyTorus extends CGFobject {
         this.texCoords = [];
 		for( var i = 0; i <= this.loops; i++){
 			for ( var j = 0; j <= this.slices; j++) {
-				this.texCoords.push( j / ( this.slices) , i / ( this.loops));
+				this.texCoords.push( j / ( this.slices) , 1 - i / ( this.loops));
 			}
         }
         

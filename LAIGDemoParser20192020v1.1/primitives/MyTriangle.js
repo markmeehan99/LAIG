@@ -89,19 +89,17 @@ class MyTriangle extends CGFobject {
         lengthS = lengthS || 1;
         lengthT = lengthT || 1;
 
-        this.texCoords = [];
-
-        var a = Math.sqrt( 
+        var c = Math.sqrt( 
                     Math.pow( this.x1 - this.x3 , 2) + 
                     Math.pow( this.y1 - this.y3 , 2) +
                     Math.pow( this.z1 - this.z3 , 2));
 
-        var b = Math.sqrt(
+        var a = Math.sqrt(
                     Math.pow( this.x2 - this.x1 , 2) +
                     Math.pow( this.y2 - this.y1 , 2) +
                     Math.pow( this.z2 - this.z1 , 2));
 
-        var c = Math.sqrt(
+        var b = Math.sqrt(
                     Math.pow( this.x3 - this.x2 , 2) +
                     Math.pow( this.y3 - this.y2 , 2) +
                     Math.pow( this.z3 - this.z2 , 2));
@@ -116,9 +114,11 @@ class MyTriangle extends CGFobject {
         // this.texCoords.push(0, 1 / lengthT);
         // this.texCoords.push(c / lengthS, 1 / lengthT);
 
-        this.texCoords.push(0, 0);
-        this.texCoords.push(a / lengthS, 0);
-        this.texCoords.push( c * cosAlpha / lengthS , c * sinAlpha / lengthT);
+        this.texCoords = [
+            0, 0,
+            a / lengthS, 0,
+            c * cosAlpha / lengthS , c * sinAlpha / lengthT
+        ];
 
         this.updateTexCoordsGLBuffers();
     }
