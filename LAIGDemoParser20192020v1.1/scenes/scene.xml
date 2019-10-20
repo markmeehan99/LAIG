@@ -26,48 +26,56 @@
     </globals>
 
     <lights>
-        <omni id="poleLight1" enabled="1">
+        <omni id="poleLight1" enabled="0">
             <location x="-30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight2" enabled="1">
+        <omni id="poleLight2" enabled="0">
             <location x="30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight3" enabled="1">
+        <omni id="poleLight3" enabled="0">
             <location x="-90" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight4" enabled="1">
+        <omni id="poleLight4" enabled="0">
             <location x="-30" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight5" enabled="1">
+        <omni id="poleLight5" enabled="0">
             <location x="30" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="1.0" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight6" enabled="1">
+        <omni id="poleLight6" enabled="0">
             <location x="-90" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
+        <spot id="bicycleSpot" enabled="1" angle="45" exponent="100.1">
+            <location x="-10" y="0" z="-10" w="1.0" />
+            <target x="-25" y="5" z="17" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="0.7" g="0.7" b="0.7" a="1" />
+            <specular r="0.7" g="0.7" b="0.7" a="1" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </spot>
 
     </lights>
 
