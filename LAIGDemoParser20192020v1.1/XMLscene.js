@@ -12,6 +12,7 @@ class XMLscene extends CGFscene {
         super();
 
         this.interface = myinterface;
+        this.lightValues = {};
     }
 
     /**
@@ -99,7 +100,24 @@ class XMLscene extends CGFscene {
 
         this.initLights();
 
+        this.interface.initKeys();
+
+        this.interface.addLights(this.graph.lights);
+        this.interface.addViews(this.graph.views);
+
+        this.initDefaultView();
+
         this.sceneInited = true;
+    }
+
+    initDefaultView() {
+        this.camera = this.graph.views[this.graph.defaultView];
+        this.interface.setActiveCamera(this.camera);
+    }
+
+    selectView(id){
+        this.camera = this.graph.views[id];
+        this.interface.setActiveCamera(this.camera);
     }
 
     /**
@@ -129,13 +147,40 @@ class XMLscene extends CGFscene {
 
         if (this.sceneInited) {
             // Draw axis
-            this.setDefaultAppearance();
+            this.axis.display();
+
+            var i = 0;
+            for (var key in this.lightValues) {
+                if (this.lightValues.hasOwnProperty(key)) {
+                    if (this.lightValues[key]) {
+                        this.lights[i].setVisible(true);
+                        this.lights[i].enable();
+                    }
+                    else {
+                        this.lights[i].setVisible(false);
+                        this.lights[i].disable();
+                    }
+                    this.lights[i].update();
+                    i++;
+                }
+            }
 
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
         }
+        else {
+            // Draw axis
+            this.axis.display();
+        }
 
         this.popMatrix();
         // ---- END Background, camera and axis setup
+    }
+
+    /**
+     * call for next material in this.graph
+     */
+    nextMaterial() {
+        this.graph.nextMaterial();
     }
 }

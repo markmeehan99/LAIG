@@ -22,8 +22,6 @@ class MyInterface extends CGFinterface {
 
         // add a group of controls (and open/expand by defult)
 
-        this.initKeys();
-
         return true;
     }
 
@@ -36,12 +34,41 @@ class MyInterface extends CGFinterface {
         this.activeKeys={};
     }
 
+    addViews(views) {
+        var viewGroup = this.gui.addFolder("Views");
+        
+
+        var cameraIdArray = Object.keys(views);
+        this.currentCameraId = this.scene.graph.defaultView;
+
+        viewGroup.add(this, 'currentCameraId', cameraIdArray).name('Camera').onChange(val => this.scene.selectView(val));
+
+    }
+
+    addLights(lights) {
+
+        var lightGroup = this.gui.addFolder("Lights");
+
+        // add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
+        // e.g. this.option1=true; this.option2=false;
+
+        for (var key in lights) {
+            if (lights.hasOwnProperty(key)) {
+                this.scene.lightValues[key] = lights[key][0];
+                lightGroup.add(this.scene.lightValues, key);
+            }
+        }
+    }
+
     processKeyDown(event) {
         this.activeKeys[event.code]=true;
     };
 
     processKeyUp(event) {
         this.activeKeys[event.code]=false;
+        if(event.code ==  'KeyM') {
+            this.scene.nextMaterial();
+        }
     };
 
     isKeyPressed(keyCode) {

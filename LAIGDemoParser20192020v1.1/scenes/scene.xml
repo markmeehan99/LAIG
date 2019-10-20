@@ -1,17 +1,25 @@
-<yas>
+<lxs>
     <scene root="scene" axis_length="5" />
 
     <views default="defaultCamera">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
-            <from x="30" y="15" z="30" />
+            <from x="1" y="25" z="1" />
             <to x="0" y="-2" z="0" />
         </perspective>
+        <perspective id="biciclePOV" near="1" far="500" angle="45">
+            <to x="-40" y="10" z="0" />
+            <from x="10" y="20" z="0" />
+        </perspective>
+        <ortho id="randomOrtho" near="0.1" far="200" left="-40" right="40" top="30" bottom="-10" >
+            <to x="1" y="5" z="0" />
+            <from x="50" y="10" z="0" />
+        </ortho>
     </views>
 
-    <ambient>
+    <globals>
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <background r="0.0" g="0.0" b="0.0" a="1.0" />
-    </ambient>
+    </globals>
 
     <lights>
         <omni id="poleLight1" enabled="1">
@@ -54,11 +62,12 @@
     </lights>
 
     <textures>
-        <texture id="demoTexture" file="scenes/images/aefeup.jpg" />
+        <texture id="street" file="scenes/images/rocks.jpg" />
+        <texture id="fire_hydrant" file="scenes/images/fire_hydrant.jpg" />
     </textures>
 
     <materials>
-        <material id="demoMaterial" shininess="10">
+        <material id="red" shininess="10">
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
             <ambient r="1.0" g="0.0" b="0.0" a="1.0" />
             <diffuse r="0.6" g="0.0" b="0.0" a="1.0" />
@@ -99,6 +108,20 @@
             <diffuse r="0.0" g="0.2" b="0.0" a="1.0" />
             <specular r="0.0" g="0.2" b="0.0" a="1.0" />
         </material>
+
+        <material id="blue" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.0" b="1.0" a="1.0" />
+            <diffuse r="0.0" g="0.2" b="1.0" a="1.0" />
+            <specular r="0.0" g="0.2" b="1.0" a="1.0" />
+        </material>
+
+        <material id="green" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="1.0" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="1.0" b="0.0" a="1.0" />
+            <specular r="0.0" g="1.0" b="0.0" a="1.0" />
+        </material>
     </materials>
 
     <transformations>
@@ -112,7 +135,7 @@
     <primitives>
 
         <primitive id="big_thin_torus">
-            <torus inner="0.5" outer="5" slices="16" loops="60" />
+            <torus inner="0.5" outer="5" slices="12" loops="30" />
         </primitive>
 
         <primitive id="regular_torus">
@@ -147,6 +170,13 @@
             <sphere radius="2" stacks="10" slices="10" />
         </primitive>
 
+        <primitive id="big_rectangle">
+            <rectangle x1="-5" y1="-5" x2="5" y2="5" />
+        </primitive>   
+
+        <primitive id="circle2" >
+            <cylinder top="0" base="2" height="0" slices="8" stacks="4" />
+        </primitive> 
 
     </primitives>
 
@@ -158,14 +188,230 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none" />
 
             <children>
+                <componentref id="street_walk" />
                 <componentref id="bicycle"/>
                 <componentref id="posts"/>
+                <componentref id="fire_hydrant"/>
+            </children>
+
+        </component>
+
+        <component id="fire_hydrant">
+
+            <transformation>
+                <translate x="-45" y="0" z="-20" />
+            </transformation>
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="base_fire_hydrant" />
+                <componentref id="top_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="base_fire_hydrant">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="vertical_base_fire_hydrant" />
+                <componentref id="horizontal_base_fire_hydrant" />
+                <componentref id="left_top_horizontal_base_fire_hydrant" />
+                <componentref id="right_top_horizontal_base_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="vertical_base_fire_hydrant">
+
+            <transformation>
+                <scale x="2" y="4" z="2" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="fire_hydrant" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="-3" />
+                <scale x="1.2" y="1.2" z="3" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="left_top_horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="3" />
+                <scale x="0.6" y="0.6" z="1" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
+            </children>
+
+        </component>
+
+        <component id="right_top_horizontal_base_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="5" z="-3" />
+                <scale x="0.6" y="0.6" z="1" />
+                <rotate angle="180" axis="y" /> 
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
+            </children>
+
+        </component>
+
+        <component id="top_fire_hydrant">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="round_top_fire_hydrant" />
+                <componentref id="nib_top_fire_hydrant" />
+                <componentref id="top_nib_top_fire_hydrant" />
+            </children>
+
+        </component>
+
+        <component id="round_top_fire_hydrant">
+
+            <transformation>
+                <translate x="0" y="8" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="fire_hydrant" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="sphere2" />
+            </children>
+
+        </component>
+
+        <component id="nib_top_fire_hydrant">
+
+            <transformation>
+                <scale x="0.3" y="1" z="0.3" />
+                <translate x="0" y="8.3" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="top_nib_top_fire_hydrant">
+
+            <transformation>
+                <scale x="0.15" y="1" z="0.15" />
+                <translate x="0" y="10.3" z="0" />
+                <rotate axis="x" angle="-90" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="circle2" />
+            </children>
+
+        </component>
+
+        <component id="street_walk">
+
+            <transformation>
+                <translate x="-25" y="0" z="0" />
+                <scale x="15" y="1" z="5" />
+                <rotate angle="-90" axis="x" />
+            </transformation>
+
+            <materials>
+                <material id="darkGrey" />
+            </materials>
+
+            <texture id="street" length_s="0.04" length_t="0.08"/>
+
+            <children>
+                <primitiveref id="big_rectangle" />
             </children>
 
         </component>
@@ -175,7 +421,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none" />
@@ -197,7 +443,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -215,7 +461,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -233,7 +479,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -251,7 +497,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -269,7 +515,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -287,7 +533,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
             </materials>
 
             <texture id="none"/>
@@ -297,7 +543,6 @@
                 <componentref id="light_bulb"/>
             </children>
         </component>
-
 
         <component id="light_post">
             <transformation>
@@ -336,7 +581,10 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="red" />
+                <material id="orange" />
+                <material id="blue" />
+                <material id="green" />
             </materials>
 
             <texture id="none" />
@@ -354,7 +602,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -370,7 +618,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -411,7 +659,7 @@
                 <material id="lightGrey" />
             </materials>
 
-            <texture id="none" />
+            <texture id="none" length_s="1" length_t="1"/>
 
             <children>
                 <primitiveref id="long_cylinder" />
@@ -525,7 +773,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -542,7 +790,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -562,7 +810,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -577,7 +825,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -596,7 +844,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none" />
@@ -629,7 +877,7 @@
 
         <component id="left_seat">
             <transformation>
-                <translate x="0.6" y="6" z="0.7" />
+                <translate x="0.6" y="6" z="0.5" />
                 <scale x="0.35" y="0.35" z="0.35" />
             </transformation>
 
@@ -646,7 +894,7 @@
 
         <component id="right_seat">
             <transformation>
-                <translate x="0.6" y="6" z="-0.7" />
+                <translate x="0.6" y="6" z="-0.5" />
                 <scale x="0.35" y="0.35" z="0.35" />
             </transformation>
 
@@ -663,8 +911,8 @@
 
         <component id="front_left_seat">
             <transformation>
-                <translate x="0.5" y="6.1" z="0.5" />
-                <rotate axis="y" angle="-103" />
+                <translate x="0.5" y="6.1" z="0.40" />
+                <rotate axis="y" angle="-100" />
                 <scale x="0.3" y="0.2" z="1.2" />
             </transformation>
 
@@ -681,8 +929,8 @@
 
         <component id="front_right_seat">
             <transformation>
-                <translate x="0.5" y="6.1" z="-0.5" />
-                <rotate axis="y" angle="-77" />
+                <translate x="0.5" y="6.1" z="-0.4" />
+                <rotate axis="y" angle="-80" />
                 <scale x="0.3" y="0.2" z="1.2" />
             </transformation>
 
@@ -705,7 +953,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -723,7 +971,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -740,7 +988,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -758,7 +1006,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -776,7 +1024,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -792,7 +1040,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -815,7 +1063,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -833,7 +1081,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -850,7 +1098,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -867,7 +1115,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -884,7 +1132,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -902,7 +1150,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -919,7 +1167,7 @@
             </transformation>
 
             <materials>
-                <material id="demoMaterial" />
+                <material id="inherit" />
             </materials>
 
             <texture id="none"/>
@@ -930,4 +1178,4 @@
         </component>
 
     </components>
-</yas>
+</lxs>

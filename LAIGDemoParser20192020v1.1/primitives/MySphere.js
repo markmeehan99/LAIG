@@ -69,9 +69,18 @@ class MySphere extends CGFobject {
             }
         }
 
-        this.enableNormalViz();
-
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
+    }
+
+    applyTextures(lengthS, lengthT) {
+        this.texCoords = [];
+		for( var i = 0; i <= this.stacks; i++){
+			for ( var j = 0; j <= this.slices; j++) {
+				this.texCoords.push( j / ( this.slices) , i / ( this.stacks));
+			}
+        }
+        
+		this.updateTexCoordsGLBuffers();
     }
 }

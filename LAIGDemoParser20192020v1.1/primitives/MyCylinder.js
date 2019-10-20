@@ -9,7 +9,7 @@ class MyCylinder extends CGFobject {
         this.stacks = stacks;
         this.base = base;
         this.top = top;
-        this.height = height;
+		this.height = height;
 		
 		this.initBuffers();
 	}
@@ -48,14 +48,17 @@ class MyCylinder extends CGFobject {
         }
 
 		this.primitiveType = this.scene.gl.TRIANGLES;
-		this.enableNormalViz();
 		this.initGLBuffers();
 	}
 
 	calculateNormal(n, i) {
+		var height = this.height;
+		if(height == 0) 
+			height = 0.0000001;
+
 		var x = Math.cos(i * n);
 		var y = Math.sin(i * n);
-		var z = -(this.top - this.base)/(this.height);
+		var z = -(this.top - this.base)/(height);
 
 		var size = Math.sqrt( x*x + y*y + z*z );
 
@@ -64,5 +67,16 @@ class MyCylinder extends CGFobject {
 		z /= size;
 
 		this.normals.push(x, y, z);
+	}
+
+	applyTextures(lengthS, lengthT) {
+		this.texCoords = [];
+		for( var i = 0; i <= this.stacks; i++){
+			for ( var j = 0; j <= this.slices; j++) {
+				this.texCoords.push( j / ( this.slices) , i / ( this.stacks));
+			}
+		}
+		
+		this.updateTexCoordsGLBuffers();
 	}
 }

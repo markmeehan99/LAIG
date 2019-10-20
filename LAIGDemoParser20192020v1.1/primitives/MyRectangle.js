@@ -67,5 +67,19 @@ class MyRectangle extends CGFobject {
 		this.texCoords = [...coords];
 		this.updateTexCoordsGLBuffers();
 	}
+
+	/**
+	 * 
+	 * @param {float} lengthS 
+	 * @param {float} lengthT 
+	 */
+	applyTextures(lengthS, lengthT) {
+		this.texCoords = [];
+		this.texCoords.push(0, 1 / lengthT);
+		this.texCoords.push(1 / lengthS, 1 / lengthT);
+		this.texCoords.push(0, 0);
+		this.texCoords.push(1 / lengthS, 0);
+		this.updateTexCoordsGLBuffers();
+	}
 }
 
