@@ -1,18 +1,22 @@
 <lxs>
     <scene root="scene" axis_length="5" />
 
-    <views default="defaultCamera">
+    <views default="bicycle">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
             <from x="100" y="35" z="35" />
             <to x="0" y="-2" z="0" />
         </perspective>
-        <perspective id="biciclePOV" near="1" far="500" angle="45">
-            <to x="-40" y="10" z="0" />
-            <from x="10" y="20" z="0" />
+        <perspective id="bicycle" near="1" far="500" angle="45">
+            <from x="-60" y="15" z="35" />
+            <to x="-20" y="5" z="5" />
         </perspective>
-        <ortho id="randomOrtho" near="0.1" far="200" left="-40" right="40" top="30" bottom="-10" >
-            <to x="1" y="5" z="0" />
-            <from x="50" y="10" z="0" />
+        <perspective id="fireHydrant" near="1" far="500" angle="45">
+            <from x="-100" y="10" z="-35" />
+            <to x="-20" y="5" z="5" />
+        </perspective>
+        <ortho id="ortho" near="0.1" far="200" left="-40" right="60" top="45" bottom="-5" >
+            <to x="1" y="0" z="0" />
+            <from x="50" y="5" z="0" />
         </ortho>
     </views>
 
@@ -149,15 +153,15 @@
         </primitive>
 
         <primitive id="long_cylinder">
-            <cylinder height="5" top="0.1" base="0.1" stacks="4" slices="8" />
+            <cylinder height="5" top="0.1" base="0.1" stacks="4" slices="20" />
         </primitive>
 
         <primitive id="regular_cylinder">
-            <cylinder height="2" top="1" base="1" stacks="3" slices="8" />
+            <cylinder height="2" top="1" base="1" stacks="3" slices="20" />
         </primitive>
 
         <primitive id="sphere2">
-            <sphere radius="2" stacks="8" slices="8" />
+            <sphere radius="2" stacks="20" slices="20" />
         </primitive>
 
         <primitive id="cone1.5_2.5">
@@ -185,7 +189,7 @@
         </primitive>   
 
         <primitive id="circle2" >
-            <cylinder top="0" base="2" height="0" slices="8" stacks="4" />
+            <cylinder top="0" base="2" height="0" slices="20" stacks="4" />
         </primitive> 
 
         <primitive id="square">
