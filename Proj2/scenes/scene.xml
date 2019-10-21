@@ -150,6 +150,16 @@
         </transformation>
     </transformations>
 
+    <animations>
+        <animation id="demoAnimation">
+            <keyframe instant="5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>
+    </animations>
+
     <primitives>
 
         <primitive id="big_thin_torus">
@@ -177,7 +187,7 @@
         </primitive>
 
         <primitive id="equi_triangle_xz">
-            <triangle x1="0" y1="0" z1="-1" x2="-1.732" y2="0" z2="0" x3="0" y3="0" z3="1" />
+            <triangle x1="0" y1="0" z1="-1" x2="-1" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
         </primitive>
 
         <primitive id="lamp_cylinder">
@@ -226,6 +236,26 @@
                 <componentref id="fire_hydrant"/>
                 <componentref id="park"/>
                 <componentref id="bench"/>
+                <componentref id="triangle"/>
+            </children>
+
+        </component>
+
+        <component id="triangle" >
+            <transformation>
+                <translate x="-29.4" y="15" z="-20" />
+                <scale x="1" y="3" z="3" />
+                <rotate angle="-90" axis="z" />
+            </transformation>
+
+            <materials>
+                <material id="white" />
+            </materials>
+
+            <texture id="sign" length_s="2" length_t="1.732" />
+
+            <children>
+                <primitiveref id="equi_triangle_xz" />
             </children>
 
         </component>

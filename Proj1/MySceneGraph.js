@@ -1301,9 +1301,9 @@ class MySceneGraph {
     */
    displayPrimitive(id, mat, text, lengthS, lengthT) {
         var primitive = this.primitives[id];
+        primitive.applyTextures(lengthS, lengthT);
         mat.apply();
         mat.setTexture(text);
-        primitive.applyTextures(lengthS, lengthT);
         primitive.display();
    }
 
