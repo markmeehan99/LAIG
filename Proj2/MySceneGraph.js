@@ -8,8 +8,9 @@ var LIGHTS_INDEX = 3;
 var TEXTURES_INDEX = 4;
 var MATERIALS_INDEX = 5;
 var TRANSFORMATIONS_INDEX = 6;
-var PRIMITIVES_INDEX = 7;
-var COMPONENTS_INDEX = 8;
+var ANIMATIONS_INDEX = 7;
+var PRIMITIVES_INDEX = 8;
+var COMPONENTS_INDEX = 9;
 
 /**
  * MySceneGraph class, representing the scene graph.
@@ -732,6 +733,40 @@ class MySceneGraph {
 
         this.log("Parsed transformations");
         return null;
+    }
+
+    /**
+     * Parses the <animations> block
+     * @param {animations block element} animationsNode 
+     */
+    parseAnimations(animationsNode) {
+        var children = animationsNode.children;
+
+        this.animations = [];
+
+        var grandChildren = [];
+        var grandgrandChildren = [];
+
+        // Any number of animations
+        for (var i = 0; i < children.length; i++) {
+            if (children[i].nodeName != "animation") {
+                this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
+                continue;
+            }
+
+            // Get id of the current animation.
+            var animationId = this.reader.getString(children[i], 'id');
+            if (animationId == null)
+                return "no ID defined for texture";
+
+            // Checks for repeated IDs.
+            if (this.animations[animationId] != null)
+                return "ID must be unique for each animation (conflict: ID = " + primitiveId + ")";
+
+            grandChildren = children[i].children;
+
+            console.log("TODO animations parser");
+        }
     }
 
     /**
