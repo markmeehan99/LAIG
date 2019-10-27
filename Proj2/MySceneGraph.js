@@ -746,6 +746,7 @@ class MySceneGraph {
 
         var grandChildren = [];
         var grandgrandChildren = [];
+        var nodeNames = [];
 
         // Any number of animations
         for (var i = 0; i < children.length; i++) {
@@ -763,8 +764,74 @@ class MySceneGraph {
             if (this.animations[animationId] != null)
                 return "ID must be unique for each animation (conflict: ID = " + primitiveId + ")";
 
+            // keyframes inside animation i
             grandChildren = children[i].children;
 
+            // loop through the keyframes
+            var keyframesCounter = 0;
+            for (var j = 0; j < grandChildren.length; j++) {
+                if(grandChildren[j].nodeName != 'keyframe') {
+                    this.onXMLMinorError("child of animation for ID " + animationId + " must be a keyframe");
+                    continue;
+                }
+
+                var instant = this.reader.getFloat(grandChildren[j], 'instant');
+                if(!(instant != null && isNaN(instant) && instant >= 0)) {
+                    this.onXMLMinorError('instant value of animation for ID ' + animationId + 'cannot be negative');
+                }
+
+                //inside keyframe
+                grandgrandChildren = grandChildren[j].children;
+
+                nodeNames = [];
+                for (var k = 0; k < grandgrandChildren.length; k++) {
+                    nodeNames.push(grandgrandChildren[k].nodeName);
+                }
+
+                var translateIndex = nodeNames.indexOf("translate");
+                var rotateIndex = nodeNames.indexOf("rotate");
+                var scaleIndex = nodeNames.indexOf("scale");
+
+                if (translateIndex != 0 || rotateIndex != 1 || scaleIndex != 2) {
+                    this.onXMLMinorError("some transformations in animation for ID " + animationId + " are not in the right order");
+                }
+
+                var translate = this.parseCoordinates3D(grandgrandChildren[translateIndex], 'translate transformation of animation for ID ' + animationId);
+                if(!Array.isArray(translate)) {
+                    return translate;
+                }
+
+                var scale = this.parseCoordinates3D(grandgrandChildren[scaleIndex], 'scale transformation in animation for ID ' + animationId);
+                if(!Array.isArray(scale)) {
+                    return scale;
+                }
+
+                // angle_x
+                var rotateX = this.reader.getFloat(grandgrandChildren[rotateIndex], 'angle_x');
+                if (!(rotateX != null && !isNaN(rotateX))) {
+                    this.onXMLMinorError('unable to parse angle_x of animation for ID ' + animationId);
+                }
+
+                // angle_y
+                var rotateY = this.reader.getFloat(grandgrandChildren[rotateIndex], 'angle_y');
+                if (!(rotateY != null && !isNaN(rotateY))) {
+                    this.onXMLMinorError('unable to parse angle_y of animation for ID ' + animationId);
+                }
+
+                // angle_z
+                var rotateZ = this.reader.getFloat(grandgrandChildren[rotateIndex], 'angle_z');
+                if (!(rotateZ != null && !isNaN(rotateZ))) {
+                    this.onXMLMinorError('unable to parse angle_z of animation for ID ' + animationId);
+                }
+                
+                
+                
+                keyframesCounter++;
+            }
+
+            if(keyframesCounter == 0) {
+                this.onXMLMinorError("Should exist at least one keyframe in animation for ID " + animationId);
+            }
             console.log("TODO animations parser");
         }
     }
