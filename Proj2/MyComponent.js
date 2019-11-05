@@ -3,10 +3,11 @@
  * @constructor
  */
 class MyComponent {
-    constructor(scene, node, transformation, materials, texture, lengthS, lengthT, children, primitives) {
+    constructor(scene, node, transformation, animation, materials, texture, lengthS, lengthT, children, primitives) {
         this.scene = scene;
         this.nodeID = node;
-        this.transformation = transformation;
+        this.transformation = transformation; // transformation in t=0, no animation
+        this.animationID = animation;
         this.materialIDs = materials;
         this.textureID = texture;
         this.lengthS = lengthS;
@@ -14,7 +15,13 @@ class MyComponent {
         this.childrenID = children;
         this.primitiveID = primitives;
 
+        // animation transformation to be applied
+        this.animTransf = null;
         this.materialIndex = 0;
+    }
+
+    update(sceneTime) {
+        // call animation.update and add animation.apply to this.animTransf
     }
 
     nextMaterial() {

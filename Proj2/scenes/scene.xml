@@ -83,6 +83,7 @@
         <texture id="street" file="scenes/images/rocks.jpg" />
         <texture id="fire_hydrant" file="scenes/images/fire_hydrant.jpg" />
         <texture id="grass" file="scenes/images/leaves.jpg" />
+        <texture id="sign" file="scenes/images/danger-sign.png" />
     </textures>
 
     <materials>
@@ -1194,6 +1195,8 @@
                 <transformationref id="bicycleTransf" />
                 <translate x="0" y="5.5" z="0"/>            
             </transformation>
+
+            <animationref id="demoAnimation" />
 
             <materials>
                 <material id="red" />

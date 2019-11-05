@@ -3,12 +3,17 @@
  * extends MyAnimation
  */
 class MyKeyframeAnimation extends MyAnimation {
-    constructor() {
-        super();
+    constructor(scene, instant, translateArr, scaleArr, rotateArr) {
+        super(scene);
+        
+        this.instant = instant;
+        this.translate = translateArr;
+        this.scale = scaleArr;
+        this.rotate = rotateArr;
     }
 
-    update() {
-
+    update(sceneTime) {
+        //calculate the 
     }
 
     apply() {

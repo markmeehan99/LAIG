@@ -244,7 +244,7 @@ class MySceneGraph {
 
         this.defaultView = this.reader.getString(viewsNode, "default");
         if (this.defaultView == null)
-                return "no ID defined for default view";
+            return "no ID defined for default view";
         // TODO: verificar erro 
 
         this.views = [];
@@ -255,7 +255,7 @@ class MySceneGraph {
 
         // Any number of views.
         for (var i = 0; i < children.length; i++) {
-            
+
             if (children[i].nodeName != "perspective" && children[i].nodeName != "ortho") {
                 this.onXMLMinorError("unknown tag <" + children[i].nodeName + ">");
                 continue;
@@ -269,7 +269,7 @@ class MySceneGraph {
             // Checks for repeated IDs.
             if (this.views[viewId] != null)
                 return "ID must be unique for each view (conflict: ID = " + viewId + ")";
-            
+
             // near
             var near = this.reader.getFloat(children[i], 'near');
             if (!(near != null && !isNaN(near)))
@@ -286,32 +286,32 @@ class MySceneGraph {
             for (var j = 0; j < grandChildren.length; j++) {
                 nodeNames.push(grandChildren[j].nodeName);
             }
-            
+
             var fromIndex = nodeNames.indexOf("from");
             var toIndex = nodeNames.indexOf("to");
 
-            if (fromIndex == -1 || toIndex == -1) 
+            if (fromIndex == -1 || toIndex == -1)
                 this.onXMLMinorError("from or to are not defined in view for ID " + viewId);
 
             var from = this.parseCoordinates3D(grandChildren[fromIndex], "from view for ID " + viewId);
-            if(!Array.isArray(from))
+            if (!Array.isArray(from))
                 return from;
 
             var to = this.parseCoordinates3D(grandChildren[toIndex], "to view for ID " + viewId);
-            if(!Array.isArray(to))
+            if (!Array.isArray(to))
                 return to;
 
             // Specifications for the current view.
             var viewType = children[i].nodeName;
 
-            var cam; 
+            var cam;
             // Retrieves the view parameters.
             if (viewType == 'perspective') {
 
                 //angle
                 var angle = this.reader.getFloat(children[i], "angle");
                 if (!(angle != null && !isNaN(angle)))
-                return "unable to parse angle of the view coordinates for ID = " + viewId;
+                    return "unable to parse angle of the view coordinates for ID = " + viewId;
 
                 angle *= DEGREE_TO_RAD;
                 cam = new CGFcamera(angle, near, far, vec3.fromValues(...from), vec3.fromValues(...to));
@@ -321,22 +321,22 @@ class MySceneGraph {
                 //left
                 var left = this.reader.getFloat(children[i], "left");
                 if (!(left != null && !isNaN(left)))
-                return "unable to parse left of the view coordinates for ID = " + viewId;
+                    return "unable to parse left of the view coordinates for ID = " + viewId;
 
                 //right
                 var right = this.reader.getFloat(children[i], "right");
                 if (!(right != null && !isNaN(right)))
-                return "unable to parse right of the view coordinates for ID = " + viewId;
+                    return "unable to parse right of the view coordinates for ID = " + viewId;
 
                 //top
                 var top = this.reader.getFloat(children[i], "top");
                 if (!(top != null && !isNaN(top)))
-                return "unable to parse top of the view coordinates for ID = " + viewId;
+                    return "unable to parse top of the view coordinates for ID = " + viewId;
 
                 //bottom
                 var bottom = this.reader.getFloat(children[i], "bottom");
                 if (!(bottom != null && !isNaN(bottom)))
-                return "unable to parse bottom of the view coordinates for ID = " + viewId;
+                    return "unable to parse bottom of the view coordinates for ID = " + viewId;
 
                 //up
                 var upIndex = nodeNames.indexOf("up");
@@ -345,12 +345,12 @@ class MySceneGraph {
                     up = this.parseCoordinates3D(grandChildren[upIndex], "up view for ID " + viewId);
                     if (!Array.isArray(up))
                         return up;
-                } 
+                }
 
                 cam = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
             }
             this.views[viewId] = cam;
-            
+
             numViews++;
         }
 
@@ -358,7 +358,7 @@ class MySceneGraph {
             return "the default view doesn't correspond to any view ID";
         }
 
-        if(numViews == 0) 
+        if (numViews == 0)
             return "there must be at least one view";
 
         this.log("Parsed views");
@@ -481,23 +481,23 @@ class MySceneGraph {
             }
 
             var attenuationIndex = nodeNames.indexOf('attenuation');
-            if(attenuationIndex == -1)
+            if (attenuationIndex == -1)
                 return "no attenuation defined in light for ID " + lightId;
 
             var constant = this.reader.getFloat(grandChildren[attenuationIndex], 'constant');
             if (!(constant != null && !isNaN(constant) && constant >= 0 && constant <= 1))
                 return "unable to parse constant attenuation of the light for ID = " + lightId;
-            
+
             var linear = this.reader.getFloat(grandChildren[attenuationIndex], 'linear');
             if (!(linear != null && !isNaN(linear) && linear >= 0 && linear <= 1))
                 return "unable to parse linear attenuation of the light for ID = " + lightId;
-            
+
             var quadratic = this.reader.getFloat(grandChildren[attenuationIndex], 'quadratic');
             if (!(quadratic != null && !isNaN(quadratic) && quadratic >= 0 && quadratic <= 1))
                 return "unable to parse quadratic attenuation of the light for ID = " + lightId;
-    
+
             global.push(...[constant, linear, quadratic]);
-    
+
 
             // Gets the additional attributes of the spot light
             if (children[i].nodeName == "spot") {
@@ -573,13 +573,13 @@ class MySceneGraph {
             if (file == null)
                 return "no file defined for texture to ID " + textureId;
 
-            if (file.match(/\.png$/) == null && file.match(/\.jpg$/) == null) 
+            if (file.match(/\.png$/) == null && file.match(/\.jpg$/) == null)
                 this.onXMLMinorError("the file for texture ID " + textureId + " is in a wrong format {png or jpg}\n");
 
             var text = new CGFtexture(this.scene, file);
             this.textures[textureId] = text;
         }
-        
+
         return null;
     }
 
@@ -630,23 +630,23 @@ class MySceneGraph {
 
             if (emissionIndex == -1 || ambientIndex == -1 || diffuseIndex == -1 || specularIndex == -1)
                 this.onXMLMinorError("emission, ambient, diffuse or specular are not defined in material for ID " + materialID);
-            
-            var emission = this.parseColor(grandChildren[emissionIndex],  "emission material for ID " + materialID);
+
+            var emission = this.parseColor(grandChildren[emissionIndex], "emission material for ID " + materialID);
             if (!Array.isArray(emission))
                 return emission;
 
-            var ambient = this.parseColor(grandChildren[ambientIndex], "ambient material for ID "  + materialID);
+            var ambient = this.parseColor(grandChildren[ambientIndex], "ambient material for ID " + materialID);
             if (!Array.isArray(ambient))
                 return ambient;
 
-            var diffuse = this.parseColor(grandChildren[diffuseIndex], "diffuse material for ID "  + materialID);
+            var diffuse = this.parseColor(grandChildren[diffuseIndex], "diffuse material for ID " + materialID);
             if (!Array.isArray(diffuse))
-                return diffuse; 
+                return diffuse;
 
-            var specular = this.parseColor(grandChildren[specularIndex], "specular material for ID "  + materialID);
+            var specular = this.parseColor(grandChildren[specularIndex], "specular material for ID " + materialID);
             if (!Array.isArray(specular))
-                return specular;  
-                
+                return specular;
+
             var mat = new CGFappearance(this.scene);
             mat.setTextureWrap('REPEAT', 'REPEAT');
             mat.setShininess(shininess);
@@ -719,9 +719,9 @@ class MySceneGraph {
                         }
                         //axis
                         var axis = this.reader.getString(grandChildren[j], "axis");
-                        if(!(axis != null)) {
+                        if (!(axis != null)) {
                             this.onXMLMinorError("unable to parse transformation rotate for ID " + transformationID);
-                        } 
+                        }
                         if (axis == 'x') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [1, 0, 0]);
                         if (axis == 'y') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 1, 0]);
                         if (axis == 'z') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 0, 1]);
@@ -769,14 +769,15 @@ class MySceneGraph {
 
             // loop through the keyframes
             var keyframesCounter = 0;
+            var keyframes = [];
             for (var j = 0; j < grandChildren.length; j++) {
-                if(grandChildren[j].nodeName != 'keyframe') {
+                if (grandChildren[j].nodeName != 'keyframe') {
                     this.onXMLMinorError("child of animation for ID " + animationId + " must be a keyframe");
                     continue;
                 }
 
                 var instant = this.reader.getFloat(grandChildren[j], 'instant');
-                if(!(instant != null && isNaN(instant) && instant >= 0)) {
+                if (!(instant != null && !isNaN(instant) && instant >= 0)) {
                     this.onXMLMinorError('instant value of animation for ID ' + animationId + 'cannot be negative');
                 }
 
@@ -797,12 +798,12 @@ class MySceneGraph {
                 }
 
                 var translate = this.parseCoordinates3D(grandgrandChildren[translateIndex], 'translate transformation of animation for ID ' + animationId);
-                if(!Array.isArray(translate)) {
+                if (!Array.isArray(translate)) {
                     return translate;
                 }
 
                 var scale = this.parseCoordinates3D(grandgrandChildren[scaleIndex], 'scale transformation in animation for ID ' + animationId);
-                if(!Array.isArray(scale)) {
+                if (!Array.isArray(scale)) {
                     return scale;
                 }
 
@@ -823,16 +824,22 @@ class MySceneGraph {
                 if (!(rotateZ != null && !isNaN(rotateZ))) {
                     this.onXMLMinorError('unable to parse angle_z of animation for ID ' + animationId);
                 }
-                
-                
-                
+
+                var keyframe = new MyKeyframeAnimation(this.scene, instant, translate, scale, [rotateX, rotateY, rotateZ]);
+                keyframes.push(keyframe);
+
                 keyframesCounter++;
             }
 
-            if(keyframesCounter == 0) {
+            if (keyframesCounter == 0) {
                 this.onXMLMinorError("Should exist at least one keyframe in animation for ID " + animationId);
             }
-            console.log("TODO animations parser");
+
+            // sort accordingly to time
+            keyframes.sort(function(a, b) {
+                return a.instant - b.instant;
+            });
+            this.animations[animationId] = keyframes;
         }
     }
 
@@ -1069,18 +1076,20 @@ class MySceneGraph {
             }
 
             var transformationIndex = nodeNames.indexOf("transformation");
+            var animationIndex = nodeNames.indexOf("animationref");
             var materialsIndex = nodeNames.indexOf("materials");
             var textureIndex = nodeNames.indexOf("texture");
             var childrenIndex = nodeNames.indexOf("children");
 
             var transformation = null;
+            var animationId = null;
             var materialIds = [];
             var textureId = null;
             var childrenIds = [];
-            var primitiveIds = [];            
+            var primitiveIds = [];
 
             // Transformations
-            if(transformationIndex == -1) 
+            if (transformationIndex == -1)
                 this.onXMLMinorError("transformation is not defined in component for ID " + componentID);
 
             grandgrandChildren = grandChildren[transformationIndex].children;
@@ -1135,22 +1144,35 @@ class MySceneGraph {
                     if (!(axis != null))
                         this.onXMLMinorError("unable to parse axis of transformation rotate in component for ID " + componentID);
 
-                    if  (axis == 'x') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [1, 0, 0]);
-                    if  (axis == 'y') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 1, 0]);
-                    if  (axis == 'z') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 0, 1]);
+                    if (axis == 'x') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [1, 0, 0]);
+                    if (axis == 'y') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 1, 0]);
+                    if (axis == 'z') transfMatrix = mat4.rotate(transfMatrix, transfMatrix, angle * DEGREE_TO_RAD, [0, 0, 1]);
                 }
             }
             transformation = transfMatrix;
 
+            // Animation
+            if (animationIndex != -1) {
+                // Get id of the current animation.
+                animationId = this.reader.getString(grandChildren[animationIndex], 'id');
+                if (animationId == null)
+                    return "no ID defined for animation in component for ID " + componentID;
+
+                // Check if ID exists in this.animation
+                if (this.animations[animationId] == null)
+                    return "ID must have been defined in block animation (component ID " + componentID + ")";
+
+            }
+
             // Materials
-            if(materialsIndex == -1) 
+            if (materialsIndex == -1)
                 this.onXMLMinorError("materials is not defined in component for ID " + componentID);
 
             grandgrandChildren = grandChildren[materialsIndex].children;
             var materialCounter = 0;
 
             for (var j = 0; j < grandgrandChildren.length; j++) {
-                
+
                 // material reference
                 if (grandgrandChildren[j].nodeName == "material") {
 
@@ -1160,7 +1182,7 @@ class MySceneGraph {
                         return "no ID defined for material in component for ID " + componentID;
 
                     // Check if material is not inherit or ID dont exists in this.materials
-                    if(materialId != "inherit" && this.materials[materialId] == null)
+                    if (materialId != "inherit" && this.materials[materialId] == null)
                         return "ID must have been defined in block material (component ID " + componentID + ")";
 
                     materialIds.push(materialId);
@@ -1168,11 +1190,11 @@ class MySceneGraph {
                 }
             }
 
-            if(!materialCounter)
+            if (!materialCounter)
                 this.onXMLMinorError("At least one material must be defined in component for ID " + componentID);
 
             // Texture
-            if(textureIndex == -1) 
+            if (textureIndex == -1)
                 this.onXMLMinorError("texture is not defined in component for ID " + componentID);
 
             // Get id of the current texture.
@@ -1199,7 +1221,7 @@ class MySceneGraph {
             }
 
             // Children
-            if(childrenIndex == -1) 
+            if (childrenIndex == -1)
                 this.onXMLMinorError("children is not defined in component for ID " + componentID);
 
             grandgrandChildren = grandChildren[childrenIndex].children;
@@ -1220,17 +1242,17 @@ class MySceneGraph {
 
                     // Get id of the current primitive
                     var primitiveId = this.reader.getString(grandgrandChildren[j], 'id');
-                    if (primitiveId  == null)
+                    if (primitiveId == null)
                         return "no ID defined for primitive in component for ID " + componentID;
 
                     // check if id exists in this.primitives
-                    if (this.primitives[primitiveId] == null) 
+                    if (this.primitives[primitiveId] == null)
                         return "ID must have been defined in block primitives";
 
                     primitiveIds.push(primitiveId);
                 }
             }
-            var comp = new MyComponent(this.scene, componentID, transformation, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
+            var comp = new MyComponent(this.scene, componentID, transformation, animationId, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
             this.components[componentID] = comp;
         }
     }
@@ -1366,7 +1388,7 @@ class MySceneGraph {
      */
     processNode(id, mat, text, lengthS, lengthT) {
         var component = this.components[id];
-        if(component == null) {
+        if (component == null) {
             this.onXMLError("component for ID " + id + " doesn't exist!");
             return;
         }
@@ -1375,7 +1397,7 @@ class MySceneGraph {
         if (component.materialIDs[component.materialIndex] != 'inherit') {
             mat = this.materials[component.materialIDs[component.materialIndex]];
         }
-            
+
         // if texture not 'inherit' or 'none'
         if (component.textureID != 'inherit' && component.textureID != 'none')
             text = this.textures[component.textureID];
@@ -1385,9 +1407,9 @@ class MySceneGraph {
             text = null;
 
         // lengthS and lengthT
-        if (component.lengthS != null && component.lengthT != null){
+        if (component.lengthS != null && component.lengthT != null) {
             lengthS = component.lengthS;
-            lengthT = component.lengthT; 
+            lengthT = component.lengthT;
         }
 
         mat.apply();
@@ -1395,7 +1417,7 @@ class MySceneGraph {
 
         this.scene.pushMatrix();
         this.scene.multMatrix(component.transformation);
-     
+
         for (var i = 0; i < component.childrenID.length; i++) {
             this.processNode(component.childrenID[i], mat, text, lengthS, lengthT);
         }
@@ -1413,21 +1435,21 @@ class MySceneGraph {
     * @param {float} lengthS 
     * @param {float} lengthT
     */
-   displayPrimitive(id, mat, text, lengthS, lengthT) {
+    displayPrimitive(id, mat, text, lengthS, lengthT) {
         var primitive = this.primitives[id];
         mat.apply();
         mat.setTexture(text);
         primitive.applyTextures(lengthS, lengthT);
         primitive.display();
-   }
+    }
 
-   /**
-    * loops through all components to increment the materialIndex of each 
-    */
-   nextMaterial() {
-       for (var key in this.components) {
-           this.components[key].nextMaterial();
-       }
-   }
+    /**
+     * loops through all components to increment the materialIndex of each 
+     */
+    nextMaterial() {
+        for (var key in this.components) {
+            this.components[key].nextMaterial();
+        }
+    }
 }
 
