@@ -130,6 +130,8 @@ class XMLscene extends CGFscene {
         }
 
         var sceneTime = currTime - this.startingTime;
+
+        this.graph.update(sceneTime);
     }
 
     /**

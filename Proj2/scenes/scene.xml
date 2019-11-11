@@ -158,10 +158,30 @@
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="10">
+            <keyframe instant="7">
                 <translate x="20" y="0" z="-10" />
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />  
+            </keyframe>
+            <keyframe instant="8">
+                <translate x="20" y="0" z="-10" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />  
+            </keyframe>
+            <keyframe instant="10">
+                <translate x="0" y="40" z="0" />
+                <rotate angle_x="0" angle_y="940" angle_z="0" />
+                <scale x="1" y="2" z="1" />
+            </keyframe>
+            <keyframe instant="13">
+                <translate x="20" y="0" z="-10" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="10" y="1" z="5" />  
+            </keyframe>
+            <keyframe instant="18">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
         </animation>
     </animations>
