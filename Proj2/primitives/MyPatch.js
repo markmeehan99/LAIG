@@ -7,7 +7,6 @@ class MyPatch extends CGFobject {
         super(scene);
         this.scene = scene;
 
-        console.log(controlVertexes);
         var surface = new CGFnurbsSurface(npointsU, npointsV, controlVertexes);
         this.nurb = new CGFnurbsObject(scene, degree1, degree2, surface);
     }
