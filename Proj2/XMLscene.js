@@ -34,7 +34,8 @@ class XMLscene extends CGFscene {
         this.gl.depthFunc(this.gl.LEQUAL);
 
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(17);
+        this.setUpdatePeriod(16.67);
+        this.startingTime = null;
     }
 
     /**
@@ -123,8 +124,14 @@ class XMLscene extends CGFscene {
         this.interface.setActiveCamera(this.camera);
     }
 
-    update(currentTime) {
-        this
+    update(currTime) {
+        if(this.startingTime == null) {
+            this.startingTime = currTime;
+        }
+
+        var sceneTime = currTime - this.startingTime;
+
+        this.graph.update(sceneTime);
     }
 
     /**

@@ -769,6 +769,7 @@ class MySceneGraph {
 
             // loop through the keyframes
             var keyframesCounter = 0;
+            var keyframes = [];
             for (var j = 0; j < grandChildren.length; j++) {
                 if(grandChildren[j].nodeName != 'keyframe') {
                     this.onXMLMinorError("child of animation for ID " + animationId + " must be a keyframe");
@@ -776,7 +777,7 @@ class MySceneGraph {
                 }
 
                 var instant = this.reader.getFloat(grandChildren[j], 'instant');
-                if(!(instant != null && isNaN(instant) && instant >= 0)) {
+                if(!(instant != null && !isNaN(instant) && instant >= 0)) {
                     this.onXMLMinorError('instant value of animation for ID ' + animationId + 'cannot be negative');
                 }
 
@@ -823,16 +824,24 @@ class MySceneGraph {
                 if (!(rotateZ != null && !isNaN(rotateZ))) {
                     this.onXMLMinorError('unable to parse angle_z of animation for ID ' + animationId);
                 }
-                
-                
-                
+
+                var keyframe = new MyKeyframe(instant, translate, [rotateX, rotateY, rotateZ], scale);
+            
+                keyframes.push(keyframe);
+
                 keyframesCounter++;
             }
 
             if(keyframesCounter == 0) {
                 this.onXMLMinorError("Should exist at least one keyframe in animation for ID " + animationId);
             }
-            console.log("TODO animations parser");
+            
+            // sort accordingly to time
+            keyframes.sort(function(a, b) {
+                return a.instant - b.instant;
+            });
+            var anim = new MyKeyframeAnimation(keyframes);
+            this.animations[animationId] = anim;
         }
     }
 
@@ -1160,11 +1169,13 @@ class MySceneGraph {
             }
 
             var transformationIndex = nodeNames.indexOf("transformation");
+            var animationIndex = nodeNames.indexOf("animationref");
             var materialsIndex = nodeNames.indexOf("materials");
             var textureIndex = nodeNames.indexOf("texture");
             var childrenIndex = nodeNames.indexOf("children");
 
             var transformation = null;
+            var animationId = null;
             var materialIds = [];
             var textureId = null;
             var childrenIds = [];
@@ -1232,6 +1243,18 @@ class MySceneGraph {
                 }
             }
             transformation = transfMatrix;
+
+            // Animation
+            if (animationIndex != -1) {
+                // Get id of the current animation.
+                animationId = this.reader.getString(grandChildren[animationIndex], 'id');
+                if (animationId == null)
+                    return "no ID defined for animation in component for ID " + componentID;
+
+                // Check if ID exists in this.animation
+                if (this.animations[animationId] == null)
+                    return "ID must have been defined in block animation (component ID " + componentID + ")";
+            }
 
             // Materials
             if(materialsIndex == -1) 
@@ -1321,7 +1344,7 @@ class MySceneGraph {
                     primitiveIds.push(primitiveId);
                 }
             }
-            var comp = new MyComponent(this.scene, componentID, transformation, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
+            var comp = new MyComponent(this.scene, componentID, transformation, animationId, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
             this.components[componentID] = comp;
         }
     }
@@ -1438,6 +1461,16 @@ class MySceneGraph {
     }
 
     /**
+     * Callback to be executed on periodic events
+     * @param {int} sceneTime in ms 
+     */
+    update(sceneTime) {
+        for (var key in this.animations) {
+            this.animations[key].update(sceneTime);
+        }
+    }
+
+    /**
      * Displays the scene, processing each node, starting in the root node.
      */
     displayScene() {
@@ -1486,6 +1519,10 @@ class MySceneGraph {
 
         this.scene.pushMatrix();
         this.scene.multMatrix(component.transformation);
+
+        if(component.animationID != null) {
+            this.scene.multMatrix(this.animations[component.animationID].apply());
+        }
      
         for (var i = 0; i < component.childrenID.length; i++) {
             this.processNode(component.childrenID[i], mat, text, lengthS, lengthT);
