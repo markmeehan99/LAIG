@@ -152,7 +152,7 @@
     </transformations>
 
     <animations>
-        <animation id="demoAnimation">
+        <animation id="bikeAnimation">
             <keyframe instant="5">
                 <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
@@ -184,6 +184,43 @@
                 <scale x="1" y="1" z="1" />
             </keyframe>
         </animation>
+
+        <animation id="bankAnimation">
+            <keyframe instant="20">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="24">
+                <translate x="0" y="0" z="60" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="25">
+                <translate x="0" y="-1" z="70" />
+                <rotate angle_x="90" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="26">
+                <translate x="0" y="-5" z="80" />
+                <rotate angle_x="180" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="28">
+                <translate x="0" y="-20" z="90" />
+                <rotate angle_x="360" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="30">
+                <translate x="0" y="-50" z="100" />
+                <rotate angle_x="720" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            
+        </animation>
     </animations>
 
     <primitives>
@@ -213,7 +250,7 @@
         </primitive>
 
         <primitive id="equi_triangle_xz">
-            <triangle x1="0" y1="0" z1="-1" x2="-1" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
+            <triangle x1="0" y1="0" z1="-1" x2="0" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
         </primitive>
 
         <primitive id="lamp_cylinder">
@@ -241,7 +278,7 @@
         </primitive>   
 
         <primitive id="planeNurb">
-            <patch npointsU="2" npointsV="2" npartsU="4" npartsV="4">
+            <patch npointsU="2" npointsV="2" npartsU="10" npartsV="10">
                 <controlpoint xx="-0.5" yy="0" zz="-0.5" />
                 <controlpoint xx="0" yy="0" zz="-0.5" />
                 <controlpoint xx="0.5" yy="0" zz="-0.5" />
@@ -366,6 +403,8 @@
             <transformation>
                 <translate x="-25" y="0" z="-40" />
             </transformation>
+
+            <animationref id="bankAnimation" />
 
             <materials>
                 <material id="red" />
@@ -1271,7 +1310,7 @@
                 <translate x="0" y="5.5" z="0"/>            
             </transformation>
 
-            <animationref id="demoAnimation" />
+            <animationref id="bikeAnimation" />
 
             <materials>
                 <material id="red" />
