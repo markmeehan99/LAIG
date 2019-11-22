@@ -33,15 +33,19 @@ class XMLscene extends CGFscene {
         this.gl.enable(this.gl.CULL_FACE);
         this.gl.depthFunc(this.gl.LEQUAL);
 
+        this.textureRTT = new CGFtextureRTT(this, this.gl.canvas.width, this.gl.canvas.height);
+
         this.axis = new CGFaxis(this);
-        this.setUpdatePeriod(17);
+        this.setUpdatePeriod(16.67);
+        this.startingTime = null;
     }
 
     /**
      * Initializes the scene cameras.
      */
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera1 = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera2 = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
     }
     /**
      * Initializes the scene lights with the values read from the XML file.
@@ -123,14 +127,27 @@ class XMLscene extends CGFscene {
         this.interface.setActiveCamera(this.camera);
     }
 
-    update(currentTime) {
-        this
+    update(currTime) {
+        if(this.startingTime == null) {
+            this.startingTime = currTime;
+        }
+
+        var sceneTime = currTime - this.startingTime;
+
+        this.graph.update(sceneTime);
+    }
+
+    display() {
+        this.textureRTT.attachToFrameBuffer();
+        this.render();
+        this.textureRTT.detachFromFrameBuffer();
+        this.render();
     }
 
     /**
      * Displays the scene.
      */
-    display() {
+    render() {
         // ---- BEGIN Background, camera and axis setup
 
         // Clear image and depth buffer everytime we update the scene

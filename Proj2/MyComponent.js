@@ -3,10 +3,11 @@
  * @constructor
  */
 class MyComponent {
-    constructor(scene, node, transformation, materials, texture, lengthS, lengthT, children, primitives) {
+    constructor(scene, node, transformation, animation, materials, texture, lengthS, lengthT, children, primitives) {
         this.scene = scene;
         this.nodeID = node;
         this.transformation = transformation;
+        this.animationID = animation;
         this.materialIDs = materials;
         this.textureID = texture;
         this.lengthS = lengthS;

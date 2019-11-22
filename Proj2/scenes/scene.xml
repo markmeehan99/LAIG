@@ -26,28 +26,28 @@
     </globals>
 
     <lights>
-        <omni id="poleLight1" enabled="0">
+        <omni id="poleLight1" enabled="1">
             <location x="-30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight2" enabled="0">
+        <omni id="poleLight2" enabled="1">
             <location x="30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight3" enabled="0">
+        <omni id="poleLight3" enabled="1">
             <location x="-90" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight4" enabled="0">
+        <omni id="poleLight4" enabled="1">
             <location x="-30" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
@@ -158,10 +158,30 @@
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="10">
+            <keyframe instant="7">
                 <translate x="20" y="0" z="-10" />
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />  
+            </keyframe>
+            <keyframe instant="8">
+                <translate x="20" y="0" z="-10" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />  
+            </keyframe>
+            <keyframe instant="10">
+                <translate x="0" y="40" z="0" />
+                <rotate angle_x="0" angle_y="940" angle_z="0" />
+                <scale x="1" y="2" z="1" />
+            </keyframe>
+            <keyframe instant="13">
+                <translate x="20" y="0" z="-10" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="10" y="1" z="5" />  
+            </keyframe>
+            <keyframe instant="18">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
         </animation>
     </animations>
@@ -1250,6 +1270,8 @@
                 <transformationref id="bicycleTransf" />
                 <translate x="0" y="5.5" z="0"/>            
             </transformation>
+
+            <animationref id="demoAnimation" />
 
             <materials>
                 <material id="red" />
