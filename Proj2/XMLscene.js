@@ -130,7 +130,13 @@ class XMLscene extends CGFscene {
     selectView(id){
         this.camera1 = this.graph.views[id];
         // this.camera2 = this.graph.views[id];
-        // this.interface.setActiveCamera(this.camera);
+        this.interface.setActiveCamera(this.camera);
+    }
+
+    selectSecView(id){
+        this.camera2 = this.graph.views[id];
+        // this.camera2 = this.graph.views[id];
+        this.interface.setActiveCamera(this.camera2);
     }
 
     update(currTime) {
