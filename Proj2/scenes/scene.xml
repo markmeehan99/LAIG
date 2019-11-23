@@ -26,28 +26,28 @@
     </globals>
 
     <lights>
-        <omni id="poleLight1" enabled="0">
+        <omni id="poleLight1" enabled="1">
             <location x="-30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight2" enabled="0">
+        <omni id="poleLight2" enabled="1">
             <location x="30" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight3" enabled="0">
+        <omni id="poleLight3" enabled="1">
             <location x="-90" y="35" z="-20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight4" enabled="0">
+        <omni id="poleLight4" enabled="1">
             <location x="-30" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />

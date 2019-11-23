@@ -248,6 +248,8 @@ class MySceneGraph {
         // TODO: verificar erro 
 
         this.views = [];
+        this.secCame = [];
+        
         var numViews = 0;
 
         var grandChildren = [];
