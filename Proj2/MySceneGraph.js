@@ -248,6 +248,8 @@ class MySceneGraph {
         // TODO: verificar erro 
 
         this.views = [];
+        this.secCams = [];
+
         var numViews = 0;
 
         var grandChildren = [];
@@ -350,6 +352,7 @@ class MySceneGraph {
                 cam = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
             }
             this.views[viewId] = cam;
+            this.secCams[viewId] = cam;
             
             numViews++;
         }
