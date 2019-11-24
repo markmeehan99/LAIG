@@ -306,7 +306,8 @@ class MySceneGraph {
             // Specifications for the current view.
             var viewType = children[i].nodeName;
 
-            var cam; 
+            var cam1;
+            var cam2;
             // Retrieves the view parameters.
             if (viewType == 'perspective') {
 
@@ -316,7 +317,8 @@ class MySceneGraph {
                 return "unable to parse angle of the view coordinates for ID = " + viewId;
 
                 angle *= DEGREE_TO_RAD;
-                cam = new CGFcamera(angle, near, far, vec3.fromValues(...from), vec3.fromValues(...to));
+                cam1 = new CGFcamera(angle, near, far, vec3.fromValues(...from), vec3.fromValues(...to));
+                cam2 = new CGFcamera(angle, near, far, vec3.fromValues(...from), vec3.fromValues(...to));
             }
             if (viewType == 'ortho') {
 
@@ -349,10 +351,11 @@ class MySceneGraph {
                         return up;
                 } 
 
-                cam = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
+                cam1 = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
+                cam2 = new CGFcameraOrtho(left, right, bottom, top, near, far, vec3.fromValues(...from), vec3.fromValues(...to), vec3.fromValues(...up));
             }
-            this.views[viewId] = cam;
-            this.secCams[viewId] = cam;
+            this.views[viewId] = cam1;
+            this.secCams[viewId] = cam2;
             
             numViews++;
         }
