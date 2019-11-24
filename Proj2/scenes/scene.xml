@@ -193,8 +193,21 @@
                 <rotate angle_x="70" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
+        </animation>
 
+        <animation id="wheelAnimation" >
 
+            <keyframe instant="1" >
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10" >
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="900" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
         </animation>
 
         <animation id="bankAnimation">
@@ -300,15 +313,6 @@
                 <rotate angle_x="0" angle_y="-0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-        </animation>
-
-        <animation id="dropWaterAnimation">
-            <keyframe instant="1">
-                <translate x="0" y="21" z="0" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />
-            </keyframe>
-
         </animation>
 
         <animation id="dropWaterAnimation1">
@@ -2673,6 +2677,8 @@
         <component id="wheel">
             <transformation>
             </transformation>
+
+            <animationref id="wheelAnimation" />
 
             <materials>
                 <material id="darkGrey" />
