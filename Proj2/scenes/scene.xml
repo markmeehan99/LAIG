@@ -2595,7 +2595,7 @@
                 <material id="darkGreen" />
             </materials>
 
-            <texture id="posts" />
+            <texture id="posts" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="lamp_cylinder" />
@@ -2611,7 +2611,7 @@
                 <material id="orange" />
             </materials>
 
-            <texture id="glass"/>
+            <texture id="glass" length_s="1" length_t="1"/>
 
             <children>
                 <primitiveref id="lamp_sphere" />
