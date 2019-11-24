@@ -1,7 +1,7 @@
 <lxs>
     <scene root="scene" axis_length="5" />
 
-    <views default="bicycle">
+    <views default="fireHydrant">
         <perspective id="defaultCamera" near="0.1" far="500" angle="45">
             <from x="100" y="35" z="35" />
             <to x="0" y="-2" z="0" />
@@ -11,7 +11,7 @@
             <to x="-20" y="5" z="5" />
         </perspective>
         <perspective id="fireHydrant" near="1" far="500" angle="45">
-            <from x="-100" y="10" z="-35" />
+            <from x="-110" y="10" z="-50" />
             <to x="-20" y="5" z="5" />
         </perspective>
         <ortho id="ortho" near="0.1" far="200" left="-40" right="60" top="45" bottom="-5" >
@@ -54,14 +54,14 @@
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight5" enabled="0">
+        <omni id="poleLight5" enabled="1">
             <location x="30" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="1.0" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
             <specular r="0.5" g="0.5" b="0.5" a="0.5" />
             <attenuation constant="1" linear="0" quadratic="0" />
         </omni>
-        <omni id="poleLight6" enabled="0">
+        <omni id="poleLight6" enabled="1">
             <location x="-90" y="35" z="20" w="1.0" />
             <ambient r="0" g="0" b="0" a="0.5" />
             <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
@@ -87,6 +87,13 @@
     </textures>
 
     <materials>
+        <material id="none" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1" g="1" b="1" a="1.0" />
+            <diffuse r="1" g="1" b="1" a="1.0" />
+            <specular r="1" g="1" b="1" a="1.0" />
+        </material>
+
         <material id="red" shininess="10">
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
             <ambient r="1.0" g="0.0" b="0.0" a="1.0" />
@@ -131,7 +138,7 @@
 
         <material id="blue" shininess="10">
             <emission r="0.0" g="0.0" b="0.0" a="1.0" />
-            <ambient r="0.0" g="0.0" b="1.0" a="1.0" />
+            <ambient r="0.0" g="0.2" b="1.0" a="1.0" />
             <diffuse r="0.0" g="0.2" b="1.0" a="1.0" />
             <specular r="0.0" g="0.2" b="1.0" a="1.0" />
         </material>
@@ -147,43 +154,1039 @@
     <transformations>
         <transformation id="bicycleTransf">
             <translate x="-25" y="0" z="17" />
-            <rotate axis="x" angle="10" />
         </transformation>
     </transformations>
 
     <animations>
-        <animation id="demoAnimation">
-            <keyframe instant="5">
+        <animation id="bikeAnimation">
+            <keyframe instant="1">
                 <translate x="0" y="0" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="7">
-                <translate x="20" y="0" z="-10" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
+            <keyframe instant="2">
+                <translate x="-2" y="0" z="-1" />
+                <rotate angle_x="0" angle_y="-35" angle_z="0" />
                 <scale x="1" y="1" z="1" />  
             </keyframe>
+
+            <keyframe instant="3">
+                <translate x="-5" y="0" z="-2" />
+                <rotate angle_x="0" angle_y="-35" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
             <keyframe instant="8">
-                <translate x="20" y="0" z="-10" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="1" y="1" z="1" />  
+                <translate x="-45" y="0" z="-25" />
+                <rotate angle_x="0" angle_y="-35" angle_z="0" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="10">
-                <translate x="0" y="40" z="0" />
-                <rotate angle_x="0" angle_y="940" angle_z="0" />
-                <scale x="1" y="2" z="1" />
+
+            <keyframe instant="9">
+                <translate x="-50" y="0" z="-30" />
+                <rotate angle_x="0" angle_y="-65" angle_z="0" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="13">
-                <translate x="20" y="0" z="-10" />
-                <rotate angle_x="0" angle_y="0" angle_z="0" />
-                <scale x="10" y="1" z="5" />  
+
+            <keyframe instant="9.5">
+                <translate x="-50" y="-3" z="-30" />
+                <rotate angle_x="70" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
             </keyframe>
-            <keyframe instant="18">
+
+
+        </animation>
+
+        <animation id="bankAnimation">
+            <keyframe instant="20">
                 <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="24">
+                <translate x="0" y="0" z="60" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="25">
+                <translate x="0" y="-1" z="70" />
+                <rotate angle_x="90" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="26">
+                <translate x="0" y="-5" z="80" />
+                <rotate angle_x="180" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="28">
+                <translate x="0" y="-20" z="90" />
+                <rotate angle_x="360" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="30">
+                <translate x="0" y="-50" z="100" />
+                <rotate angle_x="720" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>
+
+        <animation id="floorWaterAnimation">
+            <keyframe instant="10">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+            <keyframe instant="20">
+                <translate x="0" y="2.5" z="0" />
                 <rotate angle_x="0" angle_y="0" angle_z="0" />
                 <scale x="1" y="1" z="1" />
             </keyframe>
         </animation>
+
+        <animation id="tubeWaterAnimation">
+            <keyframe instant="9">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="9.8">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="2.4" />
+            </keyframe>
+
+            <keyframe instant="11">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="2" />
+            </keyframe>
+
+            <keyframe instant="12">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="2.5" />
+            </keyframe>
+
+            <keyframe instant="13">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="2.2" />
+            </keyframe>
+
+            <keyframe instant="14">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1.7" />
+            </keyframe>
+
+            <keyframe instant="14.5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1.9" />
+            </keyframe>
+
+            <keyframe instant="15">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1.5" />
+            </keyframe>
+
+            <keyframe instant="16">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+        </animation>
+
+        <animation id="dropWaterAnimation">
+            <keyframe instant="1">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation1">
+            <keyframe instant="9">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.1">
+                <translate x="0.4" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.2">
+                <translate x="0.8" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.3">
+                <translate x="1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.4">
+                <translate x="1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.5">
+                <translate x="2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="10.6">
+                <translate x="2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="10.7">
+                <translate x="2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="10.8">
+                <translate x="3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="10.9">
+                <translate x="3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="10.95">
+                <translate x="3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation2">
+            <keyframe instant="9">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="9.8">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10">
+                <translate x="-0.4" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.1">
+                <translate x="-0.4" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.2">
+                <translate x="-0.8" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.3">
+                <translate x="-1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.4">
+                <translate x="-1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.5">
+                <translate x="-2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="10.6">
+                <translate x="-2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="10.7">
+                <translate x="-2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="10.8">
+                <translate x="-3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="10.9">
+                <translate x="-3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="10.95">
+                <translate x="-3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation3">
+            <keyframe instant="10">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.8">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11">
+                <translate x="-0.4" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.1">
+                <translate x="-0.4" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.2">
+                <translate x="-0.8" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.3">
+                <translate x="-1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.4">
+                <translate x="-1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.5">
+                <translate x="-2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="11.6">
+                <translate x="-2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="11.7">
+                <translate x="-2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="11.8">
+                <translate x="-3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="11.9">
+                <translate x="-3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="11.95">
+                <translate x="-3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation4">
+            <keyframe instant="9.5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.3">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.5">
+                <translate x="0" y="22.5" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.6">
+                <translate x="0" y="23" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.7">
+                <translate x="0" y="23" z="-0.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.8">
+                <translate x="0" y="22.5" z="-1.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.9">
+                <translate x="0" y="22" z="-1.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11">
+                <translate x="0" y="21" z="-2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="11.1">
+                <translate x="0" y="19" z="-2.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="11.2">
+                <translate x="0" y="15" z="-2.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="11.3">
+                <translate x="0" y="8" z="-3.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="11.4">
+                <translate x="0" y="1" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="11.45">
+                <translate x="0" y="0" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation5">
+            <keyframe instant="10">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="10.8">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11">
+                <translate x="0" y="22.5" z="0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.1">
+                <translate x="0" y="23" z="0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.2">
+                <translate x="0" y="23" z="0.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.3">
+                <translate x="0" y="22.5" z="1.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.4">
+                <translate x="0" y="22" z="1.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="11.5">
+                <translate x="0" y="21" z="2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="11.6">
+                <translate x="0" y="19" z="2.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="11.7">
+                <translate x="0" y="15" z="2.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="11.8">
+                <translate x="0" y="8" z="3.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="11.9">
+                <translate x="0" y="1" z="3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="11.95">
+                <translate x="0" y="0" z="3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.1" z="2" />
+            </keyframe>
+        </animation>
+
+        <animation id="dropWaterAnimation6">
+            <keyframe instant="14">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.8">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15">
+                <translate x="0" y="22.5" z="0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15.1">
+                <translate x="0" y="23" z="0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15.2">
+                <translate x="0" y="23" z="0.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15.3">
+                <translate x="0" y="22.5" z="1.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15.4">
+                <translate x="0" y="22" z="1.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15.5">
+                <translate x="0" y="21" z="2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="15.6">
+                <translate x="0" y="19" z="2.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="15.7">
+                <translate x="0" y="15" z="2.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="15.8">
+                <translate x="0" y="8" z="3.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="15.9">
+                <translate x="0" y="1" z="3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="15.95">
+                <translate x="0" y="0" z="3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.1" z="2" />
+            </keyframe>
+        </animation>
+
+        <animation id="dropWaterAnimation7">
+            <keyframe instant="12">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.8">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13">
+                <translate x="0" y="22.5" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.1">
+                <translate x="0" y="23" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.2">
+                <translate x="0" y="23" z="-0.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.3">
+                <translate x="0" y="22.5" z="-1.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.4">
+                <translate x="0" y="22" z="-1.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.5">
+                <translate x="0" y="21" z="-2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="13.6">
+                <translate x="0" y="19" z="-2.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="13.7">
+                <translate x="0" y="15" z="-2.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="13.8">
+                <translate x="0" y="8" z="-3.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="13.9">
+                <translate x="0" y="1" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="13.95">
+                <translate x="0" y="0" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.1" z="2" />
+            </keyframe>
+        </animation>
+
+        <animation id="dropWaterAnimation8">
+            <keyframe instant="13.5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.3">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.5">
+                <translate x="0" y="22.5" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.6">
+                <translate x="0" y="23" z="-0.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.7">
+                <translate x="0" y="23" z="-0.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.8">
+                <translate x="0" y="22.5" z="-1.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14.9">
+                <translate x="0" y="22" z="-1.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="15">
+                <translate x="0" y="21" z="-2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="15.1">
+                <translate x="0" y="19" z="-2.4" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="15.2">
+                <translate x="0" y="15" z="-2.8" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="15.3">
+                <translate x="0" y="8" z="-3.2" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="15.4">
+                <translate x="0" y="1" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="15.45">
+                <translate x="0" y="0" z="-3.6" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation9">
+            <keyframe instant="12.5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.3">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.5">
+                <translate x="0.4" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.6">
+                <translate x="0.4" y="23" z="-0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.7">
+                <translate x="0.8" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.8">
+                <translate x="1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13.9">
+                <translate x="1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="14">
+                <translate x="2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="14.1">
+                <translate x="2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="14.2">
+                <translate x="2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="14.3">
+                <translate x="3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="14.4">
+                <translate x="3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="14.45">
+                <translate x="3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation10">
+            <keyframe instant="11">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.1">
+                <translate x="-0.4" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.2">
+                <translate x="-0.8" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.3">
+                <translate x="-1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.4">
+                <translate x="-1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.5">
+                <translate x="-2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="12.6">
+                <translate x="-2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="12.7">
+                <translate x="-2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="12.8">
+                <translate x="-3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="12.9">
+                <translate x="-3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="12.95">
+                <translate x="-3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
+        <animation id="dropWaterAnimation11">
+            <keyframe instant="11.5">
+                <translate x="0" y="0" z="0" />
+                <rotate angle_x="0" angle_y="-0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.3">
+                <translate x="0" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.5">
+                <translate x="0.4" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.6">
+                <translate x="0.4" y="23" z="-0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.7">
+                <translate x="0.8" y="23" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.8">
+                <translate x="1.2" y="22.5" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="12.9">
+                <translate x="1.6" y="22" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="1" y="1" z="1" />
+            </keyframe>
+
+            <keyframe instant="13">
+                <translate x="2" y="21" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.9" y="1.1" z="0.9" />
+            </keyframe>
+
+            <keyframe instant="13.1">
+                <translate x="2.4" y="19" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.8" y="1.3" z="0.8" />
+            </keyframe>
+
+            <keyframe instant="13.2">
+                <translate x="2.8" y="15" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.7" y="1.5" z="0.7" />
+            </keyframe>
+
+            <keyframe instant="13.3">
+                <translate x="3.2" y="8" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.6" y="2" z="0.6" />
+            </keyframe>
+
+            <keyframe instant="13.4">
+                <translate x="3.6" y="1" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="0.5" y="3" z="0.5" />
+            </keyframe>
+
+            <keyframe instant="13.45">
+                <translate x="3.6" y="0" z="0" />
+                <rotate angle_x="0" angle_y="0" angle_z="0" />
+                <scale x="2" y="0.2" z="2" />
+            </keyframe>
+
+        </animation>
+
     </animations>
 
     <primitives>
@@ -213,11 +1216,11 @@
         </primitive>
 
         <primitive id="equi_triangle_xz">
-            <triangle x1="0" y1="0" z1="-1" x2="-1" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
+            <triangle x1="0" y1="0" z1="-1" x2="0" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
         </primitive>
 
         <primitive id="lamp_cylinder">
-            <cylinder top="0.6" base="0.6" height="35" slices="8" stacks="4" /> 
+            <cylinder2 top="0.6" base="0.6" height="35" slices="8" stacks="4" /> 
         </primitive>
 
         <primitive id="lamp_sphere">
@@ -240,24 +1243,58 @@
             <rectangle x1="0" y1="0" x2="1" y2="1" />
         </primitive>   
 
-        <primitive id="planeNurb">
-            <patch npointsU="2" npointsV="2" npartsU="4" npartsV="4">
-                <controlpoint xx="-0.5" yy="0" zz="-0.5" />
-                <controlpoint xx="0" yy="0" zz="-0.5" />
-                <controlpoint xx="0.5" yy="0" zz="-0.5" />
+        <primitive id="smallNurb">
+            <patch npointsU="2" npointsV="2" npartsU="10" npartsV="10">
+                <controlpoint xx="-2" yy="0" zz="-2" />
+                <controlpoint xx="0" yy="0" zz="-2" />
+                <controlpoint xx="2" yy="0" zz="-2" />
 
-                <controlpoint xx="-0.5" yy="0" zz="0" />
+                <controlpoint xx="-2" yy="0" zz="0" />
                 <controlpoint xx="0" yy="2" zz="0" />
-                <controlpoint xx="0.5" yy="0" zz="0" />
+                <controlpoint xx="2" yy="0" zz="0" />
                 
-                <controlpoint xx="-0.5" yy="0" zz="0.5" />
-                <controlpoint xx="0" yy="0" zz="0.5" />
-                <controlpoint xx="0.5" yy="0" zz="0.5" />
+                <controlpoint xx="-2" yy="0" zz="2" />
+                <controlpoint xx="0" yy="0" zz="2" />
+                <controlpoint xx="2" yy="0" zz="2" />
             </patch>
         </primitive>
 
         <primitive id="cylinder2">
             <cylinder2 top="1" base="2" height="1" slices="20" stacks="4"/>
+        </primitive>
+
+        <primitive id="parabolic" >
+            <patch npointsU="4" npointsV="4" npartsU="10" npartsV="10">
+                <controlpoint xx="-1.5" yy="0" zz="-1.5" />
+                <controlpoint xx="-0.8" yy="0" zz="-1.8" />
+                <controlpoint xx="0" yy="0" zz="-2" />
+                <controlpoint xx="0.8" yy="0" zz="-1.8" />
+                <controlpoint xx="1.5" yy="0" zz="-1.5" />
+
+                <controlpoint xx="-1.5" yy="0" zz="-0.8" />
+                <controlpoint xx="-0.8" yy="3" zz="-0.9" />
+                <controlpoint xx="0" yy="3" zz="-1" />
+                <controlpoint xx="0.8" yy="3" zz="-0.8" />
+                <controlpoint xx="1.5" yy="0" zz="-0.7" />
+                
+                <controlpoint xx="-2" yy="0" zz="0" />
+                <controlpoint xx="-1" yy="3" zz="0" />
+                <controlpoint xx="0" yy="4" zz="0" />
+                <controlpoint xx="1" yy="3" zz="0" />
+                <controlpoint xx="2" yy="0" zz="0" />
+
+                <controlpoint xx="-1.5" yy="0" zz="1" />
+                <controlpoint xx="-0.8" yy="3" zz="1" />
+                <controlpoint xx="0" yy="3" zz="1" />
+                <controlpoint xx="0.8" yy="3" zz="1" />
+                <controlpoint xx="1.5" yy="0" zz="1" />
+                
+                <controlpoint xx="-1.5" yy="0" zz="1.3" />
+                <controlpoint xx="-0.8" yy="0" zz="1.7" />
+                <controlpoint xx="0" yy="0" zz="2" />
+                <controlpoint xx="0.8" yy="0" zz="1.9" />
+                <controlpoint xx="1.5" yy="0" zz="1.5" />
+            </patch>
         </primitive>
 
     </primitives>
@@ -282,47 +1319,13 @@
                 <componentref id="fire_hydrant"/>
                 <componentref id="park"/>
                 <componentref id="bench"/>
-                <componentref id="triangle"/>
-                <componentref id="planeTest"/>
-                <componentref id="cylinderTest" />
+                <componentref id="triangle_sign"/>
             </children>
 
         </component>
 
-        <component id="cylinderTest" >
-            <transformation>
-            </transformation>
 
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="none" />
-
-            <children>
-                <primitiveref id="cylinder2" />
-            </children>
-        </component>
-
-        <component id="planeTest">
-            <transformation>
-                <scale x="5" y="5" z="5" />
-                <translate x="0" y="2" z="0" />
-            </transformation>
-            
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="street" length_s="1" length_t="1" />
-
-            <children>
-                <primitiveref id="planeNurb" />
-            </children>
-
-        </component>
-
-        <component id="triangle" >
+        <component id="triangle_sign" >
             <transformation>
                 <translate x="-29.4" y="15" z="-20" />
                 <scale x="1" y="3" z="3" />
@@ -350,13 +1353,73 @@
             </transformation>
 
             <materials>
-                <material id="green" />
+                <material id="none" />
             </materials>
 
-            <texture id="grass" length_s="1" length_t="1"/>
+            <texture id="grass" length_s="1" length_t="5"/>
 
             <children>
                 <primitiveref id="big_rectangle" />
+                <componentref id="small_mount1" />
+                <componentref id="small_mount2" />
+                <componentref id="small_mount3" />
+            </children>
+
+        </component>
+
+        <component id="small_mount1">
+            <transformation>
+                <rotate angle="90" axis="x" />
+                <translate x="0" y="0" z="0" />
+                <scale x="0.3" y="4" z="1" />
+            </transformation>
+            
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="grass" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="smallNurb" />
+            </children>
+
+        </component>
+
+        <component id="small_mount2">
+            <transformation>
+                <rotate angle="90" axis="x" />
+                <translate x="1" y="0" z="0" />
+                <scale x="0.3" y="1.5" z="1" />
+            </transformation>
+            
+            <materials>
+                <material id="darkGreen" />
+            </materials>
+
+            <texture id="grass" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="smallNurb" />
+            </children>
+
+        </component>
+
+        <component id="small_mount3">
+            <transformation>
+                <rotate angle="90" axis="x" />
+                <translate x="-2" y="0" z="0" />
+                <scale x="0.3" y="5" z="1.5" />
+            </transformation>
+            
+            <materials>
+                <material id="orange" />
+            </materials>
+
+            <texture id="grass" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="smallNurb" />
             </children>
 
         </component>
@@ -366,6 +1429,8 @@
             <transformation>
                 <translate x="-25" y="0" z="-40" />
             </transformation>
+
+            <animationref id="bankAnimation" />
 
             <materials>
                 <material id="red" />
@@ -907,6 +1972,290 @@
             <children>
                 <componentref id="base_fire_hydrant" />
                 <componentref id="top_fire_hydrant" />
+                <componentref id="floorWater" />
+                <componentref id="tubeWater" />
+                <componentref id="dropWater1" />
+                <componentref id="dropWater2" />
+                <componentref id="dropWater3" />
+                <componentref id="dropWater4" />
+                <componentref id="dropWater5" />
+                <componentref id="dropWater6" />
+                <componentref id="dropWater7" />
+                <componentref id="dropWater8" />
+                <componentref id="dropWater9" />
+                <componentref id="dropWater10" />
+                <componentref id="dropWater11" />
+
+            </children>
+
+        </component>
+
+        <component id="floorWater">
+
+            <transformation>
+                <translate x="0" y="-0.25" z="0" />
+                <scale x="8" y="0.1" z="8" />
+            </transformation>
+
+            <animationref id="floorWaterAnimation" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="parabolic" />
+            </children>
+
+        </component>
+
+        <component id="tubeWater">
+
+            <transformation>
+                <translate x="0" y="0" z="0" />
+                <scale x="0.28" y="4" z="0.28" />
+                <rotate angle="-90" axis="x" />
+            </transformation>
+
+            <animationref id="tubeWaterAnimation" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="regular_cylinder" />
+            </children>
+
+        </component>
+
+        <component id="dropWater1">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation1" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater2">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation2" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater3">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation3" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater4">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation4" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater5">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation5" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater6">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation6" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater7">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation7" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater8">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation8" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater9">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation9" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater10">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation10" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater11">
+
+            <transformation>
+            </transformation>
+
+            <animationref id="dropWaterAnimation11" />
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <componentref id="dropWater" />
+            </children>
+
+        </component>
+
+        <component id="dropWater">
+
+            <transformation>
+                <scale x="0.13" y="0.13" z="0.13" />
+            </transformation>
+
+            <materials>
+                <material id="blue" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+                <primitiveref id="sphere2" />
             </children>
 
         </component>
@@ -1271,7 +2620,7 @@
                 <translate x="0" y="5.5" z="0"/>            
             </transformation>
 
-            <animationref id="demoAnimation" />
+            <animationref id="bikeAnimation" />
 
             <materials>
                 <material id="red" />
