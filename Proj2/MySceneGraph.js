@@ -1518,12 +1518,13 @@ class MySceneGraph {
         mat.setTexture(text);
 
         this.scene.pushMatrix();
+
         this.scene.multMatrix(component.transformation);
 
         if(component.animationID != null) {
             this.scene.multMatrix(this.animations[component.animationID].apply());
         }
-     
+
         for (var i = 0; i < component.childrenID.length; i++) {
             this.processNode(component.childrenID[i], mat, text, lengthS, lengthT);
         }
