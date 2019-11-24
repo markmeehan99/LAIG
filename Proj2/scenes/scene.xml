@@ -83,7 +83,11 @@
         <texture id="street" file="scenes/images/rocks.jpg" />
         <texture id="fire_hydrant" file="scenes/images/fire_hydrant.jpg" />
         <texture id="grass" file="scenes/images/leaves.jpg" />
+        <texture id="tire" file="scenes/images/tire.jpg" />
         <texture id="sign" file="scenes/images/danger-sign.png" />
+        <texture id="posts" file="scenes/images/brushed_metal.jpg" />
+        <texture id="glass" file="scenes/images/glass.jpg" />
+        <texture id="wood1" file="scenes/images/wood1.jpeg" />
     </textures>
 
     <materials>
@@ -1480,7 +1484,7 @@
             </transformation>
 
             <materials>
-                <material id="inherit" />
+                <material id="none" />
             </materials>
 
             <texture id="none" />
@@ -1539,7 +1543,7 @@
             </transformation>
 
             <materials>
-                <material id="inherit" />
+                <material id="darkGrey" />
             </materials>
 
             <texture id="none" />
@@ -1559,7 +1563,7 @@
             </transformation>
 
             <materials>
-                <material id="inherit" />
+                <material id="darkGrey" />
             </materials>
 
             <texture id="none" />
@@ -1677,7 +1681,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="inherit" />
 
             <children>
                 <componentref id="woodPiece1" />
@@ -1697,7 +1701,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="inherit" />
 
             <children>
                 <componentref id="woodPiece4" />
@@ -1718,7 +1722,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1"/>
 
             <children>
                 <componentref id="cube" />
@@ -1738,7 +1742,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1"/>
 
             <children>
                 <componentref id="cube" />
@@ -1758,7 +1762,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1"/>
 
             <children>
                 <componentref id="cube" />
@@ -1775,10 +1779,10 @@
             </transformation>
 
             <materials>
-                <material id="red" />
+                <material id="none" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <componentref id="cube" />
@@ -1815,7 +1819,7 @@
             </transformation>
 
             <materials>
-                <material id="red" />
+                <material id="none" />
             </materials>
 
             <texture id="none" />
@@ -1832,10 +1836,10 @@
             </transformation>
 
             <materials>
-                <material id="inherit" />
+                <material id="none" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <componentref id="cubeFace1" />
@@ -1857,7 +1861,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -1876,7 +1880,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -1895,7 +1899,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -1914,7 +1918,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -1933,7 +1937,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -1952,7 +1956,7 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="none" />
+            <texture id="wood1" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="square" />
@@ -2467,7 +2471,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <texture id="tire" length_s="1" length_t="1" />
 
             <children>
                 <componentref id="post1" />
@@ -2489,7 +2493,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none"/>
+            <texture id="inherit"/>
 
             <children>
                 <componentref id="light_post"/>
@@ -2507,7 +2511,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none"/>
+            <texture id="inherit"/>
 
             <children>
                 <componentref id="light_post"/>
@@ -2525,7 +2529,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none"/>
+            <texture id="inherit"/>
 
             <children>
                 <componentref id="light_post"/>
@@ -2543,7 +2547,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none"/>
+            <texture id="inherit"/>
 
             <children>
                 <componentref id="light_post"/>
@@ -2561,7 +2565,7 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none"/>
+            <texture id="inherit"/>
 
             <children>
                 <componentref id="light_post"/>
@@ -2595,7 +2599,7 @@
                 <material id="darkGreen" />
             </materials>
 
-            <texture id="none" />
+            <texture id="posts" length_s="1" length_t="1" />
 
             <children>
                 <primitiveref id="lamp_cylinder" />
@@ -2611,7 +2615,7 @@
                 <material id="orange" />
             </materials>
 
-            <texture id="none" />
+            <texture id="glass" length_s="1" length_t="1"/>
 
             <children>
                 <primitiveref id="lamp_sphere" />
@@ -2684,10 +2688,11 @@
                 <material id="darkGrey" />
             </materials>
 
-            <texture id="none" />
+            <texture id="tire" length_s="1" length_t="1" />
 
             <children>
-                <primitiveref id="big_thin_torus" />
+                <!-- <primitiveref id="big_thin_torus" /> -->
+                <componentref id="wheel_aux" />
                 <componentref id="wheel_radius_1" />
                 <componentref id="wheel_radius_2" />
                 <componentref id="wheel_radius_3" />
@@ -2695,6 +2700,21 @@
                 <componentref id="wheel_radius_5" />
                 <componentref id="wheel_radius_6" />
                 <componentref id="axis_bolt" />
+            </children>
+        </component>
+
+        <component id="wheel_aux">
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="tire" length_s="1" length_t="1"/>
+
+            <children>
+                <primitiveref id="big_thin_torus" />
             </children>
         </component>
 
