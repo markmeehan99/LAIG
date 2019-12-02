@@ -1,0 +1,290 @@
+<lxs>
+    <scene root="scene" axis_length="5" />
+
+    <views default="defaultCamera">
+        <perspective id="defaultCamera" near="0.1" far="500" angle="45">
+            <from x="30" y="15" z="30" />
+            <to x="0" y="-2" z="0" />
+        </perspective>
+    </views>
+
+    
+    <globals>
+        <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+        <background r="0.0" g="0.0" b="0.0" a="1.0" />
+    </globals>
+
+    <lights>
+        <omni id="poleLight1" enabled="1">
+            <location x="-30" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="poleLight2" enabled="1">
+            <location x="30" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="poleLight3" enabled="1">
+            <location x="-90" y="35" z="-20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="poleLight4" enabled="1">
+            <location x="-30" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="poleLight5" enabled="1">
+            <location x="30" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="1.0" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <omni id="poleLight6" enabled="1">
+            <location x="-90" y="35" z="20" w="1.0" />
+            <ambient r="0" g="0" b="0" a="0.5" />
+            <diffuse r="0.5" g="0.5" b="0.5" a="0.5" />
+            <specular r="0.5" g="0.5" b="0.5" a="0.5" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </omni>
+        <spot id="bicycleSpot" enabled="1" angle="45" exponent="100.1">
+            <location x="-10" y="0" z="-10" w="1.0" />
+            <target x="-25" y="5" z="17" />
+            <ambient r="0" g="0" b="0" a="1" />
+            <diffuse r="0.7" g="0.7" b="0.7" a="1" />
+            <specular r="0.7" g="0.7" b="0.7" a="1" />
+            <attenuation constant="1" linear="0" quadratic="0" />
+        </spot>
+
+    </lights>
+
+    <textures>
+        <texture id="street" file="scenes/images/rocks.jpg" />
+        <texture id="fire_hydrant" file="scenes/images/fire_hydrant.jpg" />
+        <texture id="grass" file="scenes/images/leaves.jpg" />
+        <texture id="tire" file="scenes/images/tire.jpg" />
+        <texture id="sign" file="scenes/images/danger-sign.png" />
+        <texture id="posts" file="scenes/images/brushed_metal.jpg" />
+        <texture id="glass" file="scenes/images/glass.jpg" />
+        <texture id="wood1" file="scenes/images/wood1.jpeg" />
+    </textures>
+
+    <materials>
+        <material id="none" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1" g="1" b="1" a="1.0" />
+            <diffuse r="1" g="1" b="1" a="1.0" />
+            <specular r="1" g="1" b="1" a="1.0" />
+        </material>
+
+        <material id="red" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1.0" g="0.0" b="0.0" a="1.0" />
+            <diffuse r="0.6" g="0.0" b="0.0" a="1.0" />
+            <specular r="0.6" g="0.0" b="0.0" a="1.0" />
+        </material>
+
+        <material id="darkGrey" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
+            <diffuse r="0.3" g="0.3" b="0.3" a="1.0" />
+            <specular r="0.2" g="0.2" b="0.2" a="1.0" />
+        </material>
+
+        <material id="lightGrey" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.6" g="0.6" b="0.6" a="1.0" />
+            <diffuse r="0.6" g="0.6" b="0.6" a="1.0" />
+            <specular r="0.6" g="0.6" b="0.6" a="1.0" />
+        </material>
+
+        <material id="white" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1.0" g="1.0" b="1.0" a="1.0" />
+            <diffuse r="1.0" g="1.0" b="1.0" a="1.0" />
+            <specular r="1.0" g="1.0" b="1.0" a="1.0" />
+        </material>
+
+        <material id="orange" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="1.0" g="0.5" b="0.0" a="1.0" />
+            <diffuse r="1.0" g="0.5" b="0.0" a="1.0" />
+            <specular r="1.0" g="0.5" b="0.0" a="1.0" />
+        </material>
+
+        <material id="darkGreen" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.2" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="0.2" b="0.0" a="1.0" />
+            <specular r="0.0" g="0.2" b="0.0" a="1.0" />
+        </material>
+
+        <material id="blue" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="0.2" b="1.0" a="1.0" />
+            <diffuse r="0.0" g="0.2" b="1.0" a="1.0" />
+            <specular r="0.0" g="0.2" b="1.0" a="1.0" />
+        </material>
+
+        <material id="green" shininess="10">
+            <emission r="0.0" g="0.0" b="0.0" a="1.0" />
+            <ambient r="0.0" g="1.0" b="0.0" a="1.0" />
+            <diffuse r="0.0" g="1.0" b="0.0" a="1.0" />
+            <specular r="0.0" g="1.0" b="0.0" a="1.0" />
+        </material>
+    </materials>
+
+    <transformations>
+        <transformation id="bicycleTransf">
+            <translate x="-25" y="0" z="17" />
+        </transformation>
+    </transformations>
+
+
+
+    <primitives>
+
+        <primitive id="big_thin_torus">
+            <torus inner="0.5" outer="5" slices="12" loops="30" />
+        </primitive>
+
+        <primitive id="regular_torus">
+            <torus inner="1" outer="2" slices="8" loops="20" />
+        </primitive>
+
+        <primitive id="long_cylinder">
+            <cylinder height="5" top="0.1" base="0.1" stacks="4" slices="20" />
+        </primitive>
+
+        <primitive id="regular_cylinder">
+            <cylinder height="2" top="1" base="1" stacks="3" slices="20" />
+        </primitive>
+
+        <primitive id="sphere2">
+            <sphere radius="2" stacks="20" slices="20" />
+        </primitive>
+
+        <primitive id="cone1.5_2.5">
+            <cylinder top="1.5" base="2.5" height="2" slices="8" stacks="4" /> 
+        </primitive>
+
+        <primitive id="equi_triangle_xz">
+            <triangle x1="0" y1="0" z1="-1" x2="0" y2="0" z2="1" x3="-1.732" y3="0" z3="0" />
+        </primitive>
+
+        <primitive id="lamp_cylinder">
+            <cylinder2 top="0.6" base="0.6" height="35" slices="8" stacks="4" /> 
+        </primitive>
+
+        <primitive id="lamp_sphere">
+            <sphere radius="2" stacks="10" slices="10" />
+        </primitive>
+
+        <primitive id="big_rectangle">
+            <rectangle x1="-5" y1="-5" x2="5" y2="5" />
+        </primitive>   
+
+        <primitive id="small_rectangle">
+            <rectangle x1="0" y1="0" x2="2" y2="2" />
+        </primitive>   
+
+        <primitive id="circle2" >
+            <cylinder top="0" base="2" height="0" slices="20" stacks="4" />
+        </primitive> 
+
+        <primitive id="square">
+            <rectangle x1="0" y1="0" x2="1" y2="1" />
+        </primitive>   
+
+        <primitive id="smallNurb">
+            <patch npointsU="2" npointsV="2" npartsU="10" npartsV="10">
+                <controlpoint xx="-2" yy="0" zz="-2" />
+                <controlpoint xx="0" yy="0" zz="-2" />
+                <controlpoint xx="2" yy="0" zz="-2" />
+
+                <controlpoint xx="-2" yy="0" zz="0" />
+                <controlpoint xx="0" yy="2" zz="0" />
+                <controlpoint xx="2" yy="0" zz="0" />
+                
+                <controlpoint xx="-2" yy="0" zz="2" />
+                <controlpoint xx="0" yy="0" zz="2" />
+                <controlpoint xx="2" yy="0" zz="2" />
+            </patch>
+        </primitive>
+
+        <primitive id="cylinder2">
+            <cylinder2 top="1" base="2" height="1" slices="20" stacks="4"/>
+        </primitive>
+
+        <primitive id="parabolic" >
+            <patch npointsU="4" npointsV="4" npartsU="10" npartsV="10">
+                <controlpoint xx="-1.5" yy="0" zz="-1.5" />
+                <controlpoint xx="-0.8" yy="0" zz="-1.8" />
+                <controlpoint xx="0" yy="0" zz="-2" />
+                <controlpoint xx="0.8" yy="0" zz="-1.8" />
+                <controlpoint xx="1.5" yy="0" zz="-1.5" />
+
+                <controlpoint xx="-1.5" yy="0" zz="-0.8" />
+                <controlpoint xx="-0.8" yy="3" zz="-0.9" />
+                <controlpoint xx="0" yy="3" zz="-1" />
+                <controlpoint xx="0.8" yy="3" zz="-0.8" />
+                <controlpoint xx="1.5" yy="0" zz="-0.7" />
+                
+                <controlpoint xx="-2" yy="0" zz="0" />
+                <controlpoint xx="-1" yy="3" zz="0" />
+                <controlpoint xx="0" yy="4" zz="0" />
+                <controlpoint xx="1" yy="3" zz="0" />
+                <controlpoint xx="2" yy="0" zz="0" />
+
+                <controlpoint xx="-1.5" yy="0" zz="1" />
+                <controlpoint xx="-0.8" yy="3" zz="1" />
+                <controlpoint xx="0" yy="3" zz="1" />
+                <controlpoint xx="0.8" yy="3" zz="1" />
+                <controlpoint xx="1.5" yy="0" zz="1" />
+                
+                <controlpoint xx="-1.5" yy="0" zz="1.3" />
+                <controlpoint xx="-0.8" yy="0" zz="1.7" />
+                <controlpoint xx="0" yy="0" zz="2" />
+                <controlpoint xx="0.8" yy="0" zz="1.9" />
+                <controlpoint xx="1.5" yy="0" zz="1.5" />
+            </patch>
+        </primitive>
+
+    </primitives>
+
+    <animations>
+    </animations>
+
+
+    <components>
+
+        <component id="scene">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="none" />
+
+            <children>
+
+            </children>
+
+        </component>
+
+
+    </components>
+</lxs>
