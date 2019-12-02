@@ -8,7 +8,7 @@
         </perspective>
     </views>
 
-    
+
     <globals>
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <background r="0.0" g="0.0" b="0.0" a="1.0" />
@@ -280,10 +280,839 @@
             <texture id="none" />
 
             <children>
-
+                <componentref id="board"/>
             </children>
 
         </component>
+
+
+        <component id="board">
+
+            <transformation>
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cell1"/>
+                <componentref id="cell2"/>
+                <componentref id="cell3"/>
+                <componentref id="cell4"/>
+                <componentref id="cell5"/>
+                <componentref id="cell6"/>
+                <componentref id="cell7"/>
+                <componentref id="cell8"/>
+                <componentref id="cell9"/>
+                <componentref id="cell10"/>
+                <componentref id="cell11"/>
+                <componentref id="cell12"/>
+                <componentref id="cell13"/>
+                <componentref id="cell14"/>
+                <componentref id="cell15"/>
+                <componentref id="cell16"/>
+                <componentref id="cell17"/>
+                <componentref id="cell18"/>
+                <componentref id="cell19"/>
+                <componentref id="cell20"/>
+                <componentref id="cell21"/>
+                <componentref id="cell22"/>
+                <componentref id="cell23"/>
+                <componentref id="cell24"/>
+                <componentref id="cell25"/>
+                <componentref id="cell26"/>
+                <componentref id="cell27"/>
+                <componentref id="cell28"/>
+            </children>
+
+        </component>
+
+
+        <component id="cell1">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell2">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell3">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="2" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell4">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="3" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell5">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="4" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell6">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell7">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell8">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="0" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell9">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell10">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="2" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell11">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="3" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell12">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="4" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell13">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell14">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="1" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+
+        <component id="cell15">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="0" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell16">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell17">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="2" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell18">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="3" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell19">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="4" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell20">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell21">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="2" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+
+        <component id="cell22">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="0" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell23">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell24">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="2" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell25">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="3" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell26">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="4" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell27">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="cell28">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+
+
+        <component id="cube">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="none" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cubeFace1" />
+                <componentref id="cubeFace2" />
+                <componentref id="cubeFace3" />
+                <componentref id="cubeFace4" />
+                <componentref id="cubeFace5" />
+                <componentref id="cubeFace6" />
+            </children>
+
+        </component>
+
+        <component id="cubeFace1">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>     
+
+        <component id="cubeFace2">
+
+            <transformation>
+                <translate x="1" y="0" z="0" />
+                <rotate angle="90" axis="y" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>
+        
+        <component id="cubeFace3">
+
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+                <rotate angle="-90" axis="y" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>
+
+        <component id="cubeFace4">
+
+            <transformation>
+                <translate x="1" y="0" z="-1" />
+                <rotate angle="-180" axis="y" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>
+
+        <component id="cubeFace5">
+
+            <transformation>
+                <translate x="0" y="0" z="-1" />
+                <rotate angle="90" axis="x" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>
+
+        <component id="cubeFace6">
+
+            <transformation>
+                <translate x="0" y="1" z="0" />
+                <rotate angle="-90" axis="x" />
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="wood1" length_s="1" length_t="1" />
+
+            <children>
+                <primitiveref id="square" />
+            </children>
+
+        </component>
+
 
 
     </components>
