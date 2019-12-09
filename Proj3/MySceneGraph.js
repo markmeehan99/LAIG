@@ -1181,7 +1181,7 @@ class MySceneGraph {
             var childrenIndex = nodeNames.indexOf("children");
 
             var transformation = null;
-            var animationId = null;
+            var animation = null;
             var materialIds = [];
             var textureId = null;
             var childrenIds = [];
@@ -1253,14 +1253,17 @@ class MySceneGraph {
             // Animation
             if (animationIndex != -1) {
                 // Get id of the current animation.
-                animationId = this.reader.getString(grandChildren[animationIndex], 'id');
+                var animationId = this.reader.getString(grandChildren[animationIndex], 'id');
                 if (animationId == null)
                     return "no ID defined for animation in component for ID " + componentID;
 
                 // Check if ID exists in this.animation
                 if (this.animations[animationId] == null)
                     return "ID must have been defined in block animation (component ID " + componentID + ")";
+
+                animation = this.animations[animationId];
             }
+
 
             // Materials
             if(materialsIndex == -1) 
@@ -1350,7 +1353,7 @@ class MySceneGraph {
                     primitiveIds.push(primitiveId);
                 }
             }
-            var comp = new MyComponent(this.scene, componentID, transformation, animationId, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
+            var comp = new MyComponent(this.scene, componentID, transformation, animation, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
             this.components[componentID] = comp;
         }
     }
@@ -1471,10 +1474,15 @@ class MySceneGraph {
      * @param {int} sceneTime in ms 
      */
     update(sceneTime) {
-        for (var key in this.animations) {
-            this.animations[key].update(sceneTime);
+        // for (var key in this.animations) {
+        //     this.animations[key].update(sceneTime);
+        // }
+        
+        for (var key in this.components) {
+            this.components[key].update(sceneTime);
         }
     }
+
 
     /**
      * Displays the scene, processing each node, starting in the root node.
@@ -1527,8 +1535,8 @@ class MySceneGraph {
 
         this.scene.multMatrix(component.transformation);
 
-        if(component.animationID != null) {
-            this.scene.multMatrix(this.animations[component.animationID].apply());
+        if(component.animMatrix != null) {
+            this.scene.multMatrix(component.animMatrix);
         }
 
         for (var i = 0; i < component.childrenID.length; i++) {
