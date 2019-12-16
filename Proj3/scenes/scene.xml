@@ -81,6 +81,7 @@
         <texture id="dark_cork" file="scenes/images/dark_cork.jpg" />
         <texture id="carbon_fiber" file="scenes/images/carbon_fiber.jpg" />
         <texture id="plastic" file="scenes/images/plastic.jpg" />
+        <texture id="old_wood" file="scenes/images/old_wood.jpg" />
     </textures>
 
     <materials>
@@ -298,10 +299,163 @@
                 <componentref id="board"/>
                 <componentref id="piece2"/>
                 <componentref id="piece1"/>
+                <componentref id="table"/>
             </children>
 
         </component>
 
+
+
+        <component id="table">
+
+            <transformation>
+                <translate x="0" y="-2" z="0" />
+            </transformation>
+
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="table_top"/>
+                <componentref id="legs"/>
+            </children>
+
+        </component>
+
+
+
+        <component id="legs">
+
+            <transformation>
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="old_wood" length_s="6" length_t="1" />
+
+            <children>
+                <componentref id="leg1"/>
+                <componentref id="leg2"/>
+                <componentref id="leg3"/>
+                <componentref id="leg4"/>
+            </children>
+
+        </component>
+
+
+
+
+        <component id="leg1">
+
+            <transformation>
+                <translate x="-6" y="-16" z="-6" />
+                <scale x="3" y="16" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+        <component id="leg2">
+
+            <transformation>
+                <translate x="24" y="-16" z="24" />
+                <scale x="3" y="16" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+        <component id="leg3">
+
+            <transformation>
+                <translate x="24" y="-16" z="-6" />
+                <scale x="3" y="16" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+        <component id="leg4">
+
+            <transformation>
+                <translate x="-6" y="-16" z="24" />
+                <scale x="3" y="16" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+
+        <component id="table_top">
+
+            <transformation>
+                <translate x="-6" y="0" z="24" />
+                <scale x="3" y="2" z="3" />
+                <scale x="11" y="1" z="11" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="old_wood" length_s="0.5" length_t="1" />
+
+            <children>
+                <componentref id="cube_rotated"/>
+            </children>
+
+        </component>
 
 
         <component id="piece">
@@ -1662,6 +1816,32 @@ black
 
         </component>
 
+
+
+        <component id="cube_rotated">
+
+            <transformation>
+            </transformation>
+
+            <materials>
+                <material id="inherit" />
+            </materials>
+
+            <texture id="inherit" length_s="1" length_t="1" />
+
+            <children>
+                <componentref id="cubeFace1" />
+                <!-- <componentref id="cubeFace2" />  ROTATE  -->
+                <componentref id="cubeFace2" /> 
+                <!-- <componentref id="cubeFace3" />    ROTATE-->
+                <componentref id="cubeFace3" />
+                <componentref id="cubeFace4" />
+                <componentref id="cubeFace5" />
+                <componentref id="cubeFace6" />
+            </children>
+
+        </component>
+
         <component id="cubeFace1">
 
             <transformation>
@@ -1697,6 +1877,7 @@ black
             </children>
 
         </component>
+
         
         <component id="cubeFace3">
 
