@@ -1473,11 +1473,7 @@ class MySceneGraph {
      * Callback to be executed on periodic events
      * @param {int} sceneTime in ms 
      */
-    update(sceneTime) {
-        // for (var key in this.animations) {
-        //     this.animations[key].update(sceneTime);
-        // }
-        
+    update(sceneTime) {        
         for (var key in this.components) {
             this.components[key].update(sceneTime);
         }
