@@ -1499,10 +1499,15 @@ class MySceneGraph {
      * @param {float} tLength
      */
     processNode(id, mat, text, lengthS, lengthT) {
-        var component = this.components[id];
+        let component = this.components[id];
         if(component == null) {
             this.onXMLError("component for ID " + id + " doesn't exist!");
             return;
+        }
+
+        if (id.indexOf("cell") != -1) {
+            let n = parseInt(id[4] + id[5]);
+            this.scene.registerForPick(n, component);
         }
 
         // if material not inherit, defines new material
@@ -1535,11 +1540,11 @@ class MySceneGraph {
             this.scene.multMatrix(component.animMatrix);
         }
 
-        for (var i = 0; i < component.childrenID.length; i++) {
+        for (let i = 0; i < component.childrenID.length; i++) {
             this.processNode(component.childrenID[i], mat, text, lengthS, lengthT);
         }
 
-        for (var i = 0; i < component.primitiveID.length; i++) {
+        for (let i = 0; i < component.primitiveID.length; i++) {
             this.displayPrimitive(component.primitiveID[i], mat, text, lengthS, lengthT);
         }
 
@@ -1553,7 +1558,7 @@ class MySceneGraph {
     * @param {float} lengthT
     */
    displayPrimitive(id, mat, text, lengthS, lengthT) {
-        var primitive = this.primitives[id];
+        let primitive = this.primitives[id];
         mat.apply();
         mat.setTexture(text);
         primitive.applyTextures(lengthS, lengthT);
@@ -1564,7 +1569,7 @@ class MySceneGraph {
     * loops through all components to increment the materialIndex of each 
     */
    nextMaterial() {
-       for (var key in this.components) {
+       for (let key in this.components) {
            this.components[key].nextMaterial();
        }
    }

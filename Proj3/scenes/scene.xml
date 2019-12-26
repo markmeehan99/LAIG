@@ -602,16 +602,7 @@
 
 
             <children>
-                <componentref id="cell1"/>
-                <componentref id="cell2"/>
-                <componentref id="cell3"/>
-                <componentref id="cell4"/>
-                <componentref id="cell5"/>
-                <componentref id="cell6"/>
-                <componentref id="cell7"/>
-                <componentref id="cell8"/>
-                <componentref id="cell9"/>
-                <componentref id="cell10"/>
+
                 <componentref id="cell11"/>
                 <componentref id="cell12"/>
                 <componentref id="cell13"/>
@@ -619,9 +610,6 @@
                 <componentref id="cell15"/>
                 <componentref id="cell16"/>
                 <componentref id="cell17"/>
-                <componentref id="cell18"/>
-                <componentref id="cell19"/>
-                <componentref id="cell20"/>
                 <componentref id="cell21"/>
                 <componentref id="cell22"/>
                 <componentref id="cell23"/>
@@ -629,9 +617,6 @@
                 <componentref id="cell25"/>
                 <componentref id="cell26"/>
                 <componentref id="cell27"/>
-                <componentref id="cell28"/>
-                <componentref id="cell29"/>
-                <componentref id="cell30"/>
                 <componentref id="cell31"/>
                 <componentref id="cell32"/>
                 <componentref id="cell33"/>
@@ -639,9 +624,6 @@
                 <componentref id="cell35"/>
                 <componentref id="cell36"/>
                 <componentref id="cell37"/>
-                <componentref id="cell38"/>
-                <componentref id="cell39"/>
-                <componentref id="cell40"/>
                 <componentref id="cell41"/>
                 <componentref id="cell42"/>
                 <componentref id="cell43"/>
@@ -649,14 +631,33 @@
                 <componentref id="cell45"/>
                 <componentref id="cell46"/>
                 <componentref id="cell47"/>
-                <componentref id="cell48"/>
-                <componentref id="cell49"/>
+                <componentref id="cell51"/>
+                <componentref id="cell52"/>
+                <componentref id="cell53"/>
+                <componentref id="cell54"/>
+                <componentref id="cell55"/>
+                <componentref id="cell56"/>
+                <componentref id="cell57"/>
+                <componentref id="cell61"/>
+                <componentref id="cell62"/>
+                <componentref id="cell63"/>
+                <componentref id="cell64"/>
+                <componentref id="cell65"/>
+                <componentref id="cell66"/>
+                <componentref id="cell67"/>
+                <componentref id="cell71"/>
+                <componentref id="cell72"/>
+                <componentref id="cell73"/>
+                <componentref id="cell74"/>
+                <componentref id="cell75"/>
+                <componentref id="cell76"/>
+                <componentref id="cell77"/>
             </children>
 
         </component>
 
 
-        <component id="cell1">
+        <component id="cell11">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -676,9 +677,7 @@
 
         </component>
 
-
-
-        <component id="cell2">
+        <component id="cell12">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -699,9 +698,7 @@
 
         </component>
 
-
-
-        <component id="cell3">
+        <component id="cell13">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -722,9 +719,7 @@
 
         </component>
 
-
-
-        <component id="cell4">
+        <component id="cell14">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -737,7 +732,7 @@
             </materials>
 
             <texture id="dark_cork" length_s="1" length_t="1" />
-black
+
 
             <children>
                 <componentref id="cube"/>
@@ -745,9 +740,7 @@ black
 
         </component>
 
-
-
-        <component id="cell5">
+        <component id="cell15">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -768,9 +761,7 @@ black
 
         </component>
 
-
-
-        <component id="cell6">
+        <component id="cell16">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -791,9 +782,7 @@ black
 
         </component>
 
-
-
-        <component id="cell7">
+        <component id="cell17">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -814,9 +803,7 @@ black
 
         </component>
 
-
-
-        <component id="cell8">
+        <component id="cell21">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -837,9 +824,7 @@ black
 
         </component>
 
-
-
-        <component id="cell9">
+        <component id="cell22">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -860,9 +845,7 @@ black
 
         </component>
 
-
-
-        <component id="cell10">
+        <component id="cell23">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -883,9 +866,7 @@ black
 
         </component>
 
-
-
-        <component id="cell11">
+        <component id="cell24">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -906,9 +887,7 @@ black
 
         </component>
 
-
-
-        <component id="cell12">
+        <component id="cell25">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -929,9 +908,7 @@ black
 
         </component>
 
-
-
-        <component id="cell13">
+        <component id="cell26">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -952,9 +929,7 @@ black
 
         </component>
 
-
-
-        <component id="cell14">
+        <component id="cell27">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -975,10 +950,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell15">
+        <component id="cell31">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -999,9 +971,7 @@ black
 
         </component>
 
-
-
-        <component id="cell16">
+        <component id="cell32">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1022,9 +992,7 @@ black
 
         </component>
 
-
-
-        <component id="cell17">
+        <component id="cell33">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1045,9 +1013,7 @@ black
 
         </component>
 
-
-
-        <component id="cell18">
+        <component id="cell34">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1068,9 +1034,7 @@ black
 
         </component>
 
-
-
-        <component id="cell19">
+        <component id="cell35">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1091,9 +1055,7 @@ black
 
         </component>
 
-
-
-        <component id="cell20">
+        <component id="cell36">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1114,9 +1076,7 @@ black
 
         </component>
 
-
-
-        <component id="cell21">
+        <component id="cell37">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1137,10 +1097,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell22">
+        <component id="cell41">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1161,9 +1118,7 @@ black
 
         </component>
 
-
-
-        <component id="cell23">
+        <component id="cell42">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1184,9 +1139,7 @@ black
 
         </component>
 
-
-
-        <component id="cell24">
+        <component id="cell43">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1207,9 +1160,7 @@ black
 
         </component>
 
-
-
-        <component id="cell25">
+        <component id="cell44">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1230,9 +1181,7 @@ black
 
         </component>
 
-
-
-        <component id="cell26">
+        <component id="cell45">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1253,9 +1202,7 @@ black
 
         </component>
 
-
-
-        <component id="cell27">
+        <component id="cell46">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1276,9 +1223,7 @@ black
 
         </component>
 
-
-
-        <component id="cell28">
+        <component id="cell47">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1302,8 +1247,7 @@ black
 
         </component>
 
-
-        <component id="cell29">
+        <component id="cell51">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1324,10 +1268,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell30">
+        <component id="cell52">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1348,9 +1289,7 @@ black
 
         </component>
 
-
-
-        <component id="cell31">
+        <component id="cell53">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1371,9 +1310,7 @@ black
 
         </component>
 
-
-
-        <component id="cell32">
+        <component id="cell54">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1394,9 +1331,7 @@ black
 
         </component>
 
-
-
-        <component id="cell33">
+        <component id="cell55">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1417,9 +1352,7 @@ black
 
         </component>
 
-
-
-        <component id="cell34">
+        <component id="cell56">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1440,9 +1373,7 @@ black
 
         </component>
 
-
-
-        <component id="cell35">
+        <component id="cell57">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1463,9 +1394,7 @@ black
 
         </component>
 
-
-
-        <component id="cell36">
+        <component id="cell61">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1486,9 +1415,7 @@ black
 
         </component>
 
-
-
-        <component id="cell37">
+        <component id="cell62">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1509,9 +1436,7 @@ black
 
         </component>
 
-
-
-        <component id="cell38">
+        <component id="cell63">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1532,10 +1457,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell39">
+        <component id="cell64">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1556,9 +1478,7 @@ black
 
         </component>
 
-
-
-        <component id="cell40">
+        <component id="cell65">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1579,9 +1499,7 @@ black
 
         </component>
 
-
-
-        <component id="cell41">
+        <component id="cell66">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1602,11 +1520,7 @@ black
 
         </component>
 
-
-
-
-
-        <component id="cell42">
+        <component id="cell67">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1627,9 +1541,7 @@ black
 
         </component>
 
-
-
-        <component id="cell43">
+        <component id="cell71">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1650,9 +1562,7 @@ black
 
         </component>
 
-
-
-        <component id="cell44">
+        <component id="cell72">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1673,9 +1583,7 @@ black
 
         </component>
 
-
-
-        <component id="cell45">
+        <component id="cell73">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1696,10 +1604,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell46">
+        <component id="cell74">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1720,9 +1625,7 @@ black
 
         </component>
 
-
-
-        <component id="cell47">
+        <component id="cell75">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1743,9 +1646,7 @@ black
 
         </component>
 
-
-
-        <component id="cell48">
+        <component id="cell76">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1766,11 +1667,7 @@ black
 
         </component>
 
-
-
-
-
-        <component id="cell49">
+        <component id="cell77">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1792,7 +1689,11 @@ black
         </component>
 
 
-
+        <!--  
+            
+            CUBE  
+        
+        -->
 
         <component id="cube">
 
@@ -1815,8 +1716,6 @@ black
             </children>
 
         </component>
-
-
 
         <component id="cube_rotated">
 
