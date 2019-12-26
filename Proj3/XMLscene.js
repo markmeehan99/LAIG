@@ -42,6 +42,8 @@ class XMLscene extends CGFscene {
         this.axis = new CGFaxis(this);
         this.setUpdatePeriod(16.67);
         this.startingTime = null;
+
+        this.setPickEnabled(true);
     }
 
     /**
@@ -171,6 +173,10 @@ class XMLscene extends CGFscene {
      */
     render(camera) {
 
+        // picking handling
+        this.logPicking();
+        this.clearPickRegistration();
+
         // ---- BEGIN Bglackground, camera and axis setup
         
         // Clear image and depth buffer everytime we update the scene
@@ -181,7 +187,6 @@ class XMLscene extends CGFscene {
 
         this.interface.setActiveCamera(this.camera);
 
-
         // Initialize Model-View matrix as identity (no transformation
         this.updateProjectionMatrix();
         this.loadIdentity();
@@ -190,11 +195,11 @@ class XMLscene extends CGFscene {
         this.applyViewMatrix();
 
         this.pushMatrix();
+
+        // Draw axis
         this.axis.display();
 
         if (this.sceneInited) {
-            // Draw axis
-            this.axis.display();
 
             var i = 0;
             for (var key in this.lightValues) {
@@ -214,10 +219,6 @@ class XMLscene extends CGFscene {
 
             // Displays the scene (MySceneGraph function).
             this.graph.displayScene();
-        }
-        else {
-            // Draw axis
-            this.axis.display();
         }
 
         this.popMatrix();
