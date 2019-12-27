@@ -11,6 +11,9 @@ class MyKeyframeAnimation extends MyAnimation {
 
         // animation matrix
         this.animMatrix = mat4.create() ;
+
+        this.ended = false;
+        this.lastSent = false;
     }
 
     interpolate(v0, v1, t) {
@@ -52,6 +55,7 @@ class MyKeyframeAnimation extends MyAnimation {
             translate = this.keyframes[pos0].translate;
             rotate = this.keyframes[pos0].rotate;
             scale = this.keyframes[pos0].scale;
+            this.ended = true;
         }
         // general case
         else {
@@ -73,6 +77,13 @@ class MyKeyframeAnimation extends MyAnimation {
     }
 
     apply() {
-        return this.animMatrix;
+        if(this.ended && this.lastSent) 
+            return null;
+
+        else if(this.ended && !this.lastSent) {
+            this.lastSent = true;
+            return this.animMatrix;
+        }
+        else return this.animMatrix;
     }
 }

@@ -7,7 +7,7 @@ class MyComponent {
         this.scene = scene;
         this.nodeID = node;
         this.transformation = transformation;
-        this.animationID = animation;
+        this.animation = animation;
         this.materialIDs = materials;
         this.textureID = texture;
         this.lengthS = lengthS;
@@ -15,7 +15,28 @@ class MyComponent {
         this.childrenID = children;
         this.primitiveID = primitives;
 
+        this.animMatrix = null;
+        this.lastAnim = null;
+
         this.materialIndex = 0;
+    }
+
+    update(sceneTime) {
+        if(this.animation == null) return;
+        
+        this.animation.update(sceneTime);
+        this.lastAnim = this.animMatrix;
+        this.animMatrix = this.animation.apply();
+        
+        //returning null, animation ended
+        if(this.animMatrix == null) {
+            console.log("1")
+            mat4.multiply(this.transformation, this.transformation, this.lastAnim);
+            console.log("2")
+            this.animMatrix = null;
+            this.animation = null;
+            return;
+        }
     }
 
     nextMaterial() {
