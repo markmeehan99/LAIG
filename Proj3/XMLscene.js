@@ -44,6 +44,7 @@ class XMLscene extends CGFscene {
         this.startingTime = null;
 
         this.setPickEnabled(true);
+        this.pickedCells = [];
     }
 
     /**
@@ -161,8 +162,13 @@ class XMLscene extends CGFscene {
 				for (var i = 0; i < this.pickResults.length; i++) {
 					var obj = this.pickResults[i][0];
 					if (obj) {
-						var customId = this.pickResults[i][1];
-						console.log("Picked object: " + obj + ", with pick id " + customId);						
+                        var customId = this.pickResults[i][1];
+                        this.pickedCells.push(customId);
+                        if (this.pickedCells.length == 2) {
+                            //play
+                            this.pickedCells = [];
+                        }
+						//console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);
@@ -183,7 +189,6 @@ class XMLscene extends CGFscene {
         
         this.gl.enable(this.gl.DEPTH_TEST);
     }
-
 
     /**
      * Displays the scene.
