@@ -1355,6 +1355,14 @@ class MySceneGraph {
             }
             var comp = new MyComponent(this.scene, componentID, transformation, animation, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
             this.components[componentID] = comp;
+
+            // check if it is one black or white piece 
+            if (componentID.indexOf("piece") != -1 && componentID.indexOf("white") != -1) {
+                this.scene.gameboard.pieces.push(new MyPiece(componentID, translate[2], translate[0], 'white'));
+            }
+            else if (componentID.indexOf("piece") != -1 && componentID.indexOf("black") != -1) {
+                this.scene.gameboard.pieces.push(new MyPiece(componentID, translate[2], translate[0], 'black'));
+            }
         }
     }
 
@@ -1508,6 +1516,10 @@ class MySceneGraph {
         if (id.indexOf("cell") != -1) {
             let n = parseInt(id[4] + id[5]);
             this.scene.registerForPick(n, component);
+        }
+        else if (id.indexOf("piece_white") != -1 || id.indexOf("piece_black") != -1) {
+            let n = this.scene.gameboard.findPosOfPieceID(id); 
+            this.scene.registerForPick(n+11, component);
         }
 
         // if material not inherit, defines new material

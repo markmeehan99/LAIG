@@ -45,6 +45,8 @@ class XMLscene extends CGFscene {
 
         this.setPickEnabled(true);
         this.pickedCells = [];
+
+        this.gameboard = new MyGameBoard();
     }
 
     /**
@@ -168,7 +170,7 @@ class XMLscene extends CGFscene {
                             //play
                             this.pickedCells = [];
                         }
-						//console.log("Picked object: " + obj + ", with pick id " + customId);						
+						console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);
