@@ -8,7 +8,6 @@
         </perspective>
     </views>
 
-
     <globals>
         <ambient r="0.2" g="0.2" b="0.2" a="1.0" />
         <background r="0.0" g="0.0" b="0.0" a="1.0" />
@@ -76,7 +75,7 @@
         <texture id="sign" file="scenes/images/danger-sign.png" />
         <texture id="posts" file="scenes/images/brushed_metal.jpg" />
         <texture id="glass" file="scenes/images/glass.jpg" />
-        <texture id="wood1" file="scenes/images/wood1.jpeg" />
+        <texture id="wood1" file="scenes/images/wood1.jpg" />
         <texture id="cork" file="scenes/images/cork.jpg" />
         <texture id="dark_cork" file="scenes/images/dark_cork.jpg" />
         <texture id="carbon_fiber" file="scenes/images/carbon_fiber.jpg" />
@@ -162,7 +161,8 @@
         </transformation>
     </transformations>
 
-
+    <animations>
+    </animations>
 
     <primitives>
 
@@ -187,7 +187,7 @@
         </primitive>
 
         <primitive id="cone1.5_2.5">
-            <cylinder top="1.5" base="2.5" height="2" slices="8" stacks="4" /> 
+            <cylinder top="1.5" base="2.5" height="2" slices="8" stacks="4" />
         </primitive>
 
         <primitive id="equi_triangle_xz">
@@ -195,7 +195,7 @@
         </primitive>
 
         <primitive id="lamp_cylinder">
-            <cylinder2 top="0.6" base="0.6" height="35" slices="8" stacks="4" /> 
+            <cylinder2 top="0.6" base="0.6" height="35" slices="8" stacks="4" />
         </primitive>
 
         <primitive id="lamp_sphere">
@@ -204,23 +204,23 @@
 
         <primitive id="big_rectangle">
             <rectangle x1="-5" y1="-5" x2="5" y2="5" />
-        </primitive>   
+        </primitive>
 
         <primitive id="small_rectangle">
             <rectangle x1="0" y1="0" x2="2" y2="2" />
-        </primitive>   
+        </primitive>
 
-        <primitive id="circle2" >
+        <primitive id="circle2">
             <cylinder top="0" base="2" height="0" slices="20" stacks="4" />
-        </primitive> 
+        </primitive>
 
         <primitive id="square">
             <rectangle x1="0" y1="0" x2="1" y2="1" />
-        </primitive>   
+        </primitive>
 
         <primitive id="piece_top">
             <cylinder top="0" base="1" height="0" slices="20" stacks="1" />
-        </primitive>   
+        </primitive>
 
         <primitive id="smallNurb">
             <patch npointsU="2" npointsV="2" npartsU="10" npartsV="10">
@@ -231,7 +231,7 @@
                 <controlpoint xx="-2" yy="0" zz="0" />
                 <controlpoint xx="0" yy="2" zz="0" />
                 <controlpoint xx="2" yy="0" zz="0" />
-                
+
                 <controlpoint xx="-2" yy="0" zz="2" />
                 <controlpoint xx="0" yy="0" zz="2" />
                 <controlpoint xx="2" yy="0" zz="2" />
@@ -242,7 +242,7 @@
             <cylinder2 top="1" base="2" height="1" slices="20" stacks="4"/>
         </primitive>
 
-        <primitive id="parabolic" >
+        <primitive id="parabolic">
             <patch npointsU="4" npointsV="4" npartsU="10" npartsV="10">
                 <controlpoint xx="-1.5" yy="0" zz="-1.5" />
                 <controlpoint xx="-0.8" yy="0" zz="-1.8" />
@@ -255,7 +255,7 @@
                 <controlpoint xx="0" yy="3" zz="-1" />
                 <controlpoint xx="0.8" yy="3" zz="-0.8" />
                 <controlpoint xx="1.5" yy="0" zz="-0.7" />
-                
+
                 <controlpoint xx="-2" yy="0" zz="0" />
                 <controlpoint xx="-1" yy="3" zz="0" />
                 <controlpoint xx="0" yy="4" zz="0" />
@@ -267,7 +267,7 @@
                 <controlpoint xx="0" yy="3" zz="1" />
                 <controlpoint xx="0.8" yy="3" zz="1" />
                 <controlpoint xx="1.5" yy="0" zz="1" />
-                
+
                 <controlpoint xx="-1.5" yy="0" zz="1.3" />
                 <controlpoint xx="-0.8" yy="0" zz="1.7" />
                 <controlpoint xx="0" yy="0" zz="2" />
@@ -277,10 +277,6 @@
         </primitive>
 
     </primitives>
-
-    <animations>
-    </animations>
-
 
     <components>
 
@@ -297,8 +293,6 @@
 
             <children>
                 <componentref id="board"/>
-                <componentref id="piece2"/>
-                <componentref id="piece1"/>
                 <componentref id="table"/>
             </children>
 
@@ -457,6 +451,125 @@
 
         </component>
 
+        <component id="piece_black1">
+
+            <transformation>
+                <translate x="7.5" y="1.5" z="13.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="black" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
+
+        <component id="piece_black2">
+
+            <transformation>
+                <translate x="10.5" y="1.5" z="13.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="black" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
+
+        <component id="piece_black3">
+
+            <transformation>
+                <translate x="13.5" y="1.5" z="13.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="black" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
+
+        <component id="piece_white1">
+
+            <transformation>
+                <translate x="7.5" y="1.5" z="7.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="white" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
+
+        <component id="piece_white2">
+
+            <transformation>
+                <translate x="10.5" y="1.5" z="7.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="white" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
+
+        <component id="piece_white3">
+
+            <transformation>
+                <translate x="13.5" y="1.5" z="7.5" />
+            </transformation>
+
+
+            <materials>
+                <material id="white" />
+            </materials>
+
+            <texture id="plastic" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="piece"/>
+            </children>
+
+        </component>
 
         <component id="piece">
 
@@ -477,49 +590,6 @@
             </children>
 
         </component>
-
-
-
-        <component id="piece1">
-
-            <transformation>
-                <translate x="1.5" y="1.5" z="-1.5" />
-            </transformation>
-
-
-            <materials>
-                <material id="black" />
-            </materials>
-
-            <texture id="plastic" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="piece"/>
-            </children>
-
-        </component>
-
-        <component id="piece2">
-
-            <transformation>
-                <translate x="1.5" y="1.5" z="1.5" />
-            </transformation>
-
-
-            <materials>
-                <material id="white" />
-            </materials>
-
-            <texture id="plastic" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="piece"/>
-            </children>
-
-        </component>
-
 
         <component id="piece_top">
 
@@ -542,7 +612,6 @@
 
         </component>
 
-
         <component id="piece_bottom">
 
             <transformation>
@@ -564,7 +633,6 @@
 
         </component>
 
-
         <component id="piece_side">
 
             <transformation>
@@ -585,12 +653,16 @@
 
         </component>
 
+        <!--
 
+            BOARD
 
+        -->
 
         <component id="board">
 
             <transformation>
+                <translate x="0" y="0" z="-3" />
             </transformation>
 
 
@@ -602,16 +674,14 @@
 
 
             <children>
-                <componentref id="cell1"/>
-                <componentref id="cell2"/>
-                <componentref id="cell3"/>
-                <componentref id="cell4"/>
-                <componentref id="cell5"/>
-                <componentref id="cell6"/>
-                <componentref id="cell7"/>
-                <componentref id="cell8"/>
-                <componentref id="cell9"/>
-                <componentref id="cell10"/>
+
+                <componentref id="piece_white1"/>
+                <componentref id="piece_white2"/>
+                <componentref id="piece_white3"/>
+                <componentref id="piece_black1"/>
+                <componentref id="piece_black2"/>
+                <componentref id="piece_black3"/>
+
                 <componentref id="cell11"/>
                 <componentref id="cell12"/>
                 <componentref id="cell13"/>
@@ -619,9 +689,6 @@
                 <componentref id="cell15"/>
                 <componentref id="cell16"/>
                 <componentref id="cell17"/>
-                <componentref id="cell18"/>
-                <componentref id="cell19"/>
-                <componentref id="cell20"/>
                 <componentref id="cell21"/>
                 <componentref id="cell22"/>
                 <componentref id="cell23"/>
@@ -629,9 +696,6 @@
                 <componentref id="cell25"/>
                 <componentref id="cell26"/>
                 <componentref id="cell27"/>
-                <componentref id="cell28"/>
-                <componentref id="cell29"/>
-                <componentref id="cell30"/>
                 <componentref id="cell31"/>
                 <componentref id="cell32"/>
                 <componentref id="cell33"/>
@@ -639,9 +703,6 @@
                 <componentref id="cell35"/>
                 <componentref id="cell36"/>
                 <componentref id="cell37"/>
-                <componentref id="cell38"/>
-                <componentref id="cell39"/>
-                <componentref id="cell40"/>
                 <componentref id="cell41"/>
                 <componentref id="cell42"/>
                 <componentref id="cell43"/>
@@ -649,174 +710,33 @@
                 <componentref id="cell45"/>
                 <componentref id="cell46"/>
                 <componentref id="cell47"/>
-                <componentref id="cell48"/>
-                <componentref id="cell49"/>
+                <componentref id="cell51"/>
+                <componentref id="cell52"/>
+                <componentref id="cell53"/>
+                <componentref id="cell54"/>
+                <componentref id="cell55"/>
+                <componentref id="cell56"/>
+                <componentref id="cell57"/>
+                <componentref id="cell61"/>
+                <componentref id="cell62"/>
+                <componentref id="cell63"/>
+                <componentref id="cell64"/>
+                <componentref id="cell65"/>
+                <componentref id="cell66"/>
+                <componentref id="cell67"/>
+                <componentref id="cell71"/>
+                <componentref id="cell72"/>
+                <componentref id="cell73"/>
+                <componentref id="cell74"/>
+                <componentref id="cell75"/>
+                <componentref id="cell76"/>
+                <componentref id="cell77"/>
             </children>
 
         </component>
 
 
-        <component id="cell1">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell2">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="1" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell3">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="2" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell4">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="3" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-black
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell5">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="4" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell6">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="5" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell7">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="6" y="0" z="0" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell8">
+        <component id="cell11">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -828,7 +748,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -837,9 +757,7 @@ black
 
         </component>
 
-
-
-        <component id="cell9">
+        <component id="cell12">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -848,10 +766,10 @@ black
 
 
             <materials>
-                <material id="none" />
+                <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -860,9 +778,7 @@ black
 
         </component>
 
-
-
-        <component id="cell10">
+        <component id="cell13">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -871,10 +787,10 @@ black
 
 
             <materials>
-                <material id="none" />
+                <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -883,9 +799,7 @@ black
 
         </component>
 
-
-
-        <component id="cell11">
+        <component id="cell14">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -894,30 +808,7 @@ black
 
 
             <materials>
-                <material id="none" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell12">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="4" y="0" z="1" />
-            </transformation>
-
-
-            <materials>
-                <material id="none" />
+                <material id="red" />
             </materials>
 
             <texture id="dark_cork" length_s="1" length_t="1" />
@@ -929,18 +820,16 @@ black
 
         </component>
 
-
-
-        <component id="cell13">
+        <component id="cell15">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
-                <translate x="5" y="0" z="1" />
+                <translate x="4" y="0" z="1" />
             </transformation>
 
 
             <materials>
-                <material id="none" />
+                <material id="red" />
             </materials>
 
             <texture id="cork" length_s="1" length_t="1" />
@@ -952,9 +841,28 @@ black
 
         </component>
 
+        <component id="cell16">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="1" />
+            </transformation>
 
 
-        <component id="cell14">
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell17">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -966,7 +874,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -975,10 +883,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell15">
+        <component id="cell21">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -990,7 +895,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -999,9 +904,7 @@ black
 
         </component>
 
-
-
-        <component id="cell16">
+        <component id="cell22">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1013,7 +916,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1022,9 +925,7 @@ black
 
         </component>
 
-
-
-        <component id="cell17">
+        <component id="cell23">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1036,7 +937,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1045,9 +946,7 @@ black
 
         </component>
 
-
-
-        <component id="cell18">
+        <component id="cell24">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1059,7 +958,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1068,9 +967,7 @@ black
 
         </component>
 
-
-
-        <component id="cell19">
+        <component id="cell25">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1082,7 +979,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1091,9 +988,7 @@ black
 
         </component>
 
-
-
-        <component id="cell20">
+        <component id="cell26">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1105,7 +1000,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1114,9 +1009,7 @@ black
 
         </component>
 
-
-
-        <component id="cell21">
+        <component id="cell27">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1128,7 +1021,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1137,10 +1030,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell22">
+        <component id="cell31">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1152,7 +1042,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1161,9 +1051,7 @@ black
 
         </component>
 
-
-
-        <component id="cell23">
+        <component id="cell32">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1175,7 +1063,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1184,9 +1072,7 @@ black
 
         </component>
 
-
-
-        <component id="cell24">
+        <component id="cell33">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1198,7 +1084,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1207,9 +1093,7 @@ black
 
         </component>
 
-
-
-        <component id="cell25">
+        <component id="cell34">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1221,7 +1105,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1230,9 +1114,7 @@ black
 
         </component>
 
-
-
-        <component id="cell26">
+        <component id="cell35">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1244,7 +1126,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1253,9 +1135,7 @@ black
 
         </component>
 
-
-
-        <component id="cell27">
+        <component id="cell36">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1267,32 +1147,6 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell28">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="6" y="0" z="3" />
-            </transformation>
-                <componentref id="cell36"/>
-                <componentref id="cell37"/>
-                <componentref id="cell38"/>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
             <texture id="dark_cork" length_s="1" length_t="1" />
 
 
@@ -1302,8 +1156,28 @@ black
 
         </component>
 
+        <component id="cell37">
 
-        <component id="cell29">
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="3" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell41">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1315,7 +1189,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1324,10 +1198,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell30">
+        <component id="cell42">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1339,7 +1210,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1348,9 +1219,7 @@ black
 
         </component>
 
-
-
-        <component id="cell31">
+        <component id="cell43">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1362,7 +1231,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1371,9 +1240,7 @@ black
 
         </component>
 
-
-
-        <component id="cell32">
+        <component id="cell44">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1385,7 +1252,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1394,9 +1261,7 @@ black
 
         </component>
 
-
-
-        <component id="cell33">
+        <component id="cell45">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1408,7 +1273,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1417,9 +1282,7 @@ black
 
         </component>
 
-
-
-        <component id="cell34">
+        <component id="cell46">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1431,29 +1294,6 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell35">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="6" y="0" z="4" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
             <texture id="cork" length_s="1" length_t="1" />
 
 
@@ -1463,9 +1303,27 @@ black
 
         </component>
 
+        <component id="cell47">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="4" />
+            </transformation>
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
-        <component id="cell36">
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell51">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1477,7 +1335,7 @@ black
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1486,9 +1344,7 @@ black
 
         </component>
 
-
-
-        <component id="cell37">
+        <component id="cell52">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1500,7 +1356,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1509,9 +1365,7 @@ black
 
         </component>
 
-
-
-        <component id="cell38">
+        <component id="cell53">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1523,7 +1377,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
+            <texture id="cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1532,10 +1386,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell39">
+        <component id="cell54">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1547,7 +1398,7 @@ black
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1556,9 +1407,7 @@ black
 
         </component>
 
-
-
-        <component id="cell40">
+        <component id="cell55">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1570,6 +1419,27 @@ black
                 <material id="none" />
             </materials>
 
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell56">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="5" />
+            </transformation>
+
+
+            <materials>
+                <material id="none" />
+            </materials>
+
             <texture id="dark_cork" length_s="1" length_t="1" />
 
 
@@ -1579,13 +1449,53 @@ black
 
         </component>
 
-
-
-        <component id="cell41">
+        <component id="cell57">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
-                <translate x="5" y="0" z="5" />
+                <translate x="6" y="0" z="5" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell61">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="0" y="0" z="6" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell62">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="6" />
             </transformation>
 
 
@@ -1602,80 +1512,7 @@ black
 
         </component>
 
-
-
-
-
-        <component id="cell42">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="6" y="0" z="5" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell43">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="0" y="0" z="6" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell44">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="1" y="0" z="6" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell45">
+        <component id="cell63">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1684,10 +1521,10 @@ black
 
 
             <materials>
-                <material id="red" />
+                <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <texture id="dark_cork" length_s="1" length_t="1" />
 
 
             <children>
@@ -1696,10 +1533,7 @@ black
 
         </component>
 
-
-
-
-        <component id="cell46">
+        <component id="cell64">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1708,30 +1542,7 @@ black
 
 
             <materials>
-                <material id="red" />
-            </materials>
-
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
-
-            <children>
-                <componentref id="cube"/>
-            </children>
-
-        </component>
-
-
-
-        <component id="cell47">
-
-            <transformation>
-                <scale x="3" y="1" z="3" />
-                <translate x="4" y="0" z="6" />
-            </transformation>
-
-
-            <materials>
-                <material id="red" />
+                <material id="none" />
             </materials>
 
             <texture id="cork" length_s="1" length_t="1" />
@@ -1743,18 +1554,16 @@ black
 
         </component>
 
-
-
-        <component id="cell48">
+        <component id="cell65">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
-                <translate x="5" y="0" z="6" />
+                <translate x="4" y="0" z="6" />
             </transformation>
 
 
             <materials>
-                <material id="red" />
+                <material id="none" />
             </materials>
 
             <texture id="dark_cork" length_s="1" length_t="1" />
@@ -1766,11 +1575,28 @@ black
 
         </component>
 
+        <component id="cell66">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="6" />
+            </transformation>
 
 
+            <materials>
+                <material id="none" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
 
 
-        <component id="cell49">
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell67">
 
             <transformation>
                 <scale x="3" y="1" z="3" />
@@ -1782,6 +1608,153 @@ black
                 <material id="red" />
             </materials>
 
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell71">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="0" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell72">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="1" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell73">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="2" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell74">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="3" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell75">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="4" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell76">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="5" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
+            <texture id="dark_cork" length_s="1" length_t="1" />
+
+
+            <children>
+                <componentref id="cube"/>
+            </children>
+
+        </component>
+
+        <component id="cell77">
+
+            <transformation>
+                <scale x="3" y="1" z="3" />
+                <translate x="6" y="0" z="7" />
+            </transformation>
+
+
+            <materials>
+                <material id="red" />
+            </materials>
+
             <texture id="cork" length_s="1" length_t="1" />
 
 
@@ -1792,7 +1765,11 @@ black
         </component>
 
 
-
+        <!--  
+            
+            CUBE  
+        
+        -->
 
         <component id="cube">
 
@@ -1816,8 +1793,6 @@ black
 
         </component>
 
-
-
         <component id="cube_rotated">
 
             <transformation>
@@ -1832,7 +1807,7 @@ black
             <children>
                 <componentref id="cubeFace1" />
                 <!-- <componentref id="cubeFace2" />  ROTATE  -->
-                <componentref id="cubeFace2" /> 
+                <componentref id="cubeFace2" />
                 <!-- <componentref id="cubeFace3" />    ROTATE-->
                 <componentref id="cubeFace3" />
                 <componentref id="cubeFace4" />
@@ -1857,7 +1832,7 @@ black
                 <primitiveref id="square" />
             </children>
 
-        </component>     
+        </component>
 
         <component id="cubeFace2">
 
@@ -1878,7 +1853,7 @@ black
 
         </component>
 
-        
+
         <component id="cubeFace3">
 
             <transformation>
