@@ -3,6 +3,7 @@
 :- include('utils.pl').
 :- include('logic.pl').
 :- include('bot.pl').
+:- include('server.pl').
 :- use_module(library(clpfd)).
 :- use_module(library(lists)).
 :- use_module(library(aggregate)).
