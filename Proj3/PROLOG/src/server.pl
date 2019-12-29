@@ -121,11 +121,24 @@ parse_input(makeMove(Board, Player, CurrentRow, CurrentColumn, Move), Reply) :-
     checkNullMove(FinalBoard, PreviousBoard).
 
 parse_input(initialBoard, Reply) :-
-	initialBoard(Reply).
-	% write('HEREEEEEE\n'),
-	% matrix_to_json(Board, Reply).
+	initialBoard(Board),
+	matrix_to_json(Board, Reply).
 
 
+json(List, Output):-
+	is_list(List),
+	list_to_json(List, Output).
+
+json(Number, Number):-
+	number(Number).
+	
+json(Element, JSONElem):-
+	surround(Element, '"', '"', JSONElem).
+	
+surround(Element, Left, Right, Surrounded):-
+	atom_concat(Left, Element, Temp),
+	atom_concat(Temp, Right, Surrounded).
+	
 matrix_to_json([], []).
 matrix_to_json([List | R], [JsonList | Json]):-
   list_to_json(List, JsonList),
