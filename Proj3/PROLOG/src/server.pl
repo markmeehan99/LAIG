@@ -1,6 +1,9 @@
 :-use_module(library(sockets)).
 :-use_module(library(lists)).
 :-use_module(library(codesio)).
+:- include('display.pl').
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%                                        Server                                                   %%%%
@@ -109,4 +112,28 @@ parse_input(quit, goodbye).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
+	
+
+parse_input(makeMove(Board, Player, CurrentRow, CurrentColumn, Move), Reply) :-
+	piece_color(Board, Player, CurrentRow, CurrentColumn, ValidatedRow, ValidatedColumn),
+	validate_boundaries(Board, Move, ValidatedRow, ValidatedColumn),
+    validate_push(Board, Player, Move, ValidatedRow, ValidatedColumn, NewerMove, FinalBoard),
+    checkNullMove(FinalBoard, PreviousBoard).
+
+parse_input(initialBoard, Reply) :-
+	initialBoard(Reply).
+	% write('HEREEEEEE\n'),
+	% matrix_to_json(Board, Reply).
+
+
+matrix_to_json([], []).
+matrix_to_json([List | R], [JsonList | Json]):-
+  list_to_json(List, JsonList),
+  matrix_to_json(R, Json).
+
+list_to_json([], []).
+list_to_json([Element | Rest], [JSONElem | JsonRest]):-
+  json(Element, JSONElem),
+  list_to_json(Rest, JsonRest).
+
 	

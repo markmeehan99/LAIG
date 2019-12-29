@@ -18,8 +18,20 @@ class MyGameBoard{
         //     GAMEOVER
         // ];
 
-        //this.client = new PrologClient();
+        //Start Prolog Server
+        this.server = new Connection();
+        this.getInitialBoard();
     
+    }
+
+    getInitialBoard() {
+
+        let reply = function(data) {
+        };
+        
+        let request = this.server.createRequest('initialBoard', null, reply.bind(this));
+        console.log(request);
+        return this.server.prologRequest(request);
     }
 
     movePlayer() {
