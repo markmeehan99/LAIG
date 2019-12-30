@@ -30,9 +30,7 @@ class MyComponent {
         
         //returning null, animation ended
         if(this.animMatrix == null) {
-            console.log("1")
             mat4.multiply(this.transformation, this.transformation, this.lastAnim);
-            console.log("2")
             this.animMatrix = null;
             this.animation = null;
             return;

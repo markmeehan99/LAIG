@@ -46,7 +46,7 @@ class XMLscene extends CGFscene {
         this.setPickEnabled(true);
         this.pickedCells = [];
 
-        this.gameboard = new MyGameBoard();
+        this.gameboard = new MyGameBoard(this);
     }
 
     /**

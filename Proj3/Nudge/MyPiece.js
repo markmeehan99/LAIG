@@ -15,6 +15,11 @@ class MyPiece {
         return (coord - 1.5) / 3;
     }
 
+    setPos(row, col) {
+        this.rowPos = row;
+        this.colPos = col;
+    }
+
     move(direction) {
         switch(direction) {
             case '':

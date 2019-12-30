@@ -118,7 +118,8 @@ parse_input(makeMove(Board, Player, CurrentRow, CurrentColumn, Move), Reply) :-
 	piece_color(Board, Player, CurrentRow, CurrentColumn, ValidatedRow, ValidatedColumn),
 	validate_boundaries(Board, Move, ValidatedRow, ValidatedColumn),
     validate_push(Board, Player, Move, ValidatedRow, ValidatedColumn, NewerMove, FinalBoard),
-    checkNullMove(FinalBoard, PreviousBoard).
+	%checkNullMove(FinalBoard, PreviousBoard),
+	matrix_to_json(FinalBoard, Reply).
 
 parse_input(initialBoard, Reply) :-
 	initialBoard(Board),

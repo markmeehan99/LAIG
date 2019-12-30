@@ -244,100 +244,100 @@ empty_space(Board, Player, Row, Column, FinalRow, FinalColumn) :-
 
 % Update coordinates (CurrentRow, CurrentColumn) to (NewRow, NewColumn) given a Move
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move == 'U',
+    Move = u,
     NewRow is CurrentRow - 1,
     NewColumn is CurrentColumn.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move == 'D',
+    Move = d,
     NewRow is CurrentRow + 1,
     NewColumn is CurrentColumn.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move == 'L',
+    Move = l,
     NewColumn is CurrentColumn - 1,
     NewRow is CurrentRow.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move == 'R',
+    Move = r,
     NewColumn is CurrentColumn + 1,
     NewRow is CurrentRow.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    not(Move == 'R'),
-    not(Move == 'L'),
-    not(Move == 'U'),
-    not(Move == 'D'),
+    not(Move = r),
+    not(Move = l),
+    not(Move = d),
+    not(Move = u),
     write('Move is not valid\n'), write(Move), write('\n').
 
 
 get_move(MoveS) :-
-    write('> Move:    (U,D,R,L)\n'),
+    write('> Move:    (u,d,r,l)\n'),
     read(Char),
     MoveS = Char,
     write(MoveS).
 
 
 %  MOVES OUT OF BOUNDARIES
-validate_boundaries(Board, 'U', 1, CurrentColumn):-
+validate_boundaries(Board, u, 1, CurrentColumn):-
     write('ERROR: That move is not valid! UP\n\n'),
     false.
 
-validate_boundaries(Board, 'D', 5, CurrentColumn):-
+validate_boundaries(Board, d, 5, CurrentColumn):-
     write('ERROR: That move is not valid! DOWN\n\n'),
     false.
 
-validate_boundaries(Board, 'R', CurrentRow, 5):-
+validate_boundaries(Board, r, CurrentRow, 5):-
     write('ERROR: That move is not valid! RIGHT\n\n'),
     false.
 
-validate_boundaries(Board, 'L', CurrentRow, 1):-
+validate_boundaries(Board, l, CurrentRow, 1):-
     write('ERROR: That move is not valid! LEFT\n\n'),
     false.
 
 
 % Checks that player is not commiting suicice
-validate_boundaries_suicide(Board, 'U', 0, CurrentColumn):-
+validate_boundaries_suicide(Board, u, 0, CurrentColumn):-
     write('ERROR: That move is not valid! SUICIDE UP\n\n'),
     false.
 
-validate_boundaries_suicide(Board, 'D', 6, CurrentColumn):-
+validate_boundaries_suicide(Board, d, 6, CurrentColumn):-
     write('ERROR: That move is not valid! SUICIDE DOWN\n\n'),
     false.
 
-validate_boundaries_suicide(Board, 'R', CurrentRow, 6):-
+validate_boundaries_suicide(Board, r, CurrentRow, 6):-
     write('ERROR: That move is not valid! SUICIDE RIGHT\n\n'),
     false.
 
-validate_boundaries_suicide(Board, 'L', CurrentRow, 0):-
+validate_boundaries_suicide(Board, l, CurrentRow, 0):-
     write('ERROR: That move is not valid! SUICIDE LEFT\n\n'),
     false.
 
 
-validate_boundaries(Board, 'U', CurrentRow, CurrentColumn):-
+validate_boundaries(Board, u, CurrentRow, CurrentColumn):-
     CurrentRow > 1.
 
-validate_boundaries(Board, 'D', CurrentRow, CurrentColumn):-
+validate_boundaries(Board, d, CurrentRow, CurrentColumn):-
     CurrentRow < 5.
 
-validate_boundaries(Board, 'R', CurrentRow, CurrentColumn):-
+validate_boundaries(Board, r, CurrentRow, CurrentColumn):-
     CurrentColumn < 5.
 
-validate_boundaries(Board, 'L', CurrentRow, CurrentColumn):-
+validate_boundaries(Board, l, CurrentRow, CurrentColumn):-
     CurrentColumn > 1.
 
 
 
-validate_boundaries_suicide(Board, 'U', CurrentRow, CurrentColumn):-
+validate_boundaries_suicide(Board, u, CurrentRow, CurrentColumn):-
     CurrentRow > 0.
 
-validate_boundaries_suicide(Board, 'D', CurrentRow, CurrentColumn):-
+validate_boundaries_suicide(Board, d, CurrentRow, CurrentColumn):-
     CurrentRow < 6.
 
-validate_boundaries_suicide(Board, 'R', CurrentRow, CurrentColumn):-
+validate_boundaries_suicide(Board, r, CurrentRow, CurrentColumn):-
     CurrentColumn < 6.
 
-validate_boundaries_suicide(Board, 'L', CurrentRow, CurrentColumn):-
+validate_boundaries_suicide(Board, l, CurrentRow, CurrentColumn):-
     CurrentColumn > 0.
 
 
