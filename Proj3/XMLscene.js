@@ -172,11 +172,7 @@ class XMLscene extends CGFscene {
                             var player = this.gameboard.getPlayer();
                             console.log('Its this players turn: ' + player);
 
-                            if (this.gameboard.currentMode == 0) {
-                                this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
-                            } else if (this.gameboard.currentMode == 2 && this.gameboard.currentState > 0) {
-                                this.gameboard.moveBot(player);
-                            }
+                            this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
 
                             console.log('State after move:');
                             console.log(this.gameboard.currentState);
@@ -216,7 +212,13 @@ class XMLscene extends CGFscene {
         } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
             if (!this.gameboard.botStarted) this.gameboard.allowBot();  
         } else if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_BOT && this.gameboard.currentState > 0 ) {
-            this.gameboard.player
+            if (this.gameboard.currentState == 1 || this.gameboard.currentState == 2) {
+                // console.log('Waiting for player move');
+                this.logPicking();
+            } else if (this.gameboard.currentState == 3 || this.gameboard.currentState == 4) {
+                // console.log('Generating bot move');
+                if (!this.gameboard.botMoveMade) this.gameboard.oneBotMove();
+            }
         }
      
 

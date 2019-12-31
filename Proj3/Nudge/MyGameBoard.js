@@ -28,13 +28,14 @@ class MyGameBoard{
         };
 
         this.botStarted = 0;
+        this.botMoveMade = 0;
 
         this.server = new Connection();
         this.connectionSuccess=0;
         this.moveAllowed = 1;
 
         this.currentState = this.state.WHITE_FIRST_TURN;
-        this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
+        this.currentMode = this.mode.PLAYER_VS_BOT; //TODO: change when other modes are added
 
         //Start Prolog Server
 
@@ -135,6 +136,16 @@ class MyGameBoard{
 
     }
 
+    oneBotMove() {
+        this.botMoveMade = 1;
+
+        setTimeout(function(){ 
+            let player = this.getPlayer();
+            this.moveBot(player);
+        }.bind(this), 3000);
+
+    }
+
 
     botGameLoop() {
         let player = this.getPlayer();
@@ -188,6 +199,7 @@ class MyGameBoard{
 
         let reply = function(data) {
             this.updateTurn();
+            this.botMoveMade = 0;
             this.parseBotMoveResponse(data);
         };
 
