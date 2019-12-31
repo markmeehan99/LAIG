@@ -27,8 +27,11 @@ class MyGameBoard{
             BOT_VS_BOT: 2
         };
 
+        this.botStarted = 0;
+
         this.server = new Connection();
         this.connectionSuccess=0;
+        this.moveAllowed = 1;
 
         this.currentState = this.state.WHITE_FIRST_TURN;
         this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
@@ -49,8 +52,8 @@ class MyGameBoard{
         
 
         let reply = function(data) {
-            console.log(data);
             this.board = data;
+            console.log('Initial Board loaded!');
         };
         
         let request = this.server.createRequest('initialBoard', null, reply.bind(this), failure);
@@ -87,7 +90,7 @@ class MyGameBoard{
         if (oldBoard[row][col] == 'empty') { 
             return [];
         }
-        
+
         // get next coords
         let nextRow = row;
         let nextCol = col;
@@ -122,6 +125,40 @@ class MyGameBoard{
         this.movePieces(oldBoard, row, col, direction);
     }
 
+    allowBot() {
+        setInterval(function() {
+            let player = this.getPlayer();
+            this.moveBot(player);
+        }.bind(this), 6000);
+
+        this.botStarted = 1;
+
+    }
+
+
+    botGameLoop() {
+        let player = this.getPlayer();
+        this.moveBot(player);
+    }
+
+
+
+    parseBotMoveResponse(data) {
+        let oldBoard = this.board;
+                
+        this.board = data[0];
+        console.log('New Board updated!');
+        
+        let row = data[1];
+        
+        let col = data[2];
+        
+        let direction = data[3];
+        
+        this.lastMovements.push(new MyLastMov(row, col, direction));
+        this.movePieces(oldBoard, row, col, direction);
+    }
+
     movePlayer(orig, dest, player) {
         let row = this.coordsToRow(orig);
         let col = this.coordsToCol(orig);
@@ -133,12 +170,9 @@ class MyGameBoard{
 
         let failure = function(data) {
             console.log(data);
-            console.log('FAILED');
         };
 
         let reply = function(data) {
-            // consoz`le.log(data);
-            console.log('SUCCESSFUL MOVE');
             this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
         };
@@ -147,28 +181,18 @@ class MyGameBoard{
         this.server.prologRequest(request);
     }
 
-    moveBot(orig, dest, player) {
-        // let row = this.coordsToRow(orig);
-        // let col = this.coordsToCol(orig);
-
-        // let direction = this.coordsToDirection(orig, dest);
-
-        // wrong direction
-        // if(direction == null) return null;
-
-        let failure = function(data) {
-            console.log(data);
-            console.log('FAILED');
+    moveBot(player) {
+        let failure = function() {
+            console.log('INVALID MOVE!')
         };
 
         let reply = function(data) {
-            // consoz`le.log(data);
-            console.log('SUCCESSFUL MOVE');
-            // this.updateTurn();
-            // this.parseMoveResponse(row, col, direction, data);
-            console.log(data);
+            this.updateTurn();
+            this.parseBotMoveResponse(data);
         };
 
+        
+        console.log('NEW REQUEST')
         let request = this.server.createRequest('botMove', [this.getBoardString(), player], reply.bind(this), failure.bind(this));
         this.server.prologRequest(request);
     }

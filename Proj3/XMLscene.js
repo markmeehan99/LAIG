@@ -47,6 +47,7 @@ class XMLscene extends CGFscene {
         this.pickedCells = [];
 
         this.gameboard = new MyGameBoard(this);
+        this.allowBotMove = 0;
 
     }
 
@@ -173,8 +174,8 @@ class XMLscene extends CGFscene {
 
                             if (this.gameboard.currentMode == 0) {
                                 this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
-                            } else if (this.gameboard.currentMode == 2) {
-                                this.gameboard.moveBot(this.pickedCells[0], this.pickedCells[1], player);
+                            } else if (this.gameboard.currentMode == 2 && this.gameboard.currentState > 0) {
+                                this.gameboard.moveBot(player);
                             }
 
                             console.log('State after move:');
@@ -209,7 +210,16 @@ class XMLscene extends CGFscene {
     render(camera) {
 
         // picking handling
-        this.logPicking();
+        
+        if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER) {
+            this.logPicking();
+        } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
+            if (!this.gameboard.botStarted) this.gameboard.allowBot();  
+        } else if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_BOT && this.gameboard.currentState > 0 ) {
+            this.gameboard.player
+        }
+     
+
         this.clearPickRegistration();
 
         // ---- BEGIN Bglackground, camera and axis setup
