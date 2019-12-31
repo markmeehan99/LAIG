@@ -1496,7 +1496,7 @@ class MySceneGraph {
      */
     displayScene() {
         var matID = Object.keys(this.materials)[0];
-        this.processNode(this.idRoot, this.materials[matID], null, 1, 1);
+        this.processNode(this.idRoot, this.materials[matID], null, 1, 1, false);
     }
 
     /**
@@ -1509,7 +1509,7 @@ class MySceneGraph {
      * @param {float} sLength
      * @param {float} tLength
      */
-    processNode(id, mat, text, lengthS, lengthT) {
+    processNode(id, mat, text, lengthS, lengthT, picked) {
         let component = this.components[id];
         if(component == null) {
             this.onXMLError("component for ID " + id + " doesn't exist!");
@@ -1519,10 +1519,15 @@ class MySceneGraph {
         if (id.indexOf("cell") != -1) {
             let n = parseInt(id[4] + id[5]);
             this.scene.registerForPick(n, component);
+            picked = true;
         }
         else if (id.indexOf("piece_white") != -1 || id.indexOf("piece_black") != -1) {
             let n = this.scene.gameboard.findPosOfPieceID(id); 
             this.scene.registerForPick(n+11, component);
+            picked = true;
+        }
+        else if (!picked) {
+            this.scene.registerForPick(0, null);
         }
 
         // if material not inherit, defines new material
@@ -1555,12 +1560,12 @@ class MySceneGraph {
             this.scene.multMatrix(component.animMatrix);
         }
 
-        for (let i = 0; i < component.childrenID.length; i++) {
-            this.processNode(component.childrenID[i], mat, text, lengthS, lengthT);
-        }
-
         for (let i = 0; i < component.primitiveID.length; i++) {
             this.displayPrimitive(component.primitiveID[i], mat, text, lengthS, lengthT);
+        }
+
+        for (let i = 0; i < component.childrenID.length; i++) {
+            this.processNode(component.childrenID[i], mat, text, lengthS, lengthT, picked);
         }
 
         this.scene.popMatrix();
