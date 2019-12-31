@@ -4,10 +4,10 @@
 % Player1 - color of player 1's disk
 % Player2 - color of player 2's disk
 game_loop(Board, Player1, Player2, 'C', 'C') :-
-    bot_move(Board, Player1, PlayerOneBoard_1, 1),
-    bot_move(PlayerOneBoard_1, Player1, PlayerOneBoard_2, 1),
-    bot_move(PlayerOneBoard_2, Player2, PlayerTwoBoard_1, 1),
-    bot_move(PlayerTwoBoard_1, Player2, PlayerTwoBoard_2, 1),
+    bot_move(Board, Player1, PlayerOneBoard_1,Move1, 1),
+    bot_move(PlayerOneBoard_1, Player1, PlayerOneBoard_2,Move2, 1),
+    bot_move(PlayerOneBoard_2, Player2, PlayerTwoBoard_1,Move3, 1),
+    bot_move(PlayerTwoBoard_1, Player2, PlayerTwoBoard_2,Move4, 1),
     game_loop(PlayerTwoBoard_2, Player1, Player2, 'C', 'C').
 
 
@@ -17,8 +17,8 @@ game_loop(Board, Player1, Player2, 'C', 'C') :-
 % Player2 - color of player 2's disk
 game_loop(Board, Player1, Player2, 'P', 'C') :-
     choose_move(Board, Player1, PlayerOneBoard, 'P'),
-    bot_move(PlayerOneBoard, Player2, PlayerTwoBoard_1, 1),
-    bot_move(PlayerTwoBoard_1, Player2, PlayerTwoBoard_2, 1),
+    bot_move(PlayerOneBoard, Player2, PlayerTwoBoard_1, Move1, 1),
+    bot_move(PlayerTwoBoard_1, Player2, PlayerTwoBoard_2, Move2, 1),
     game_loop(PlayerTwoBoard_2, Player1, Player2, 'P', 'C').
 
 % Bot move. Checks for Game Over, selects a random disk of it's color to move,
@@ -27,7 +27,7 @@ game_loop(Board, Player1, Player2, 'P', 'C') :-
 % Board - current game state board
 % Player - Player which the move belongs to
 % NewBoard - New Board, updates after move is executed
-bot_move(Board, Player, NewBoard, 1) :-
+bot_move(Board, Player, NewBoard, ListMove, 1) :-
     display_game(Board),
     sleep(1),
     check_game_over(Board, Winner),
@@ -35,7 +35,8 @@ bot_move(Board, Player, NewBoard, 1) :-
     get_valid_plays(Board, Player, Plays, R, C),
     choose_random_move(Move, Plays),
     validate_push(Board, Player, Move, R, C, Move, NewBoard),
-    bot_set_cell(Move, Player, R, C, NewRow, NewCol, Board, NewBoard).
+    bot_set_cell(Move, Player, R, C, NewRow, NewCol, Board, NewBoard),
+    append([R, C], [Move], ListMove).
 
 
 % Executes move and replaces disks after a move is made

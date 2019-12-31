@@ -119,8 +119,10 @@ test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
 
 
 parse_input(botMove(Board, Player), Reply) :-
-	bot_move(Board, Player, NewBoard, 1),
-	matrix_to_json(NewBoard, Reply).
+	bot_move(Board, Player, NewBoard, Move, 1),
+	matrix_to_json(NewBoard, ReplyBoard),
+	list_to_json(Move, ReplyMove),
+	append(ReplyBoard, ReplyMove, Reply).
 	% get_valid_plays(Board, Player, Reply, R, C).
 	% list_to_json(Plays, Reply).
     % choose_random_move(Move, Plays),
