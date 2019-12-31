@@ -1358,10 +1358,13 @@ class MySceneGraph {
 
             // check if it is one black or white piece 
             if (componentID.indexOf("piece") != -1 && componentID.indexOf("white") != -1) {
-                this.scene.gameboard.pieces.push(new MyPiece(componentID, translate[2], translate[0], 'white'));
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'white');
+                this.scene.gameboard.pieces.push(piece);
             }
             else if (componentID.indexOf("piece") != -1 && componentID.indexOf("black") != -1) {
-                this.scene.gameboard.pieces.push(new MyPiece(componentID, translate[2], translate[0], 'black'));
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'black');
+                this.scene.gameboard.pieces.push(piece);
+
             }
         }
     }

@@ -10,29 +10,50 @@ class MyGameBoard{
         // array with MyLastMov obj, representing all the plays
         this.lastMovements = [];
 
-        // this.gameState = null;
-        // this.states = [
-        //     INITIALMENU,
-        //     STARTGAME,
-        //     PLAYER1,
-        //     PLAYER2,
-        //     GAMEOVER
-        // ];
+        this.state = { 
+            WAITING_FOR_START: 0,
+            WHITE_FIRST_TURN: 1,
+            WHITE_SECOND_TURN: 2,
+            BLACK_FIRST_TURN: 3,
+            BLACK_SECOND_TURN: 4,
+            WHITE_WIN:5,
+            BLACK_WIN: 6,
+            CONNECTION_ERROR: 7,
+        };
+        
+        this.mode = { 
+            PLAYER_VS_PLAYER: 0,
+            PLAYER_VS_BOT: 1,
+            BOT_VS_BOT: 2
+        };
+
+        this.server = new Connection();
+        this.connectionSuccess=0;
+
+        this.currentState = this.state.WHITE_FIRST_TURN;
+        this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
 
         //Start Prolog Server
-        this.server = new Connection();
+
+        this.startConnection();
+
         this.getInitialBoard();
-    
     }
 
     getInitialBoard() {
+
+        let failure = function(data) {
+            console.log(data);
+            return 400;
+        };
+        
 
         let reply = function(data) {
             console.log(data);
             this.board = data;
         };
         
-        let request = this.server.createRequest('initialBoard', null, reply.bind(this));
+        let request = this.server.createRequest('initialBoard', null, reply.bind(this), failure);
         console.log(request);
         return this.server.prologRequest(request);
     }
@@ -63,7 +84,6 @@ class MyGameBoard{
     }
 
     movePieces(oldBoard, row, col, dir) {
-        console.log(row, col);
         if (oldBoard[row][col] == 'empty') { 
             return [];
         }
@@ -102,21 +122,60 @@ class MyGameBoard{
         this.movePieces(oldBoard, row, col, direction);
     }
 
-    movePlayer(orig, dest) {
+    movePlayer(orig, dest, player) {
         let row = this.coordsToRow(orig);
         let col = this.coordsToCol(orig);
+
         let direction = this.coordsToDirection(orig, dest);
+
         // wrong direction
         if(direction == null) return null;
 
-        let reply = function(data) {
+        let failure = function(data) {
             console.log(data);
+            console.log('FAILED');
+        };
+
+        let reply = function(data) {
+            // consoz`le.log(data);
+            console.log('SUCCESSFUL MOVE');
+            this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
         };
 
-        let request = this.server.createRequest('makeMove', [this.getBoardString(), 'white', row, col, direction], reply.bind(this));
-        console.log(request);
-        return this.server.prologRequest(request);
+        let request = this.server.createRequest('makeMove', [this.getBoardString(), player, row, col, direction], reply.bind(this), failure.bind(this));
+        this.server.prologRequest(request);
+    }
+
+    moveBot(orig, dest, player) {
+        // let row = this.coordsToRow(orig);
+        // let col = this.coordsToCol(orig);
+
+        // let direction = this.coordsToDirection(orig, dest);
+
+        // wrong direction
+        // if(direction == null) return null;
+
+        let failure = function(data) {
+            console.log(data);
+            console.log('FAILED');
+        };
+
+        let reply = function(data) {
+            // consoz`le.log(data);
+            console.log('SUCCESSFUL MOVE');
+            // this.updateTurn();
+            // this.parseMoveResponse(row, col, direction, data);
+            console.log(data);
+        };
+
+        let request = this.server.createRequest('botMove', [this.getBoardString(), player], reply.bind(this), failure.bind(this));
+        this.server.prologRequest(request);
+    }
+
+    getPlayer() {
+        if (this.currentState == 1 || this.currentState == 2) return 'white';
+        if (this.currentState == 3 || this.currentState == 4) return 'black';
     }
 
     movePiece(row, col, newRow, newCol) {
@@ -146,6 +205,15 @@ class MyGameBoard{
         }
     }
 
+    findColorOfPieceCoords(row, col) {
+        for (let i = 0; i < this.pieces.length; i++) {
+            let piece = this.pieces[i];
+            if (piece.rowPos == row && piece.colPos == col) {
+                return piece.color;
+            }
+        }
+    }
+
     findPieceOfPos(row, col) {
         for (let i = 0; i < this.pieces.length; i++) {
             let piece = this.pieces[i];
@@ -158,5 +226,27 @@ class MyGameBoard{
     getBoardString() {
         return JSON.stringify(this.board);
     }
+
+    startConnection() {
+        //make a handshake request to server
+
+        let reply = function(data) {
+            this.connectionSuccess = 1;
+            this.currentState = 1;
+            console.log('Connection established');
+        };
+
+        let request = this.server.createRequest('handshake', null, reply.bind(this));
+        return this.server.prologRequest(request);
+    }
+
+    updateTurn() {
+        if (this.currentState == 1) this.currentState++;
+        else if (this.currentState == 2) this.currentState++;
+        else if (this.currentState == 3) this.currentState++;
+        else if (this.currentState == 4) this.currentState = 1;
+        console.log(this.currentState);
+    }
+
 
 }

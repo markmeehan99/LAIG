@@ -79,8 +79,9 @@ read_request(Stream, Request) :-
 	read_request_aux(RL,RL2),	
 	
 	catch(read_from_codes(RL2, Request), error(syntax_error(_),_), fail), !.
+
 read_request(_,syntax_error).
-	
+
 read_request_aux([32|_],[46]) :- !.
 read_request_aux([C|Cs],[C|RCs]) :- read_request_aux(Cs, RCs).
 
@@ -106,19 +107,34 @@ print_header_line(_).
 
 % Require your Prolog Files here
 
-parse_input(handshake, handshake).
+parse_input(handshake, Reply) :-
+	list_to_json([handshake], Reply),
+	write(Reply).
+
 parse_input(test(C,N), Res) :- test(C,Res,N).
 parse_input(quit, goodbye).
 
 test(_,[],N) :- N =< 0.
 test(A,[A|Bs],N) :- N1 is N-1, test(A,Bs,N1).
-	
+
+
+parse_input(botMove(Board, Player), Reply) :-
+	bot_move(Board, Player, NewBoard, 1),
+	matrix_to_json(NewBoard, Reply).
+	% get_valid_plays(Board, Player, Reply, R, C).
+	% list_to_json(Plays, Reply).
+    % choose_random_move(Move, Plays),
+    % validate_push(Board, Player, Move, R, C, Move, NewBoard),
+	% bot_set_cell(Move, Player, R, C, NewRow, NewCol, Board, NewBoard),
+
 
 parse_input(makeMove(Board, Player, CurrentRow, CurrentColumn, Move), Reply) :-
 	piece_color(Board, Player, CurrentRow, CurrentColumn, ValidatedRow, ValidatedColumn),
 	validate_boundaries(Board, Move, ValidatedRow, ValidatedColumn),
     validate_push(Board, Player, Move, ValidatedRow, ValidatedColumn, NewerMove, FinalBoard),
 	%checkNullMove(FinalBoard, PreviousBoard),
+	% check_game_over(FinalBoard, Winner),
+	% ReplyList = [FinalBoard, Winner],
 	matrix_to_json(FinalBoard, Reply).
 
 parse_input(initialBoard, Reply) :-
@@ -132,14 +148,14 @@ json(List, Output):-
 
 json(Number, Number):-
 	number(Number).
-	
+
 json(Element, JSONElem):-
 	surround(Element, '"', '"', JSONElem).
-	
+
 surround(Element, Left, Right, Surrounded):-
 	atom_concat(Left, Element, Temp),
 	atom_concat(Temp, Right, Surrounded).
-	
+
 matrix_to_json([], []).
 matrix_to_json([List | R], [JsonList | Json]):-
   list_to_json(List, JsonList),

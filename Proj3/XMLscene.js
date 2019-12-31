@@ -47,6 +47,7 @@ class XMLscene extends CGFscene {
         this.pickedCells = [];
 
         this.gameboard = new MyGameBoard(this);
+
     }
 
     /**
@@ -167,10 +168,20 @@ class XMLscene extends CGFscene {
                         var customId = this.pickResults[i][1];
                         this.pickedCells.push(customId);
                         if (this.pickedCells.length == 2) {
-                            this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1]);
+                            var player = this.gameboard.getPlayer();
+                            console.log('Its this players turn: ' + player);
+
+                            if (this.gameboard.currentMode == 0) {
+                                this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
+                            } else if (this.gameboard.currentMode == 2) {
+                                this.gameboard.moveBot(this.pickedCells[0], this.pickedCells[1], player);
+                            }
+
+                            console.log('State after move:');
+                            console.log(this.gameboard.currentState);
                             this.pickedCells = [];
                         }
-						console.log("Picked object: " + obj + ", with pick id " + customId);						
+						// console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);

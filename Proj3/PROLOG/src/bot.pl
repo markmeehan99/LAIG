@@ -47,25 +47,25 @@ bot_move(Board, Player, NewBoard, 1) :-
 % NewCol - Column of the cell to be changed into
 % Board - Board previous to move
 % NewBoard - Board updated after move
-bot_set_cell('U', Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
+bot_set_cell(u, Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
     NewRow is Row - 1,
     NewCol is Col,
     replaceInMatrix(Board, Row, Col, empty, TempBoard),
     replaceInMatrix(TempBoard, NewRow, NewCol, Player, NewBoard).
 
-bot_set_cell('D', Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
+bot_set_cell(d, Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
     NewRow is Row + 1,
     NewCol is Col,
     replaceInMatrix(Board, Row, Col, empty, TempBoard),
     replaceInMatrix(TempBoard, NewRow, NewCol, Player, NewBoard).
 
-bot_set_cell('R', Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
+bot_set_cell(r, Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
     NewRow is Row,
     NewCol is Col + 1,
     replaceInMatrix(Board, Row, Col, empty, TempBoard),
     replaceInMatrix(TempBoard, NewRow, NewCol, Player, NewBoard).
 
-bot_set_cell('L', Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
+bot_set_cell(l, Player, Row, Col, NewRow, NewCol, Board, NewBoard) :-
     NewRow is Row,
     NewCol is Col - 1,
     replaceInMatrix(Board, Row, Col, empty, TempBoard),
@@ -93,6 +93,7 @@ get_valid_plays(Board, Player, Plays, R, C) :-
 % FinalBoard - Board to be returned, with updated cells
 validate_play(Board, Move, Player, ValidatedRow, ValidatedColumn, NewMove, NewerMove, FinalBoard) :-
     validate_boundaries(Board, Move, ValidatedRow, ValidatedColumn),
+    write(Move),
     validate_push(Board, Player, NewMove, ValidatedRow, ValidatedColumn, NewerMove, FinalBoard).
 
 

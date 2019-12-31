@@ -63,6 +63,7 @@ manageTypeMatrix(white, white,  Board, NewMove, OldRow, OldColumn, Row, Column, 
     Counter = 2,
     check_next_pos_line(Board, white, NewMove, Row, Column, Counter, FinalCounter, Collision),
     notifyCounter(FinalCounter),
+    write('saiuuuuuu\n'),
     replaceLineInMatrix(Board, NewMove, OldRow, OldColumn, white, FinalCounter, FinalBoard, Collision).
 
 manageTypeMatrix(white, black,  Board, NewMove, OldRow, OldColumn, Row, Column, FinalBoard):-
@@ -244,35 +245,35 @@ empty_space(Board, Player, Row, Column, FinalRow, FinalColumn) :-
 
 % Update coordinates (CurrentRow, CurrentColumn) to (NewRow, NewColumn) given a Move
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move = u,
+    Move == u,
     NewRow is CurrentRow - 1,
     NewColumn is CurrentColumn.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move = d,
+    Move == d,
     NewRow is CurrentRow + 1,
     NewColumn is CurrentColumn.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move = l,
+    Move == l,
     NewColumn is CurrentColumn - 1,
     NewRow is CurrentRow.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    Move = r,
+    Move == r,
     NewColumn is CurrentColumn + 1,
     NewRow is CurrentRow.
 
 update_coords(Move, CurrentRow, CurrentColumn, NewRow, NewColumn) :-
-    not(Move = r),
-    not(Move = l),
-    not(Move = d),
-    not(Move = u),
+    not(Move == r),
+    not(Move == l),
+    not(Move == u),
+    not(Move == d),
     write('Move is not valid\n'), write(Move), write('\n').
 
 
 get_move(MoveS) :-
-    write('> Move:    (u,d,r,l)\n'),
+    write('> Move:    (U,D,R,L)\n'),
     read(Char),
     MoveS = Char,
     write(MoveS).
@@ -388,27 +389,27 @@ validateRow(5, CurrentRow) :-
     CurrentRow = 5.
 
 
-validateColumn('A', CurrentColumn) :-
+validateColumn(a, CurrentColumn) :-
     CurrentColumn = 1.
 
-validateColumn('B', CurrentColumn) :-
+validateColumn(b, CurrentColumn) :-
     CurrentColumn = 2.
 
-validateColumn('C', CurrentColumn) :-
+validateColumn(c, CurrentColumn) :-
     CurrentColumn = 3.
 
-validateColumn('D', CurrentColumn) :-
+validateColumn(d, CurrentColumn) :-
     CurrentColumn = 4.
 
-validateColumn('E', CurrentColumn) :-
+validateColumn(e, CurrentColumn) :-
     CurrentColumn = 5.
 
 validateColumn(Row, CurrentColumn) :-
-    not(Row=='A'),
-    not(Row=='B'),
-    not(Row=='C'),
-    not(Row=='D'),
-    not(Row=='E'),
+    not(Row==a),
+    not(Row==b),
+    not(Row==c),
+    not(Row==d),
+    not(Row==e),
     write('ERROR: That column is not valid!\n\n'),
     write(Row), write('\n\n'),
     manageColumn(CurrentColumn).
