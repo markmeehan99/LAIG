@@ -46,7 +46,9 @@ class XMLscene extends CGFscene {
         this.setPickEnabled(true);
         this.pickedCells = [];
 
-        this.gameboard = new MyGameBoard();
+        this.gameboard = new MyGameBoard(this);
+        this.allowBotMove = 0;
+
     }
 
     /**
@@ -167,10 +169,16 @@ class XMLscene extends CGFscene {
                         var customId = this.pickResults[i][1];
                         this.pickedCells.push(customId);
                         if (this.pickedCells.length == 2) {
-                            //play
+                            var player = this.gameboard.getPlayer();
+                            console.log('Its this players turn: ' + player);
+
+                            this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
+
+                            console.log('State after move:');
+                            console.log(this.gameboard.currentState);
                             this.pickedCells = [];
                         }
-						console.log("Picked object: " + obj + ", with pick id " + customId);						
+						// console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);
@@ -198,7 +206,22 @@ class XMLscene extends CGFscene {
     render(camera) {
 
         // picking handling
-        this.logPicking();
+        
+        if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER) {
+            this.logPicking();
+        } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
+            if (!this.gameboard.botStarted) this.gameboard.allowBot();  
+        } else if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_BOT && this.gameboard.currentState > 0 ) {
+            if (this.gameboard.currentState == 1 || this.gameboard.currentState == 2) {
+                // console.log('Waiting for player move');
+                this.logPicking();
+            } else if (this.gameboard.currentState == 3 || this.gameboard.currentState == 4) {
+                // console.log('Generating bot move');
+                if (!this.gameboard.botMoveMade) this.gameboard.oneBotMove();
+            }
+        }
+     
+
         this.clearPickRegistration();
 
         // ---- BEGIN Bglackground, camera and axis setup

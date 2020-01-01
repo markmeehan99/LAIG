@@ -454,7 +454,7 @@
         <component id="piece_black1">
 
             <transformation>
-                <translate x="7.5" y="1.5" z="13.5" />
+                <translate x="7.5" y="1.5" z="7.5" />
             </transformation>
 
 
@@ -474,7 +474,7 @@
         <component id="piece_black2">
 
             <transformation>
-                <translate x="10.5" y="1.5" z="13.5" />
+                <translate x="10.5" y="1.5" z="7.5" />
             </transformation>
 
 
@@ -494,7 +494,7 @@
         <component id="piece_black3">
 
             <transformation>
-                <translate x="13.5" y="1.5" z="13.5" />
+                <translate x="13.5" y="1.5" z="7.5" />
             </transformation>
 
 
@@ -514,7 +514,7 @@
         <component id="piece_white1">
 
             <transformation>
-                <translate x="7.5" y="1.5" z="7.5" />
+                <translate x="7.5" y="1.5" z="13.5" />
             </transformation>
 
 
@@ -534,7 +534,7 @@
         <component id="piece_white2">
 
             <transformation>
-                <translate x="10.5" y="1.5" z="7.5" />
+                <translate x="10.5" y="1.5" z="13.5" />
             </transformation>
 
 
@@ -554,7 +554,7 @@
         <component id="piece_white3">
 
             <transformation>
-                <translate x="13.5" y="1.5" z="7.5" />
+                <translate x="13.5" y="1.5" z="13.5" />
             </transformation>
 
 
