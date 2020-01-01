@@ -48,6 +48,8 @@ class XMLscene extends CGFscene {
 
         this.gameboard = new MyGameBoard(this);
 
+        this.themes = ['default'];
+        this.selectedTheme = 'default';
     }
 
     /**
@@ -123,6 +125,7 @@ class XMLscene extends CGFscene {
 
         this.interface.addLights(this.graph.lights);
         this.interface.addViews(this.graph.views);
+        this.interface.addThemes(this.themes, this);
 
         this.initDefaultView();
 
@@ -253,7 +256,7 @@ class XMLscene extends CGFscene {
             }
 
             // Displays the scene (MySceneGraph function).
-            this.graph.displayScene();
+            this.graph.displayScene(this.selectedTheme);
         }
 
         this.popMatrix();

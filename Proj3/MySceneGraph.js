@@ -1167,25 +1167,31 @@ class MySceneGraph {
             if (this.components[componentID] != null)
                 return "ID must be unique for each component (conflict: ID = " + componentID + ")";
 
+            // Check is particular theme
+            var theme = this.reader.getString(children[i], 'theme');
+            if (theme != null && this.scene.themes.indexOf(theme) == -1) {
+                this.scene.themes.push(theme);
+            }
+
             grandChildren = children[i].children;
 
             nodeNames = [];
-            for (var j = 0; j < grandChildren.length; j++) {
+            for (let j = 0; j < grandChildren.length; j++) {
                 nodeNames.push(grandChildren[j].nodeName);
             }
 
-            var transformationIndex = nodeNames.indexOf("transformation");
-            var animationIndex = nodeNames.indexOf("animationref");
-            var materialsIndex = nodeNames.indexOf("materials");
-            var textureIndex = nodeNames.indexOf("texture");
-            var childrenIndex = nodeNames.indexOf("children");
+            let transformationIndex = nodeNames.indexOf("transformation");
+            let animationIndex = nodeNames.indexOf("animationref");
+            let materialsIndex = nodeNames.indexOf("materials");
+            let textureIndex = nodeNames.indexOf("textures");
+            let childrenIndex = nodeNames.indexOf("children");
 
-            var transformation = null;
-            var animation = null;
-            var materialIds = [];
-            var textureId = null;
-            var childrenIds = [];
-            var primitiveIds = [];            
+            let transformation = null;
+            let animation = null;
+            let materialIds = [];
+            let textureIds = [];
+            let childrenIds = [];
+            let primitiveIds = [];            
 
             // Transformations
             if(transformationIndex == -1) 
@@ -1193,8 +1199,8 @@ class MySceneGraph {
 
             grandgrandChildren = grandChildren[transformationIndex].children;
 
-            var transfMatrix = mat4.create();
-            for (var j = 0; j < grandgrandChildren.length; j++) {
+            let transfMatrix = mat4.create();
+            for (let j = 0; j < grandgrandChildren.length; j++) {
 
                 // transformation reference
                 if (grandgrandChildren[j].nodeName == "transformationref") {
@@ -1239,7 +1245,7 @@ class MySceneGraph {
                         this.onXMLMinorError("unable to parse angle of transformation rotate in component for ID " + componentID);
                     }
                     //axis
-                    var axis = this.reader.getString(grandgrandChildren[j], "axis");
+                    let axis = this.reader.getString(grandgrandChildren[j], "axis");
                     if (!(axis != null))
                         this.onXMLMinorError("unable to parse axis of transformation rotate in component for ID " + componentID);
 
@@ -1253,7 +1259,7 @@ class MySceneGraph {
             // Animation
             if (animationIndex != -1) {
                 // Get id of the current animation.
-                var animationId = this.reader.getString(grandChildren[animationIndex], 'id');
+                let animationId = this.reader.getString(grandChildren[animationIndex], 'id');
                 if (animationId == null)
                     return "no ID defined for animation in component for ID " + componentID;
 
@@ -1270,15 +1276,15 @@ class MySceneGraph {
                 this.onXMLMinorError("materials is not defined in component for ID " + componentID);
 
             grandgrandChildren = grandChildren[materialsIndex].children;
-            var materialCounter = 0;
+            let materialCounter = 0;
 
-            for (var j = 0; j < grandgrandChildren.length; j++) {
+            for (let j = 0; j < grandgrandChildren.length; j++) {
                 
                 // material reference
                 if (grandgrandChildren[j].nodeName == "material") {
 
                     // Get id of the current material.
-                    var materialId = this.reader.getString(grandgrandChildren[j], 'id');
+                    let materialId = this.reader.getString(grandgrandChildren[j], 'id');
                     if (materialId == null)
                         return "no ID defined for material in component for ID " + componentID;
 
@@ -1289,6 +1295,7 @@ class MySceneGraph {
                     materialIds.push(materialId);
                     materialCounter++;
                 }
+                else this.onXMLMinorError("Node name should be material in component for ID " + componentID);
             }
 
             if(!materialCounter)
@@ -1296,30 +1303,58 @@ class MySceneGraph {
 
             // Texture
             if(textureIndex == -1) 
-                this.onXMLMinorError("texture is not defined in component for ID " + componentID);
+                this.onXMLMinorError("textures is not defined in component for ID " + componentID);
 
-            // Get id of the current texture.
-            textureId = this.reader.getString(grandChildren[textureIndex], 'id');
-            if (textureId == null)
-                return "no ID defined for texture in component for ID " + componentID;
+            grandgrandChildren = grandChildren[textureIndex].children;
+            let textureCounter = 0;
+            let lengthS = [];
+            let lengthT = [];
 
-            // Check if ID exists in this.texture
-            if (textureId != 'none' && textureId != 'inherit' && this.textures[textureId] == null)
-                return "ID must have been defined in block texture (component ID " + componentID + ")";
+            for (let j = 0; j < grandgrandChildren.length; j++) {
+                if (grandgrandChildren[j].nodeName == "texture") {
+                    // Get id of the current texture.
+                    let textureId = this.reader.getString(grandgrandChildren[j], 'id');
+                    if (textureId == null)
+                        return "no ID defined for texture in component for ID " + componentID;
 
-            var length_s = null, length_t = null;
+                    // Check if ID exists in this.texture
+                    if (textureId != 'none' && textureId != 'inherit' && this.textures[textureId] == null)
+                        return "ID must have been defined in block texture (component ID " + componentID + ")";
 
-            if (textureId != 'none' && textureId != 'inherit') {
-                // length_s
-                length_s = this.reader.getFloat(grandChildren[textureIndex], 'length_s');
-                if (!(length_s != null && !isNaN(length_s)))
-                    this.onXMLError("unable to parse length_s of texture in component for ID " + componentID);
+                    let theme = this.reader.getString(grandgrandChildren[j], 'theme');
+                    if (theme == null) {
+                        return "no theme defined for texture in component for ID " + componentID;
+                    }
 
-                // length_t
-                length_t = this.reader.getFloat(grandChildren[textureIndex], 'length_t');
-                if (!(length_t != null && !isNaN(length_t)))
-                    this.onXMLError("unable to parse length_t of texture in component for ID " + componentID);
+                    if (this.scene.themes.indexOf(theme) == -1) {
+                        this.scene.themes.push(theme);
+                    }
+
+                    let length_s = null, length_t = null;
+
+                    if (textureId != 'none' && textureId != 'inherit') {
+                        // length_s
+                        length_s = this.reader.getFloat(grandgrandChildren[j], 'length_s');
+                        if (!(length_s != null && !isNaN(length_s)))
+                            this.onXMLError("unable to parse length_s of texture in component for ID " + componentID);
+
+                        // length_t
+                        length_t = this.reader.getFloat(grandgrandChildren[j], 'length_t');
+                        if (!(length_t != null && !isNaN(length_t)))
+                            this.onXMLError("unable to parse length_t of texture in component for ID " + componentID);
+                    }
+
+                    textureCounter++;
+                    textureIds[theme] = textureId;
+                    lengthS[theme] = length_s;
+                    lengthT[theme] = length_t;
+                }
+                else this.onXMLMinorError("Node name should be texture in component for ID " + componentID);
             }
+
+            if(!textureCounter) 
+                this.onXMLMinorError("At least one texture must be defined in component for ID " + componentID);
+            
 
             // Children
             if(childrenIndex == -1) 
@@ -1353,7 +1388,7 @@ class MySceneGraph {
                     primitiveIds.push(primitiveId);
                 }
             }
-            var comp = new MyComponent(this.scene, componentID, transformation, animation, materialIds, textureId, length_s, length_t, childrenIds, primitiveIds);
+            var comp = new MyComponent(componentID, theme, transformation, animation, materialIds, textureIds, lengthS, lengthS, childrenIds, primitiveIds);
             this.components[componentID] = comp;
 
             // check if it is one black or white piece 
@@ -1494,9 +1529,9 @@ class MySceneGraph {
     /**
      * Displays the scene, processing each node, starting in the root node.
      */
-    displayScene() {
+    displayScene(theme) {
         var matID = Object.keys(this.materials)[0];
-        this.processNode(this.idRoot, this.materials[matID], null, 1, 1, false);
+        this.processNode(this.idRoot, this.materials[matID], null, 1, 1, false, theme);
     }
 
     /**
@@ -1509,10 +1544,14 @@ class MySceneGraph {
      * @param {float} sLength
      * @param {float} tLength
      */
-    processNode(id, mat, text, lengthS, lengthT, picked) {
+    processNode(id, mat, text, lengthS, lengthT, picked, theme) {
         let component = this.components[id];
         if(component == null) {
             this.onXMLError("component for ID " + id + " doesn't exist!");
+            return;
+        }
+
+        if (component.theme != null && component.theme != theme) {
             return;
         }
 
@@ -1535,18 +1574,23 @@ class MySceneGraph {
             mat = this.materials[component.materialIDs[component.materialIndex]];
         }
             
+        let compTexID = component.chooseTexture(theme);
+
         // if texture not 'inherit' or 'none'
-        if (component.textureID != 'inherit' && component.textureID != 'none')
-            text = this.textures[component.textureID];
+        if (compTexID != 'inherit' && compTexID != 'none')
+            text = this.textures[compTexID];
 
         // if 'none'
         else if (component.textureID == 'none')
             text = null;
 
+        let compLenS = component.chooseLengthS(theme);
+        let compLenT = component.chooseLengthT(theme);
+
         // lengthS and lengthT
-        if (component.lengthS != null && component.lengthT != null){
-            lengthS = component.lengthS;
-            lengthT = component.lengthT; 
+        if (compLenS != null && compLenT != null){
+            lengthS = compLenS;
+            lengthT = compLenT; 
         }
 
         mat.apply();
@@ -1565,7 +1609,7 @@ class MySceneGraph {
         }
 
         for (let i = 0; i < component.childrenID.length; i++) {
-            this.processNode(component.childrenID[i], mat, text, lengthS, lengthT, picked);
+            this.processNode(component.childrenID[i], mat, text, lengthS, lengthT, picked, theme);
         }
 
         this.scene.popMatrix();

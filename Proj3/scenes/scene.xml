@@ -300,11 +300,13 @@
                 <material id="red" />
             </materials>
 
-            <texture id="none" />
+            <textures>
+                <texture id="none" theme="default" />
+            </textures>
 
             <children>
-                <!-- <componentref id="board"/>
-                <componentref id="table"/> -->
+                <componentref id="board"/>
+                <componentref id="table"/>
                 <componentref id="skybox"/>
                 <componentref id="door-with-frame" />
             </children>
@@ -323,7 +325,10 @@
                 <material id="darkGrey" />
             </materials>
 
-            <texture id="door-frame" length_s="1" length_t="1" />
+            <textures>
+                <texture id="door-frame" length_s="1" length_t="1" theme="default" />
+            </textures>
+
 
             <children>
                 <componentref id="door" />
@@ -344,7 +349,10 @@
                 <material id="darkGrey" />
             </materials>
 
-            <texture id="continuous-door" length_s="1" length_t="1" />
+            <textures>
+                <texture id="beach-door" length_s="1" length_t="1" theme="default" />
+                <texture id="continuous-door" length_s="1" length_t="1" theme="continuous" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -364,8 +372,10 @@
             <materials>
                 <material id="white" />
             </materials>
-
-            <texture id="none"/>
+            
+            <textures>
+                <texture id="none" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="floor-wall" />
@@ -388,7 +398,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="classic-floor" length_s="0.1" length_t="0.1" />
+            <textures>
+                <texture id="classic-floor" length_s="0.1" length_t="0.1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -407,7 +419,10 @@
                 <material id="none" />
             </materials>
 
-            <texture id="gold-ceiling" length_t=".1" length_s=".1" />
+            <textures>
+                <texture id="gold-ceiling" length_t=".1" length_s=".1" theme="default" />
+            </textures>
+
 
             <children>
                 <primitiveref id="square" />
@@ -426,7 +441,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="white-cement-wall" length_s=".2" length_t=".2" />
+            <textures>
+                <texture id="white-cement-wall" length_s=".2" length_t=".2" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -444,7 +461,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="white-cement-wall" length_s="0.2" length_t="0.2" />
+            <textures>
+                <texture id="white-cement-wall" length_s="0.2" length_t="0.2" theme="default"/>
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -463,7 +482,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="white-cement-wall" length_s=".2" length_t=".2" />
+            <textures>
+                <texture id="white-cement-wall" length_s=".2" length_t=".2" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -481,7 +502,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="window-brick-wall" length_s="1" length_t="1" />
+            <textures>
+            <texture id="window-brick-wall" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -489,7 +512,7 @@
         
         </component>
 
-        <component id="table">
+        <component id="table" theme="table">
 
             <transformation>
                 <translate x="0" y="-2" z="0" />
@@ -500,7 +523,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="table_top"/>
@@ -519,7 +544,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="old_wood" length_s="6" length_t="1" />
+            <textures>
+            <texture id="old_wood" length_s="6" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="leg1"/>
@@ -529,7 +556,6 @@
             </children>
 
         </component>
-
 
         <component id="leg1">
 
@@ -543,14 +569,15 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
             </children>
 
         </component>
-
 
         <component id="leg2">
 
@@ -564,14 +591,15 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
             </children>
 
         </component>
-
 
         <component id="leg3">
 
@@ -585,14 +613,15 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
             </children>
 
         </component>
-
 
         <component id="leg4">
 
@@ -606,14 +635,15 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
             </children>
 
         </component>
-
 
         <component id="table_top">
 
@@ -628,7 +658,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="old_wood" length_s="0.5" length_t="1" />
+            <textures>
+            <texture id="old_wood" length_s="0.5" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube_rotated"/>
@@ -647,7 +679,9 @@
                 <material id="black" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -667,7 +701,9 @@
                 <material id="black" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default"/>
+            </textures>
 
 
             <children>
@@ -687,7 +723,9 @@
                 <material id="black" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -707,7 +745,9 @@
                 <material id="white" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -727,7 +767,9 @@
                 <material id="white" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -747,7 +789,9 @@
                 <material id="white" />
             </materials>
 
-            <texture id="plastic" length_s="1" length_t="1" />
+            <textures>
+            <texture id="plastic" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -761,12 +805,13 @@
             <transformation>
             </transformation>
 
-
             <materials>
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="piece_top"/>
@@ -788,8 +833,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="piece_top"/>
@@ -809,8 +855,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="piece_top"/>
@@ -829,8 +876,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="big_thin_torus"/>
@@ -844,7 +892,7 @@
 
         -->
 
-        <component id="board">
+        <component id="board" theme="game">
 
             <transformation>
                 <translate x="-10.5" y="-1" z="-10.5" />
@@ -855,8 +903,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="none" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="none" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
 
@@ -932,8 +981,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -953,8 +1003,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -974,8 +1025,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -995,8 +1047,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1016,8 +1069,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1037,8 +1091,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1058,8 +1113,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1079,8 +1135,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1100,8 +1157,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1121,8 +1179,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1142,8 +1201,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1163,8 +1223,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1184,8 +1245,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1205,8 +1267,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1226,8 +1289,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1247,8 +1311,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1268,8 +1333,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1289,8 +1355,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1310,8 +1377,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1331,8 +1399,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1352,8 +1421,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1373,8 +1443,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1394,8 +1465,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1415,8 +1487,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1436,8 +1509,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1457,8 +1531,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1478,8 +1553,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1498,8 +1574,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1519,8 +1596,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1540,8 +1618,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1561,8 +1640,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1582,8 +1662,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1603,8 +1684,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1624,8 +1706,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1645,8 +1728,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1666,8 +1750,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1687,8 +1772,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1708,8 +1794,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1729,8 +1816,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1750,8 +1838,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1771,8 +1860,9 @@
                 <material id="none" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1792,8 +1882,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="dark_cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1813,8 +1904,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1834,8 +1926,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1855,8 +1948,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1876,8 +1970,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1897,8 +1992,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1918,8 +2014,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="dark_cork" length_s="1" length_t="1" />
-
+            <textures>
+                <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cube"/>
@@ -1939,7 +2036,9 @@
                 <material id="red" />
             </materials>
 
-            <texture id="cork" length_s="1" length_t="1" />
+            <textures>
+            <texture id="cork" length_s="1" length_t="1" theme="default" />
+            </textures>
 
 
             <children>
@@ -1964,7 +2063,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cubeFace1" />
@@ -1986,7 +2087,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <componentref id="cubeFace1" />
@@ -2010,7 +2113,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -2029,7 +2134,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -2048,7 +2155,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -2067,7 +2176,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -2086,7 +2197,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />
@@ -2105,7 +2218,9 @@
                 <material id="inherit" />
             </materials>
 
-            <texture id="inherit" length_s="1" length_t="1" />
+            <textures>
+            <texture id="inherit" length_s="1" length_t="1" theme="default" />
+            </textures>
 
             <children>
                 <primitiveref id="square" />

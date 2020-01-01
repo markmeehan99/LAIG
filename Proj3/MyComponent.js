@@ -3,9 +3,10 @@
  * @constructor
  */
 class MyComponent {
-    constructor(scene, node, transformation, animation, materials, texture, lengthS, lengthT, children, primitives) {
-        this.scene = scene;
+    constructor(node, theme, transformation, animation, materials, texture, lengthS, lengthT, children, primitives) {
+        
         this.nodeID = node;
+        this.theme = theme;
         this.transformation = transformation;
         this.animation = animation;
         this.materialIDs = materials;
@@ -20,6 +21,38 @@ class MyComponent {
 
         this.materialIndex = 0;
     }
+
+    chooseTexture(theme) {
+        if (Array.isArray(this.textureID)) {
+            if(this.textureID[theme] == null)
+                return this.textureID['default'];
+            else return this.textureID[theme];
+        }
+
+        return this.textureID;
+    }
+
+    chooseLengthS(theme) {
+        if (Array.isArray(this.lengthS)) {
+            if(this.lengthS[theme] == null)
+                return this.lengthS['default'];
+            else return this.lengthS[theme];
+        }
+
+        return this.lengthS;
+    }
+
+    chooseLengthT(theme) {
+        if (Array.isArray(this.lengthT)) {
+            if(this.lengthT[theme] == null)
+                return this.lengthT['default'];
+            else return this.lengthT[theme];
+        }
+
+        return this.lengthT;
+    }
+
+
 
     update(sceneTime) {
         if(this.animation == null) return;
