@@ -35,7 +35,7 @@ class MyGameBoard{
         this.moveAllowed = 1;
 
         this.currentState = this.state.WHITE_FIRST_TURN;
-        this.currentMode = this.mode.PLAYER_VS_BOT; //TODO: change when other modes are added
+        this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
 
         //Start Prolog Server
 
