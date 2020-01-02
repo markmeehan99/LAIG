@@ -31,7 +31,7 @@ serialInclude(['../lib/CGF.js',
                 'animations/MyLinearAnimation.js',
                 'Nudge/MyGameBoard.js',
                 'Nudge/MyPiece.js',
-                'Nudge/MyLastMov.js',
+                'Nudge/MyGameMove.js',
                 'Nudge/Connection.js',
 
 main=function()

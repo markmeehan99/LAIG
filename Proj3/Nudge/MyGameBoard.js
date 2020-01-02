@@ -7,7 +7,7 @@ class MyGameBoard{
 
         this.board = [];
         this.pieces = [];
-        // array with MyLastMov obj, representing all the plays
+        // array with MyGameMove obj, representing all the plays
         this.lastMovements = [];
 
         this.state = { 
@@ -121,7 +121,7 @@ class MyGameBoard{
         let oldBoard = this.board;
         this.board = newBoard;
 
-        this.lastMovements.push(new MyLastMov(row, col, direction));
+        this.lastMovements.push(new MyGameMove(row, col, direction));
 
         this.movePieces(oldBoard, row, col, direction);
     }
@@ -166,7 +166,7 @@ class MyGameBoard{
         
         let direction = data[3];
         
-        this.lastMovements.push(new MyLastMov(row, col, direction));
+        this.lastMovements.push(new MyGameMove(row, col, direction));
         this.movePieces(oldBoard, row, col, direction);
     }
 
@@ -278,9 +278,15 @@ class MyGameBoard{
 
     updateTurn() {
         if (this.currentState == 1) this.currentState++;
-        else if (this.currentState == 2) this.currentState++;
+        else if (this.currentState == 2) {
+            this.currentState++;
+            setTimeout(() => this.scene.rotateCam(), 1200);
+        }
         else if (this.currentState == 3) this.currentState++;
-        else if (this.currentState == 4) this.currentState = 1;
+        else if (this.currentState == 4) {
+            this.currentState = 1;
+            setTimeout(() => this.scene.rotateCam(), 1200);
+        }
         console.log(this.currentState);
     }
 

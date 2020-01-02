@@ -51,6 +51,10 @@ class XMLscene extends CGFscene {
 
         this.themes = ['default'];
         this.selectedTheme = 'game';
+
+        this.cameraAnimation = false;
+        this.cameraAnimationAngle = 0;
+        this.cameraAnimationTimeStarted = null;
     }
 
     /**
@@ -151,6 +155,39 @@ class XMLscene extends CGFscene {
         // this.interface.setActiveCamera(this.camera2);
     }
 
+    rotateCam() {
+        this.cameraAnimation = true;
+        this.cameraAnimationAngle = 0;
+    }
+
+    updateCameraAnimation(currTime) {
+        if (this.cameraAnimation) {
+            if ( this.cameraAnimationAngle == 0) {
+                this.cameraAnimationAngle += 0.000001;
+                this.cameraAnimationLastTime = currTime;
+                return;
+            }
+
+            // managing times
+            let deltaT = currTime - this.cameraAnimationLastTime;
+            this.cameraAnimationLastTime = currTime;
+
+            // this update angle
+            let angle = Math.PI * deltaT / 1000;
+
+            this.cameraAnimationAngle += angle;
+
+            // bigger than PI
+            if (this.cameraAnimationAngle > Math.PI) {
+                let excess = this.cameraAnimationAngle - Math.PI;
+                angle -= excess;
+                this.cameraAnimation = false;
+            }
+
+            this.camera1.orbit([0,1,0], angle);
+        }
+    }
+
     update(currTime) {
         if(this.startingTime == null) {
             this.startingTime = currTime;
@@ -161,6 +198,7 @@ class XMLscene extends CGFscene {
         this.graph.update(sceneTime);
         this.secCam.shader.setUniformsValues({ timeFactor: currTime / 100 % 1000 });
 
+        this.updateCameraAnimation(currTime);
     }
 
     logPicking() {
