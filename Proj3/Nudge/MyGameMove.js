@@ -1,4 +1,4 @@
-class MyLastMov {
+class MyGameMove {
     constructor(row, col, direction) {
         // coords of move
         this.row = row;
