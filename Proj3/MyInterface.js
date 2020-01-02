@@ -36,7 +36,7 @@ class MyInterface extends CGFinterface {
 
     addViews(views) {
         var viewGroup = this.gui.addFolder("Views");
-        viewGroup.open();
+        // viewGroup.open();
 
         var cameraIdArray = Object.keys(views);
         this.currentCameraId = this.scene.graph.defaultView;
@@ -49,7 +49,7 @@ class MyInterface extends CGFinterface {
     addLights(lights) {
 
         var lightGroup = this.gui.addFolder("Lights");
-        lightGroup.open();
+        // lightGroup.open();
 
         // add two check boxes to the group. The identifiers must be members variables of the scene initialized in scene.init as boolean
         // e.g. this.option1=true; this.option2=false;
@@ -60,6 +60,13 @@ class MyInterface extends CGFinterface {
                 lightGroup.add(this.scene.lightValues, key);
             }
         }
+    }
+
+    addThemes(themes, scene) {
+        var themeGroup = this.gui.addFolder("Theme");
+        themeGroup.open();
+
+        themeGroup.add(scene, 'selectedTheme',themes);
     }
 
     processKeyDown(event) {
