@@ -50,7 +50,7 @@ class XMLscene extends CGFscene {
         this.allowBotMove = 0;
 
         this.themes = ['default'];
-        this.selectedTheme = 'default';
+        this.selectedTheme = 'game';
     }
 
     /**
