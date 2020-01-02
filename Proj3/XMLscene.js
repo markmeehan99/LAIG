@@ -51,6 +51,11 @@ class XMLscene extends CGFscene {
 
         this.themes = ['default'];
         this.selectedTheme = 'default';
+
+        this.displaySecCam = {
+            'Display Security Camera': true
+        }
+    
     }
 
     /**
@@ -197,7 +202,10 @@ class XMLscene extends CGFscene {
 
         this.gl.disable(this.gl.DEPTH_TEST);
         
-        this.secCam.display();
+        if (this.displaySecCam['Display Security Camera']) {
+            this.secCam.display();
+        }
+
         this.setActiveShader(this.defaultShader);
         
         this.gl.enable(this.gl.DEPTH_TEST);

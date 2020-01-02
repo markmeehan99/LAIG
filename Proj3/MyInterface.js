@@ -41,10 +41,14 @@ class MyInterface extends CGFinterface {
         var cameraIdArray = Object.keys(views);
         this.currentCameraId = this.scene.graph.defaultView;
 
+        this.displaySecurityCam = this.scene.graph.displaySecurityCam;
+        var displaySecCam = this.scene.displaySecCam;
+
         viewGroup.add(this, 'currentCameraId', cameraIdArray).name('Camera').onChange(val => this.scene.selectView(val));
         viewGroup.add(this, 'currentCameraId', cameraIdArray).name('Security Camera').onChange(val => this.scene.selectSecView(val));
 
-    }
+        this.gui.add(this.scene.displaySecCam, 'Display Security Camera')    }
+
 
     addLights(lights) {
 
