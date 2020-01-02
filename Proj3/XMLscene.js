@@ -50,6 +50,11 @@ class XMLscene extends CGFscene {
         this.allowBotMove = 0;
 
         this.themes = ['default'];
+
+        this.displaySecCam = {
+            'Display Security Camera': true
+        }
+    
         this.selectedTheme = 'game';
 
         this.cameraAnimation = false;
@@ -235,7 +240,10 @@ class XMLscene extends CGFscene {
 
         this.gl.disable(this.gl.DEPTH_TEST);
         
-        this.secCam.display();
+        if (this.displaySecCam['Display Security Camera']) {
+            this.secCam.display();
+        }
+
         this.setActiveShader(this.defaultShader);
         
         this.gl.enable(this.gl.DEPTH_TEST);
