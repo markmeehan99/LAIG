@@ -30,6 +30,10 @@ class MyGameBoard{
         this.white_wins = 0;
         this.black_wins = 0;
 
+        this.playerBlack = new MyPlayer('black');
+        this.playerWhite = new MyPlayer('white');
+
+
         this.botStarted = 0;
         this.botMoveMade = 0;
 
@@ -38,7 +42,7 @@ class MyGameBoard{
         this.moveAllowed = 1;
 
         this.currentState = this.state.WAITING_FOR_START;
-        this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
+        this.currentMode = this.mode.PLAYER_VS_PLAYER; //TODO: change when other modes are added
 
         //Start Prolog Server
 
@@ -201,6 +205,7 @@ class MyGameBoard{
         };
 
         let request = this.server.createRequest('makeMove', [this.getBoardString(), player, row, col, direction], reply.bind(this), failure.bind(this));
+        console.log('Sending request: ' + request);
         this.server.prologRequest(request);
     }
 
@@ -281,7 +286,6 @@ class MyGameBoard{
         let reply = function(data) {
             this.connectionSuccess = 1;
             this.currentState = 1;
-            this.currentState++;
             this.getInitialBoard();
             console.log('Connection established');
         };

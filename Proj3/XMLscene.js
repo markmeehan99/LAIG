@@ -165,6 +165,9 @@ class XMLscene extends CGFscene {
     rotateCam() {
         this.cameraAnimation = true;
         this.cameraAnimationAngle = 0;
+        var player = this.gameboard.getPlayer();
+        if (player == "white") this.gameboard.playerWhite.resetTimer();
+        else if (player == "black") this.gameboard.playerBlack.resetTimer();
     }
 
     updateCameraAnimation(currTime) {
@@ -174,6 +177,7 @@ class XMLscene extends CGFscene {
                 this.cameraAnimationLastTime = currTime;
                 return;
             }
+
 
             // managing times
             let deltaT = currTime - this.cameraAnimationLastTime;
@@ -211,22 +215,21 @@ class XMLscene extends CGFscene {
     logPicking() {
         if (this.pickMode == false) {
 			if (this.pickResults != null && this.pickResults.length > 0) {
-				for (var i = 0; i < this.pickResults.length; i++) {
+                for (var i = 0; i < this.pickResults.length; i++) {
 					var obj = this.pickResults[i][0];
 					if (obj) {
                         var customId = this.pickResults[i][1];
                         this.pickedCells.push(customId);
                         if (this.pickedCells.length == 2) {
                             var player = this.gameboard.getPlayer();
-                            console.log('Its this players turn: ' + player);
+                            
 
                             this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
 
-                            console.log('State after move:');
-                            console.log(this.gameboard.currentState);
+                            console.log('State after move:' + this.gameboard.currentState);
                             this.pickedCells = [];
                         }
-						// console.log("Picked object: " + obj + ", with pick id " + customId);						
+						console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);
@@ -235,12 +238,22 @@ class XMLscene extends CGFscene {
     }
 
     display() {
+        console.log('Turn: ' + this.gameboard.currentState);
+
         if (this.gameboard.currentState == 0) {
             document.getElementById("player").innerText = "Currently establishing connection to server...\n";
         } else if (this.gameboard.currentState > 0) {
             document.getElementById("player").innerText = "Player: " + this.gameboard.getPlayer() + "\n";
             document.getElementById("score").innerText = "Score: \n" + this.gameboard.getScore() + "\n";
-            // document.getElementById("time").innerText = "Game Time: " + this.gameboard.getGameTime() + "\n";
+            if (this.gameboard.getPlayer() == 'white') {
+                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playerWhite.getPlayTime() + "\n";
+                
+                if (this.gameboard.playerWhite.getPlayTime() <= 3)
+                    document.getElementById("time").style.color="red";
+            }
+            else if (this.gameboard.getPlayer() == 'black') {
+                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playerBlack.getPlayTime() + "\n";
+            }
         }
 
         this.textureRTT.attachToFrameBuffer();
@@ -272,15 +285,34 @@ class XMLscene extends CGFscene {
         // picking handling
         
         if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER  && this.gameboard.currentState > 0 ) {
-            this.logPicking();
+            
+            var player = this.gameboard.getPlayer();
+            if (player == 'white' && !this.gameboard.playerWhite.clockStarted) 
+                this.gameboard.playerWhite.startCounter();
+            else if (player == 'black' && !this.gameboard.playerBlack.clockStarted)
+                this.gameboard.playerBlack.startCounter();
+            
+            if (player == 'white' && this.gameboard.playerWhite.getPlayTime() == 0) {
+                console.log('turning');
+                // this.gameboard.playerWhite.resetTimer();
+                this.gameboard.updateTurn();
+                console.log(this.gameboard.currentState);
+                // this.rotateCam();
+            } else this.logPicking();
+            
+            if (player == 'black' && this.gameboard.playerBlack.getPlayTime() == 0) {
+                console.log('turning')
+                this.gameboard.updateTurn();
+                console.log(this.gameboard.currentState);
+                // this.rotateCam();
+            } else this.logPicking();
+
         } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
             if (!this.gameboard.botStarted) this.gameboard.allowBot();  
         } else if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_BOT && this.gameboard.currentState > 0 ) {
             if (this.gameboard.currentState == 1 || this.gameboard.currentState == 2) {
-                // console.log('Waiting for player move');
                 this.logPicking();
             } else if (this.gameboard.currentState == 3 || this.gameboard.currentState == 4) {
-                // console.log('Generating bot move');
                 if (!this.gameboard.botMoveMade) this.gameboard.oneBotMove();
             }
         }
