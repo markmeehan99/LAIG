@@ -20,12 +20,15 @@ class MyGameBoard{
             BLACK_WIN: 6,
             CONNECTION_ERROR: 7,
         };
-        
+
         this.mode = { 
             PLAYER_VS_PLAYER: 0,
             PLAYER_VS_BOT: 1,
             BOT_VS_BOT: 2
         };
+
+        this.white_wins = 0;
+        this.black_wins = 0;
 
         this.botStarted = 0;
         this.botMoveMade = 0;
@@ -34,14 +37,23 @@ class MyGameBoard{
         this.connectionSuccess=0;
         this.moveAllowed = 1;
 
-        this.currentState = this.state.WHITE_FIRST_TURN;
+        this.currentState = this.state.WAITING_FOR_START;
         this.currentMode = this.mode.BOT_VS_BOT; //TODO: change when other modes are added
 
         //Start Prolog Server
 
-        this.startConnection();
+        // this.startConnection();
 
-        this.getInitialBoard();
+        var refreshId = setInterval(function() {
+            if (this.currentState > 0) {
+              clearInterval(refreshId);
+              return;
+            } else {
+                console.log('Sending handshake');
+                this.startConnection();
+            }
+          }.bind(this), 5000);
+
     }
 
     getInitialBoard() {
@@ -264,11 +276,13 @@ class MyGameBoard{
     }
 
     startConnection() {
-        //make a handshake request to server
+        //make a handshake request to server         
 
         let reply = function(data) {
             this.connectionSuccess = 1;
             this.currentState = 1;
+            this.currentState++;
+            this.getInitialBoard();
             console.log('Connection established');
         };
 
@@ -288,6 +302,11 @@ class MyGameBoard{
             setTimeout(() => this.scene.rotateCam(), 1200);
         }
         console.log(this.currentState);
+    }
+
+    getScore() {
+        return "White wins: " + parseInt(this.white_wins) + "\n" + 
+        "Black wins: " + parseInt(this.black_wins) + "\n";
     }
 
 
