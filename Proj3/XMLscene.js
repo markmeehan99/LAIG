@@ -29,6 +29,8 @@ class XMLscene extends CGFscene {
         this.sceneInited = false;
 
         this.defaultShader = this.activeShader;
+        this.transparencyShader=new CGFshader(this.gl, "shaders/scale.vert", "shaders/transparency.frag");
+
 
         this.initCameras();
 
@@ -233,20 +235,33 @@ class XMLscene extends CGFscene {
     }
 
     display() {
+        if (this.gameboard.currentState == 0) {
+            document.getElementById("player").innerText = "Currently establishing connection to server...\n";
+        } else if (this.gameboard.currentState > 0) {
+            document.getElementById("player").innerText = "Player: " + this.gameboard.getPlayer() + "\n";
+            document.getElementById("score").innerText = "Score: \n" + this.gameboard.getScore() + "\n";
+            // document.getElementById("time").innerText = "Game Time: " + this.gameboard.getGameTime() + "\n";
+        }
+
         this.textureRTT.attachToFrameBuffer();
         this.render(this.camera2);
         this.textureRTT.detachFromFrameBuffer();
         this.render(this.camera1);
 
         this.gl.disable(this.gl.DEPTH_TEST);
-        
+
         if (this.displaySecCam['Display Security Camera']) {
             this.secCam.display();
         }
+        
+        this.setActiveShader(this.transparencyShader);
 
         this.setActiveShader(this.defaultShader);
         
         this.gl.enable(this.gl.DEPTH_TEST);
+        
+        
+
     }
 
     /**
@@ -256,7 +271,7 @@ class XMLscene extends CGFscene {
 
         // picking handling
         
-        if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER) {
+        if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER  && this.gameboard.currentState > 0 ) {
             this.logPicking();
         } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
             if (!this.gameboard.botStarted) this.gameboard.allowBot();  

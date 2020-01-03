@@ -123,20 +123,12 @@ parse_input(botMove(Board, Player), Reply) :-
 	matrix_to_json(NewBoard, ReplyBoard),
 	list_to_json(Move, ReplyMove),
 	append([ReplyBoard], ReplyMove, Reply).
-	% get_valid_plays(Board, Player, Reply, R, C).
-	% list_to_json(Plays, Reply).
-    % choose_random_move(Move, Plays),
-    % validate_push(Board, Player, Move, R, C, Move, NewBoard),
-	% bot_set_cell(Move, Player, R, C, NewRow, NewCol, Board, NewBoard),
 
 
 parse_input(makeMove(Board, Player, CurrentRow, CurrentColumn, Move), Reply) :-
 	piece_color(Board, Player, CurrentRow, CurrentColumn, ValidatedRow, ValidatedColumn),
 	validate_boundaries(Board, Move, ValidatedRow, ValidatedColumn),
     validate_push(Board, Player, Move, ValidatedRow, ValidatedColumn, NewerMove, FinalBoard),
-	%checkNullMove(FinalBoard, PreviousBoard),
-	% check_game_over(FinalBoard, Winner),
-	% ReplyList = [FinalBoard, Winner],
 	matrix_to_json(FinalBoard, Reply).
 
 parse_input(initialBoard, Reply) :-
