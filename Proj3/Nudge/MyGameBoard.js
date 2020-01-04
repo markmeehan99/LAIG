@@ -210,7 +210,7 @@ class MyGameBoard{
             this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
 
-            setTimeout(() => this.startCounter(), 1400);
+            // setTimeout(() => this.startCounter(), 1400);
             console.log('Player Moved. Setting new clock');
             this.clockStarted = 1;
         };
@@ -309,25 +309,25 @@ class MyGameBoard{
         if (this.currentState == 1) {
             this.currentState++;
             this.resetTimer();
-            // this.startCounter();
+            this.startCounter();
         }
         else if (this.currentState == 2) {
             this.currentState++;
             setTimeout(() => this.scene.rotateCam(), 1200);
             setTimeout(() => this.resetTimer(), 1300);
-            // setTimeout(() => this.startCounter(), 1300);
+            setTimeout(() => this.startCounter(), 1300);
         }
         else if (this.currentState == 3) {
             this.currentState++;
             this.resetTimer();
-            // this.startCounter();
+            this.startCounter();
 
         }
         else if (this.currentState == 4) {
             this.currentState = 1;
             setTimeout(() => this.scene.rotateCam(), 1200);
             setTimeout(() => this.resetTimer(), 1300);
-            // setTimeout(() => this.startCounter(), 1400);
+            setTimeout(() => this.startCounter(), 1400);
         }
         console.log(this.currentState);
     }

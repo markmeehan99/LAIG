@@ -288,11 +288,13 @@ class XMLscene extends CGFscene {
             var player = this.gameboard.getPlayer();
             if (player == 'white' && !this.gameboard.clockStarted) {
                 this.gameboard.startCounter();
-                console.log('reseting timer');
+                this.gameboard.clockStarted = 1;
+                console.log('STARTING FIRST TIME');
             }
             else if (player == 'black' && !this.gameboard.clockStarted) {
-                console.log('reset timer');
+                console.log('STARTING FIRST TIME');
                 this.gameboard.startCounter();
+                this.gameboard.clockStarted = 1;
             }
             
             if (player == 'white' && this.gameboard.playerWhite.getPlayTime() == 0 && !this.gameboard.turning) {
