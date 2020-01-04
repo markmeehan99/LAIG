@@ -6,6 +6,8 @@ class MyGameBoard{
         this.scene = scene;
 
         this.board = [];
+        this.lastBoard = [];
+        this.lastlastBoard = [];
         this.pieces = [];
         // array with MyGameMove obj, representing all the plays
         this.lastMovements = [];
@@ -101,7 +103,7 @@ class MyGameBoard{
 
     movePieces(oldBoard, row, col, dir) {
         if (oldBoard[row][col] == 'empty') { 
-            return [];
+            return;
         }
 
         // get next coords
@@ -126,16 +128,17 @@ class MyGameBoard{
         this.movePieces(oldBoard, nextRow, nextCol, dir);
 
         // find piece, moves it and 
-        this.movePiece(row, col, nextRow, nextCol); 
+        this.movePiece(row, col, nextRow, nextCol, 600); 
     }
 
     parseMoveResponse(row, col, direction, newBoard) {
-        let oldBoard = this.board;
+        this.lastlastBoard = this.lastBoard;
+        this.lastBoard = this.board;
         this.board = newBoard;
 
         this.lastMovements.push(new MyGameMove(row, col, direction));
 
-        this.movePieces(oldBoard, row, col, direction);
+        this.movePieces(this.lastBoard, row, col, direction);
     }
 
     allowBot() {
@@ -158,13 +161,10 @@ class MyGameBoard{
 
     }
 
-
     botGameLoop() {
         let player = this.getPlayer();
         this.moveBot(player);
     }
-
-
 
     parseBotMoveResponse(data) {
         let oldBoard = this.board;
@@ -226,7 +226,7 @@ class MyGameBoard{
         if (this.currentState == 3 || this.currentState == 4) return 'black';
     }
 
-    movePiece(row, col, newRow, newCol) {
+    movePiece(row, col, newRow, newCol, time) {
         // find current position piece and update position
         let piece = this.findPieceOfPos(row, col);
         piece.setPos(newRow, newCol);
@@ -235,12 +235,56 @@ class MyGameBoard{
         let oldColCoord = piece.translatePosToCoords(col);
         let newRowCoord = piece.translatePosToCoords(newRow);
         let newColCoord = piece.translatePosToCoords(newCol);
-        let animation = new MyLinearAnimation(oldRowCoord, oldColCoord, newRowCoord, newColCoord);
+        let animation = new MyLinearAnimation(oldRowCoord, oldColCoord, newRowCoord, newColCoord, time);
         let component = this.scene.graph.components[piece.componentID];
         component.animation = animation;
     }
 
+    movePiecesUndo(board, row, col, dir) {
+        console.log(row, col);
+
+        if (board[row][col] == 'empty') {
+            return;
+        }
+
+        let pieceRow = row;
+        let pieceCol = col;
+        switch (dir) {
+            case 'u':
+                pieceRow -= 1;
+                break;
+            case 'd':
+                pieceRow += 1;
+                break;
+            case 'l':
+                pieceCol -= 1;
+                break;
+            case 'r':
+                pieceCol += 1;
+                break;
+        }
+
+        // find piece, move it 
+        this.movePiece(pieceRow, pieceCol, row, col, 250);
+
+        // go find next pieces in undo
+        setTimeout(() => this.movePiecesUndo(board, pieceRow, pieceCol, dir), 80);
+
+    }
+
     undo() {
+        if (this.canUndo) {
+            console.log(this.lastMovements[this.lastMovements.length - 1])
+            if (this.currentState == 1) this.currentState = 4;
+            else this.currentState--;
+
+            this.board = this.lastBoard;
+            this.lastBoard = this.lastlastBoard;
+            let lastMov = this.lastMovements.pop();
+
+            this.movePiecesUndo(this.board, lastMov.row, lastMov.col, lastMov.direction);
+        }
+
 
     }
 
@@ -291,15 +335,25 @@ class MyGameBoard{
     }
 
     updateTurn() {
+        this.canUndo = true;
+
         if (this.currentState == 1) this.currentState++;
         else if (this.currentState == 2) {
             this.currentState++;
-            setTimeout(() => this.scene.rotateCam(), 1200);
+            setTimeout(() => { 
+                this.canUndo = false; 
+                if (this.currentState == 3)
+                    this.scene.rotateCam(); 
+            }, 3000);
         }
         else if (this.currentState == 3) this.currentState++;
         else if (this.currentState == 4) {
             this.currentState = 1;
-            setTimeout(() => this.scene.rotateCam(), 1200);
+            setTimeout(() => { 
+                this.canUndo = false; 
+                if (this.currentState == 1)
+                    this.scene.rotateCam(); 
+            }, 3000);
         }
         console.log(this.currentState);
     }

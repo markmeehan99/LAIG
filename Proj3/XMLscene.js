@@ -54,7 +54,7 @@ class XMLscene extends CGFscene {
         this.themes = ['default'];
 
         this.displaySecCam = {
-            'Display Security Camera': true
+            'Display Security Camera': false
         }
     
         this.selectedTheme = 'game';
@@ -138,6 +138,7 @@ class XMLscene extends CGFscene {
         this.interface.addLights(this.graph.lights);
         this.interface.addViews(this.graph.views);
         this.interface.addThemes(this.themes, this);
+        this.interface.addGameInterface(this.gameboard);
 
         this.initDefaultView();
 
@@ -169,6 +170,7 @@ class XMLscene extends CGFscene {
 
     updateCameraAnimation(currTime) {
         if (this.cameraAnimation) {
+            // first update iteration
             if ( this.cameraAnimationAngle == 0) {
                 this.cameraAnimationAngle += 0.000001;
                 this.cameraAnimationLastTime = currTime;
@@ -226,7 +228,7 @@ class XMLscene extends CGFscene {
                             console.log(this.gameboard.currentState);
                             this.pickedCells = [];
                         }
-						// console.log("Picked object: " + obj + ", with pick id " + customId);						
+						 console.log("Picked object: " + obj + ", with pick id " + customId);						
 					}
 				}
 				this.pickResults.splice(0, this.pickResults.length);

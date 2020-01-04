@@ -73,6 +73,13 @@ class MyInterface extends CGFinterface {
         themeGroup.add(scene, 'selectedTheme',themes);
     }
 
+    addGameInterface(gameboard) {
+        var gameGroup = this.gui.addFolder("Game");
+        gameGroup.open();
+
+        gameGroup.add(gameboard, 'undo');
+    }
+
     processKeyDown(event) {
         this.activeKeys[event.code]=true;
     };
