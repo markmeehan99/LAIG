@@ -166,8 +166,8 @@ class XMLscene extends CGFscene {
         this.cameraAnimation = true;
         this.cameraAnimationAngle = 0;
         var player = this.gameboard.getPlayer();
-        if (player == "white") this.gameboard.playerWhite.resetTimer();
-        else if (player == "black") this.gameboard.playerBlack.resetTimer();
+        // if (player == "white") this.gameboard.resetTimer();
+        // else if (player == "black") this.gameboard.resetTimer();
     }
 
     updateCameraAnimation(currTime) {
@@ -223,9 +223,10 @@ class XMLscene extends CGFscene {
                         if (this.pickedCells.length == 2) {
                             var player = this.gameboard.getPlayer();
                             
+                            this.gameboard.stopCounter();
+                            this.gameboard.resetTimer();
 
                             this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
-
                             console.log('State after move:' + this.gameboard.currentState);
                             this.pickedCells = [];
                         }
@@ -238,21 +239,19 @@ class XMLscene extends CGFscene {
     }
 
     display() {
-        console.log('Turn: ' + this.gameboard.currentState);
-
         if (this.gameboard.currentState == 0) {
             document.getElementById("player").innerText = "Currently establishing connection to server...\n";
         } else if (this.gameboard.currentState > 0) {
             document.getElementById("player").innerText = "Player: " + this.gameboard.getPlayer() + "\n";
             document.getElementById("score").innerText = "Score: \n" + this.gameboard.getScore() + "\n";
             if (this.gameboard.getPlayer() == 'white') {
-                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playerWhite.getPlayTime() + "\n";
+                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
                 
                 if (this.gameboard.playerWhite.getPlayTime() <= 3)
                     document.getElementById("time").style.color="red";
             }
             else if (this.gameboard.getPlayer() == 'black') {
-                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playerBlack.getPlayTime() + "\n";
+                document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
             }
         }
 
@@ -287,16 +286,21 @@ class XMLscene extends CGFscene {
         if (this.gameboard.currentMode == this.gameboard.mode.PLAYER_VS_PLAYER  && this.gameboard.currentState > 0 ) {
             
             var player = this.gameboard.getPlayer();
-            if (player == 'white' && !this.gameboard.playerWhite.clockStarted) 
-                this.gameboard.playerWhite.startCounter();
-            else if (player == 'black' && !this.gameboard.playerBlack.clockStarted)
-                this.gameboard.playerBlack.startCounter();
+            if (player == 'white' && !this.gameboard.clockStarted) {
+                this.gameboard.startCounter();
+                console.log('reseting timer');
+            }
+            else if (player == 'black' && !this.gameboard.clockStarted) {
+                console.log('reset timer');
+                this.gameboard.startCounter();
+            }
             
-            if (player == 'white' && this.gameboard.playerWhite.getPlayTime() == 0) {
+            if (player == 'white' && this.gameboard.playerWhite.getPlayTime() == 0 && !this.gameboard.turning) {
                 console.log('turning');
+                this.gameboard.turning = 1;
                 // this.gameboard.playerWhite.resetTimer();
                 this.gameboard.updateTurn();
-                console.log(this.gameboard.currentState);
+                // console.log(this.gameboard.currentState);
                 // this.rotateCam();
             } else this.logPicking();
             
