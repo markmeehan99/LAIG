@@ -20,6 +20,8 @@ class MyComponent {
         this.lastAnim = null;
 
         this.materialIndex = 0;
+
+        this.initialCoords = mat4.copy(this.initialCoords, transformation);
     }
 
     chooseTexture(theme) {
@@ -52,7 +54,9 @@ class MyComponent {
         return this.lengthT;
     }
 
-
+    resetTransf() {
+        this.transformation = this.initialCoords;
+    }
 
     update(sceneTime) {
         if(this.animation == null) return;

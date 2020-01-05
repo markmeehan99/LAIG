@@ -5,6 +5,9 @@ class MyPiece {
         this.rowPos = this.translateCoordsToPos(rowCoords);
         this.colPos = this.translateCoordsToPos(colCoords);
         this.color = color;
+
+        this.initialRow = this.rowPos;
+        this.initialCol = this.colPos;
     }
 
     translatePosToCoords(pos) {
@@ -20,18 +23,9 @@ class MyPiece {
         this.colPos = col;
     }
 
-    move(direction) {
-        switch(direction) {
-            case '':
-
-            case '':
-
-            case '':
-
-            case '':
-
-            default:
-                break;
-        }
+    resetPos() {
+        this.rowPos = this.initialRow;
+        this.colPos = this.initialCol;
     }
+
 }
