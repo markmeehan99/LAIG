@@ -10,6 +10,9 @@ class MyGameBoard{
         // array with MyGameMove obj, representing all the plays
         this.lastMovements = [];
 
+
+        this.turning = 0;
+
         this.state = { 
             WAITING_FOR_START: 0,
             WHITE_FIRST_TURN: 1,
@@ -30,6 +33,10 @@ class MyGameBoard{
         this.white_wins = 0;
         this.black_wins = 0;
 
+        this.playerBlack = new MyPlayer('black');
+        this.playerWhite = new MyPlayer('white');
+
+
         this.botStarted = 0;
         this.botMoveMade = 0;
 
@@ -39,6 +46,10 @@ class MyGameBoard{
 
         this.currentState = this.state.WAITING_FOR_START;
         this.currentMode = this.mode.PLAYER_VS_PLAYER; //TODO: change when other modes are added
+
+        this.playTime = 10;
+        this.clockStarted = false;
+
 
         //Start Prolog Server
 
@@ -193,14 +204,22 @@ class MyGameBoard{
 
         let failure = function(data) {
             console.log(data);
+            this.resetTimer();
+            this.stopCounter();
+            this.startCounter();
         };
 
         let reply = function(data) {
             this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
+
+            // setTimeout(() => this.startCounter(), 1400);
+            console.log('Player Moved. Setting new clock');
+            this.clockStarted = 1;
         };
 
         let request = this.server.createRequest('makeMove', [this.getBoardString(), player, row, col, direction], reply.bind(this), failure.bind(this));
+        console.log('Sending request: ' + request);
         this.server.prologRequest(request);
     }
 
@@ -281,7 +300,6 @@ class MyGameBoard{
         let reply = function(data) {
             this.connectionSuccess = 1;
             this.currentState = 1;
-            this.currentState++;
             this.getInitialBoard();
             console.log('Connection established');
         };
@@ -291,18 +309,67 @@ class MyGameBoard{
     }
 
     updateTurn() {
-        if (this.currentState == 1) this.currentState++;
+        if (this.currentState == 1) {
+            this.currentState++;
+            this.resetTimer();
+            this.startCounter();
+        }
         else if (this.currentState == 2) {
             this.currentState++;
             setTimeout(() => this.scene.rotateCam(), 1200);
+            setTimeout(() => this.resetTimer(), 1300);
+            setTimeout(() => this.startCounter(), 1300);
         }
-        else if (this.currentState == 3) this.currentState++;
+        else if (this.currentState == 3) {
+            this.currentState++;
+            this.resetTimer();
+            this.startCounter();
+
+        }
         else if (this.currentState == 4) {
             this.currentState = 1;
             setTimeout(() => this.scene.rotateCam(), 1200);
+            setTimeout(() => this.resetTimer(), 1300);
+            setTimeout(() => this.startCounter(), 1400);
         }
         console.log(this.currentState);
     }
+
+    
+    startCounter() {
+        this.playTime = 10;
+        this.clockStarted = true;
+        this.cicle = setInterval(
+          function() {
+
+            var player = this.getPlayer();
+              
+              if (this.playTime == 0) {
+                  console.log('Time up!');
+                  this.stopCounter();
+                  console.log('updating turn');
+                    this.updateTurn();
+                    this.updateMe = 1;
+                  return;
+                }
+            this.playTime--;
+
+        }.bind(this),
+          1000
+        );
+    }
+
+    
+    stopCounter() {
+        console.log('Stopping clock');
+        clearInterval(this.cicle);
+    }
+
+    
+    resetTimer() {
+        this.playTime = 10;
+    }
+   
 
     getScore() {
         return "White wins: " + parseInt(this.white_wins) + "\n" + 

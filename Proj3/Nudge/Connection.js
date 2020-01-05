@@ -24,8 +24,9 @@ class Connection {
         // Get Parameter Values
         let requestString = request.command.toString();
         if (request.args != null)
-            requestString += '(' + request.args.toString().replace(/"/g, '') + ')';
+        requestString += '(' + request.args.toString().replace(/"/g, '') + ')';
         // Make Request
+        console.log('Request: ' + requestString);
         return this.getPrologRequest(requestString, request.onSuccess, request.onError);
     }
 
