@@ -1555,7 +1555,10 @@ class MySceneGraph {
             return;
         }
 
-        if (id.indexOf("cell") != -1) {
+        if (picked) {
+
+        }
+        else if (id.indexOf("cell") != -1) {
             let n = parseInt(id[4] + id[5]);
             this.scene.registerForPick(n, component);
             picked = true;
