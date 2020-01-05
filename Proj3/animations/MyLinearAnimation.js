@@ -1,5 +1,5 @@
 class MyLinearAnimation extends MyAnimation {
-    constructor(zOld, xOld, zNew, xNew) {
+    constructor(zOld, xOld, zNew, xNew, time) {
         super();
 
         // this.zOld = zOld;
@@ -16,6 +16,8 @@ class MyLinearAnimation extends MyAnimation {
             0,
             zNew - zOld
         ];
+
+        this.time = time; // in ms
 
         this.animMatrix = mat4.create();
 
@@ -42,9 +44,9 @@ class MyLinearAnimation extends MyAnimation {
         // // ms -> s
         // sceneTime /= 1000;
 
-        let ratio = (sceneTime - this.firstTime) / 1000;
+        let ratio = (sceneTime - this.firstTime) / this.time;
 
-        // 1s of animation
+        // this.time of animation
         if (ratio > 1) {
             ratio = 1;
             this.ended = true;

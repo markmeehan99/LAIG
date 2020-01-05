@@ -1393,13 +1393,12 @@ class MySceneGraph {
 
             // check if it is one black or white piece 
             if (componentID.indexOf("piece") != -1 && componentID.indexOf("white") != -1) {
-                let piece = new MyPiece(componentID, translate[2], translate[0], 'white');
-                this.scene.gameboard.pieces.push(piece);
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'white', mat4.copy(mat4.create(), transformation));
+                this.scene.pieces.push(piece);
             }
             else if (componentID.indexOf("piece") != -1 && componentID.indexOf("black") != -1) {
-                let piece = new MyPiece(componentID, translate[2], translate[0], 'black');
-                this.scene.gameboard.pieces.push(piece);
-
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'black', mat4.copy(mat4.create(), transformation));
+                this.scene.pieces.push(piece);                             
             }
         }
     }
@@ -1564,9 +1563,11 @@ class MySceneGraph {
             picked = true;
         }
         else if (id.indexOf("piece_white") != -1 || id.indexOf("piece_black") != -1) {
-            let n = this.scene.gameboard.findPosOfPieceID(id); 
-            this.scene.registerForPick(n+11, component);
-            picked = true;
+            if (this.scene.gameboard != null) {
+                let n = this.scene.gameboard.findPosOfPieceID(id); 
+                this.scene.registerForPick(n+11, component);
+                picked = true;
+            }
         }
         else if (!picked) {
             this.scene.registerForPick(0, null);

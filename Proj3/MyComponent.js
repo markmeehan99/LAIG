@@ -7,7 +7,7 @@ class MyComponent {
         
         this.nodeID = node;
         this.theme = theme;
-        this.transformation = transformation;
+        this.transformation = mat4.clone(transformation);
         this.animation = animation;
         this.materialIDs = materials;
         this.textureID = texture;
@@ -21,7 +21,7 @@ class MyComponent {
 
         this.materialIndex = 0;
 
-        this.initialCoords = mat4.copy(this.initialCoords, transformation);
+        this.initialCoords = mat4.clone(transformation);
     }
 
     chooseTexture(theme) {
@@ -55,7 +55,7 @@ class MyComponent {
     }
 
     resetTransf() {
-        this.transformation = this.initialCoords;
+        this.transformation = mat4.clone(this.initialCoords);
     }
 
     update(sceneTime) {

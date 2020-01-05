@@ -70,7 +70,19 @@ class MyInterface extends CGFinterface {
         var themeGroup = this.gui.addFolder("Theme");
         themeGroup.open();
 
-        themeGroup.add(scene, 'selectedTheme',themes);
+        themeGroup.add(scene, 'selectedTheme', themes);
+    }
+
+    addGameInterface(scene, gameMode) {
+        var gameGroup = this.gui.addFolder("Game");
+        gameGroup.open();
+        gameGroup.add(scene, 'undo');
+        
+        var mode = this.gui.addFolder("Game Mode");
+        mode.open();
+        mode.add(scene, 'selectedMode', gameMode);
+        mode.add(scene, 'start_game');
+        
     }
 
     processKeyDown(event) {
