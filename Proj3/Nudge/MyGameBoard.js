@@ -204,6 +204,9 @@ class MyGameBoard{
 
         let failure = function(data) {
             console.log(data);
+            this.resetTimer();
+            this.stopCounter();
+            this.startCounter();
         };
 
         let reply = function(data) {
