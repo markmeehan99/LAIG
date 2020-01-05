@@ -1,10 +1,12 @@
 class MyPiece {
-    constructor(component, rowCoords, colCoords, color) {
+    constructor(component, rowCoords, colCoords, color, initialPos) {
 
         this.componentID = component;
         this.rowPos = this.translateCoordsToPos(rowCoords);
         this.colPos = this.translateCoordsToPos(colCoords);
         this.color = color;
+
+        this.initialPos = initialPos;
     }
 
     translatePosToCoords(pos) {
