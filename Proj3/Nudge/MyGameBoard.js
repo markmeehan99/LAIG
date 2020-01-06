@@ -517,5 +517,4 @@ class MyGameBoard{
             this.getInitialBoard();
         }
     }
-
 }

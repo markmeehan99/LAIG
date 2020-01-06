@@ -186,15 +186,7 @@ class XMLscene extends CGFscene {
                 return;
             }
 
-            // managing times
-            let deltaT = currTime - this.cameraAnimationLastTime;
-            this.cameraAnimationLastTime = currTime;
-
-            // this update angle
-            let angle = Math.PI * deltaT / 1000;
-
-            this.cameraAnimationAngle += angle;
-
+            
             // bigger than PI
             if (this.cameraAnimationAngle > Math.PI) {
                 let excess = this.cameraAnimationAngle - Math.PI;
@@ -203,6 +195,23 @@ class XMLscene extends CGFscene {
             }
 
             this.camera1.orbit([0,1,0], angle);
+        }
+        else if (this.gameboard == null) {
+            if ( this.cameraAnimationLastTime == null) {
+                this.cameraAnimationLastTime = currTime;
+                return;
+            }
+
+            // managing times
+            let deltaT = currTime - this.cameraAnimationLastTime;
+            this.cameraAnimationLastTime = currTime;
+
+            // this update angle
+            let angle = Math.PI * deltaT / 15000;
+
+            this.cameraAnimationAngle += angle;
+
+            this.camera1.orbit([0,0,1], angle);
         }
     }
 
@@ -464,6 +473,7 @@ class XMLscene extends CGFscene {
             
         if(this.gameboard != null) this.gameboard.stopBotCicle();
 
+        this.camera1 = this.graph.views['player1'];
         this.resetCamera();
 
         if (this.selectedMode == 'player_vs_player') {
