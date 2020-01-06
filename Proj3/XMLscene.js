@@ -276,12 +276,18 @@ class XMLscene extends CGFscene {
                     
                     if (this.gameboard.getPlayer() == 'white') {
                         document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+                        if (this.gameboard.playTime < 4) document.getElementById("time").style.color = 'red';
+                        else document.getElementById("time").style.color = 'white';
+                    
                         
                         if (this.gameboard.playerWhite.getPlayTime() <= 3)
                             document.getElementById("time").style.color="red";
                     }
                     else if (this.gameboard.getPlayer() == 'black') {
                         document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+
+                        if (this.gameboard.playTime < 4) document.getElementById("time").style.color = 'red';
+                        else document.getElementById("time").style.color = 'white';
                     }
                 }
             }
