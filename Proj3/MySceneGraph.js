@@ -357,6 +357,11 @@ class MySceneGraph {
             this.views[viewId] = cam1;
             this.secCams[viewId] = cam2;
             
+            if (viewId == 'player1') {
+                this.scene.resetCameraFrom = from;
+                this.scene.resetCameraTo = to;
+            }
+
             numViews++;
         }
 

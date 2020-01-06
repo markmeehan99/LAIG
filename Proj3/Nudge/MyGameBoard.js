@@ -54,9 +54,6 @@ class MyGameBoard{
 
 
         //Start Prolog Server
-
-        // this.startConnection();
-
         this.startConnection();
         var refreshId = setInterval(function() {
             if (this.currentState > 0) {
@@ -67,7 +64,6 @@ class MyGameBoard{
                 this.startConnection();
             }
           }.bind(this), 5000);
-
     }
 
     getInitialBoard() {
@@ -155,21 +151,28 @@ class MyGameBoard{
     }
 
     allowBot() {
-        setInterval(function() {
+        this.botCicle = setInterval(function() {
             let player = this.getPlayer();
             this.moveBot(player);
-        }.bind(this), 6000);
+        }.bind(this), 5000);
 
         this.botStarted = 1;
 
+    }
+
+    stopBotCicle() {
+        clearInterval(this.botCicle);
     }
 
     oneBotMove() {
         this.botMoveMade = 1;
 
         setTimeout(function(){ 
-            let player = this.getPlayer();
-            this.moveBot(player);
+            if (this.currentState == 3 || this.currentState == 4) {
+
+                let player = this.getPlayer();
+                this.moveBot(player);
+            }
         }.bind(this), 3000);
 
     }
@@ -184,9 +187,19 @@ class MyGameBoard{
                 
         this.board = data[0];
 
-        if (this.checkGameOver()) {
-            console.log('Game over');
-        }
+        let winner= this.checkGameOver();
+        console.log(winner)
+        if (winner != false) 
+            setTimeout(() => { 
+                this.resetBoard();
+                this.scene.resetCamera();
+                if (winner == 'white') {
+                    this.playerBlack.incrementScore();
+                }
+                if (winner == 'black') {
+                    this.playerWhite.incrementScore();
+                }
+            }, 1200);
         else console.log('Game not over');
 
         console.log('New Board updated!');
@@ -223,11 +236,17 @@ class MyGameBoard{
             this.parseMoveResponse(row, col, direction, data);
             
             let winner= this.checkGameOver();
-            console.log(winner);
+            console.log(winner)
             if (winner != false) 
                 setTimeout(() => { 
                     this.resetBoard();
-
+                    this.scene.resetCamera();
+                    if (winner == 'white') {
+                        this.playerBlack.incrementScore();
+                    }
+                    if (winner == 'black') {
+                        this.playerWhite.incrementScore();
+                    }
                 }, 1200);
             else console.log('Game not over');
             
@@ -373,11 +392,15 @@ class MyGameBoard{
     updateTurn() {
         this.canUndo = true;
 
+
         if (this.currentState == 1) {
             this.currentState++;
-            this.resetTimer();
-            this.stopCounter();
-            this.startCounter();
+
+            if(this.currentMode == 0) {
+                this.resetTimer();
+                this.stopCounter();
+                this.startCounter();
+            }
         }
         else if (this.currentState == 2) {
             this.currentState++;
@@ -388,15 +411,22 @@ class MyGameBoard{
                     this.scene.rotateCam();
             }, 3000);
 
-            setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.stopCounter(), 3100);
-            setTimeout(() => this.startCounter(), 3200);
+            if (this.currentMode == 0) {
+
+                setTimeout(() => this.resetTimer(), 3000);
+                setTimeout(() => this.stopCounter(), 3100);
+                setTimeout(() => this.startCounter(), 3200);
+            }
         }
         else if (this.currentState == 3) {
             this.currentState++;
-            this.resetTimer();
-            this.stopCounter();
-            this.startCounter();
+
+            if(this.currentMode == 0) {
+
+                this.resetTimer();
+                this.stopCounter();
+                this.startCounter();
+            }
         }
         else if (this.currentState == 4) {
             this.currentState = 1;
@@ -407,9 +437,12 @@ class MyGameBoard{
                     this.scene.rotateCam(); 
             }, 3000);
 
-            setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.stopCounter(), 3100);
-            setTimeout(() => this.startCounter(), 3200);
+            if(this.currentMode == 0) {
+
+                setTimeout(() => this.resetTimer(), 3000);
+                setTimeout(() => this.stopCounter(), 3100);
+                setTimeout(() => this.startCounter(), 3200);
+            }
         }
         console.log(this.currentState);
     }
@@ -451,8 +484,8 @@ class MyGameBoard{
    
 
     getScore() {
-        return "White wins: " + parseInt(this.white_wins) + "\n" + 
-        "Black wins: " + parseInt(this.black_wins) + "\n";
+        return "White wins: " + parseInt(this.playerWhite.score) + "\n" + 
+        "Black wins: " + parseInt(this.playerBlack.score) + "\n";
     }
 
     checkGameOver() {
@@ -477,8 +510,11 @@ class MyGameBoard{
     resetBoard() {
         for (let i = 0; i < this.pieces.length; i++) {
             let piece = this.pieces[i];
+            this.currentState = 1;
+            console.log("updated state machine")
             piece.resetPos();
             this.scene.graph.components[piece.componentID].resetTransf();
+            this.getInitialBoard();
         }
     }
 
