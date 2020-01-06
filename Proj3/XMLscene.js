@@ -383,7 +383,7 @@ class XMLscene extends CGFscene {
         this.pushMatrix();
 
         // Draw axis
-        this.axis.display();
+        // this.axis.display();
 
         if (this.sceneInited) {
 
