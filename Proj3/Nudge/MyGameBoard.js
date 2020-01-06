@@ -495,11 +495,8 @@ class MyGameBoard{
         }
     }
 
-    
     stopCameraCicle() {
         clearInterval(this.cameraCicle);
     }
-
-
 
 }
