@@ -185,6 +185,14 @@ class XMLscene extends CGFscene {
                 return;
             }
 
+            // managing times
+            let deltaT = currTime - this.cameraAnimationLastTime;
+            this.cameraAnimationLastTime = currTime;
+
+            // this update angle
+            let angle = Math.PI * deltaT / 1000;
+
+            this.cameraAnimationAngle += angle;
             
             // bigger than PI
             if (this.cameraAnimationAngle > Math.PI) {
