@@ -60,7 +60,6 @@ class MyGameBoard{
               clearInterval(refreshId);
               return;
             } else {
-                console.log('Sending handshake');
                 this.startConnection();
             }
           }.bind(this), 5000);
@@ -69,19 +68,15 @@ class MyGameBoard{
     getInitialBoard() {
 
         let failure = function(data) {
-            console.log(data);
             return 400;
         };
         
 
         let reply = function(data) {
             this.board = data;
-
-            console.log('Initial Board loaded!');
         };
         
         let request = this.server.createRequest('initialBoard', null, reply.bind(this), failure);
-        console.log(request);
         return this.server.prologRequest(request);
     }
 
@@ -188,7 +183,6 @@ class MyGameBoard{
         this.board = data[0];
 
         let winner= this.checkGameOver();
-        console.log(winner)
         if (winner != false) 
             setTimeout(() => { 
                 this.resetBoard();
@@ -200,9 +194,6 @@ class MyGameBoard{
                     this.playerWhite.incrementScore();
                 }
             }, 1200);
-        else console.log('Game not over');
-
-        console.log('New Board updated!');
         
         let row = data[1];
         
@@ -224,7 +215,6 @@ class MyGameBoard{
         if(direction == null) return null;
 
         let failure = function(data) {
-            console.log(data);
             this.resetTimer();
             this.stopCounter();
             this.startCounter();
@@ -236,7 +226,6 @@ class MyGameBoard{
             this.parseMoveResponse(row, col, direction, data);
             
             let winner= this.checkGameOver();
-            console.log(winner)
             if (winner != false) 
                 setTimeout(() => { 
                     this.resetBoard();
@@ -248,21 +237,16 @@ class MyGameBoard{
                         this.playerWhite.incrementScore();
                     }
                 }, 1200);
-            else console.log('Game not over');
             
-            // setTimeout(() => this.startCounter(), 1400);
-            console.log('Player Moved. Setting new clock');
             this.clockStarted = 1;
         };
 
         let request = this.server.createRequest('makeMove', [this.getBoardString(), player, row, col, direction], reply.bind(this), failure.bind(this));
-        console.log('Sending request: ' + request);
         this.server.prologRequest(request);
     }
 
     moveBot(player) {
         let failure = function() {
-            console.log('INVALID MOVE!')
         };
 
         let reply = function(data) {
@@ -272,7 +256,6 @@ class MyGameBoard{
         };
 
         
-        console.log('NEW REQUEST')
         let request = this.server.createRequest('botMove', [this.getBoardString(), player], reply.bind(this), failure.bind(this));
         this.server.prologRequest(request);
     }
@@ -297,7 +280,6 @@ class MyGameBoard{
     }
 
     movePiecesUndo(board, row, col, dir) {
-        console.log(row, col);
 
         if (board[row][col] == 'empty') {
             return;
@@ -330,7 +312,6 @@ class MyGameBoard{
 
     undo() {
         if (this.canUndo) {
-            console.log(this.lastMovements[this.lastMovements.length - 1])
             if (this.currentState == 1) this.currentState = 4;
             else this.currentState--;
 
@@ -382,7 +363,6 @@ class MyGameBoard{
             this.connectionSuccess = 1;
             this.currentState = 1;
             this.getInitialBoard();
-            console.log('Connection established');
         };
 
         let request = this.server.createRequest('handshake', null, reply.bind(this));
@@ -405,7 +385,7 @@ class MyGameBoard{
         else if (this.currentState == 2) {
             this.currentState++;
 
-            setTimeout(() => { 
+            this.cameraCicle = setTimeout(() => { 
                 this.canUndo = false; 
                 if (this.currentState == 3)
                     this.scene.rotateCam();
@@ -444,7 +424,6 @@ class MyGameBoard{
                 setTimeout(() => this.startCounter(), 3200);
             }
         }
-        console.log(this.currentState);
     }
 
     
@@ -457,9 +436,7 @@ class MyGameBoard{
             var player = this.getPlayer();
               
               if (this.playTime == 0) {
-                  console.log('Time up!');
                   this.stopCounter();
-                  console.log('updating turn');
                     this.updateTurn();
                     this.updateMe = 1;
                   return;
@@ -473,7 +450,6 @@ class MyGameBoard{
 
     
     stopCounter() {
-        console.log('Stopping clock');
         clearInterval(this.cicle);
     }
 
@@ -511,11 +487,19 @@ class MyGameBoard{
         for (let i = 0; i < this.pieces.length; i++) {
             let piece = this.pieces[i];
             this.currentState = 1;
-            console.log("updated state machine")
+            this.stopCameraCicle();
             piece.resetPos();
+            this.botMoveMade = 0;
             this.scene.graph.components[piece.componentID].resetTransf();
             this.getInitialBoard();
         }
     }
+
+    
+    stopCameraCicle() {
+        clearInterval(this.cameraCicle);
+    }
+
+
 
 }

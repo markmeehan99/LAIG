@@ -74,7 +74,7 @@ class MyInterface extends CGFinterface {
     }
 
     addGameInterface(scene, gameMode) {
-        var gameGroup = this.gui.addFolder("Game");
+        var gameGroup = this.gui.addFolder("Game Controls");
         gameGroup.open();
         gameGroup.add(scene, 'undo');
         
