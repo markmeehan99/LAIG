@@ -463,13 +463,9 @@ class XMLscene extends CGFscene {
         }
         this.gameboard.pieces = this.pieces;
         
-        for (let i = 0; i < this.gameboard.pieces.length; i++) {
-            let piece = this.gameboard.pieces[i];
-            piece.resetPos();
-            console.log(this.graph.components[piece.componentID].transformation, this.graph.components[piece.componentID].initialCoords)
+        this.gameboard.resetBoard();
 
-            this.graph.components[piece.componentID].resetTransf();
-        }
+        
 
     }
 }

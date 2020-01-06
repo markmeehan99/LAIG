@@ -184,7 +184,9 @@ class MyGameBoard{
                 
         this.board = data[0];
 
-        if (this.checkGameOver()) console.log('Game Over!');
+        if (this.checkGameOver()) {
+            console.log('Game over');
+        }
         else console.log('Game not over');
 
         console.log('New Board updated!');
@@ -220,7 +222,13 @@ class MyGameBoard{
             this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
             
-            if (this.checkGameOver()) console.log('Game Over!');
+            let winner= this.checkGameOver();
+            console.log(winner);
+            if (winner != false) 
+                setTimeout(() => { 
+                    this.resetBoard();
+
+                }, 1200);
             else console.log('Game not over');
             
             // setTimeout(() => this.startCounter(), 1400);
@@ -368,6 +376,7 @@ class MyGameBoard{
         if (this.currentState == 1) {
             this.currentState++;
             this.resetTimer();
+            this.stopCounter();
             this.startCounter();
         }
         else if (this.currentState == 2) {
@@ -380,11 +389,13 @@ class MyGameBoard{
             }, 3000);
 
             setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.startCounter(), 3000);
+            setTimeout(() => this.stopCounter(), 3100);
+            setTimeout(() => this.startCounter(), 3200);
         }
         else if (this.currentState == 3) {
             this.currentState++;
             this.resetTimer();
+            this.stopCounter();
             this.startCounter();
         }
         else if (this.currentState == 4) {
@@ -397,7 +408,8 @@ class MyGameBoard{
             }, 3000);
 
             setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.startCounter(), 3000);
+            setTimeout(() => this.stopCounter(), 3100);
+            setTimeout(() => this.startCounter(), 3200);
         }
         console.log(this.currentState);
     }
@@ -447,18 +459,27 @@ class MyGameBoard{
 
         //First line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[0][i] != 'empty') return true;
+            if (this.board[0][i] != 'empty') return this.board[0][i];
         
         //Last line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[6][i] != 'empty') return true;
+            if (this.board[6][i] != 'empty') return this.board[6][i];
 
 
         //First and last cells of each middle line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[i][0] != 'empty' || this.board[i][6] != 'empty') return true;
+            if (this.board[i][0] != 'empty') return this.board[i][0];
+            else if (this.board[i][6] != 'empty') return this.board[i][6];
 
         return false;
+    }
+
+    resetBoard() {
+        for (let i = 0; i < this.pieces.length; i++) {
+            let piece = this.pieces[i];
+            piece.resetPos();
+            this.scene.graph.components[piece.componentID].resetTransf();
+        }
     }
 
 }
