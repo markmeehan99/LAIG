@@ -357,6 +357,11 @@ class MySceneGraph {
             this.views[viewId] = cam1;
             this.secCams[viewId] = cam2;
             
+            if (viewId == 'player1') {
+                this.scene.resetCameraFrom = from;
+                this.scene.resetCameraTo = to;
+            }
+
             numViews++;
         }
 
@@ -1391,20 +1396,15 @@ class MySceneGraph {
             var comp = new MyComponent(componentID, theme, transformation, animation, materialIds, textureIds, lengthS, lengthS, childrenIds, primitiveIds);
             this.components[componentID] = comp;
 
-                
-                            // check if it is one black or white piece 
-                            if (componentID.indexOf("piece") != -1 && componentID.indexOf("white") != -1) {
-                                let piece = new MyPiece(componentID, translate[2], translate[0], 'white', mat4.copy(mat4.create(), transformation));
-                                // this.scene.gameboard.pieces.push(piece);
-                                this.scene.pieces.push(piece);
-                            }
-                            else if (componentID.indexOf("piece") != -1 && componentID.indexOf("black") != -1) {
-                                let piece = new MyPiece(componentID, translate[2], translate[0], 'black', mat4.copy(mat4.create(), transformation));
-                                // this.scene.gameboard.pieces.push(piece);
-                                this.scene.pieces.push(piece);                             
-                            }
-
-            
+            // check if it is one black or white piece 
+            if (componentID.indexOf("piece") != -1 && componentID.indexOf("white") != -1) {
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'white', mat4.copy(mat4.create(), transformation));
+                this.scene.pieces.push(piece);
+            }
+            else if (componentID.indexOf("piece") != -1 && componentID.indexOf("black") != -1) {
+                let piece = new MyPiece(componentID, translate[2], translate[0], 'black', mat4.copy(mat4.create(), transformation));
+                this.scene.pieces.push(piece);                             
+            }
         }
     }
 

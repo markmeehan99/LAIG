@@ -54,9 +54,6 @@ class MyGameBoard{
 
 
         //Start Prolog Server
-
-        // this.startConnection();
-
         this.startConnection();
         var refreshId = setInterval(function() {
             if (this.currentState > 0) {
@@ -67,7 +64,6 @@ class MyGameBoard{
                 this.startConnection();
             }
           }.bind(this), 5000);
-
     }
 
     getInitialBoard() {
@@ -155,21 +151,28 @@ class MyGameBoard{
     }
 
     allowBot() {
-        setInterval(function() {
+        this.botCicle = setInterval(function() {
             let player = this.getPlayer();
             this.moveBot(player);
-        }.bind(this), 6000);
+        }.bind(this), 5000);
 
         this.botStarted = 1;
 
+    }
+
+    stopBotCicle() {
+        clearInterval(this.botCicle);
     }
 
     oneBotMove() {
         this.botMoveMade = 1;
 
         setTimeout(function(){ 
-            let player = this.getPlayer();
-            this.moveBot(player);
+            if (this.currentState == 3 || this.currentState == 4) {
+
+                let player = this.getPlayer();
+                this.moveBot(player);
+            }
         }.bind(this), 3000);
 
     }
@@ -184,7 +187,19 @@ class MyGameBoard{
                 
         this.board = data[0];
 
-        if (this.checkGameOver()) console.log('Game Over!');
+        let winner= this.checkGameOver();
+        console.log(winner)
+        if (winner != false) 
+            setTimeout(() => { 
+                this.resetBoard();
+                this.scene.resetCamera();
+                if (winner == 'white') {
+                    this.playerBlack.incrementScore();
+                }
+                if (winner == 'black') {
+                    this.playerWhite.incrementScore();
+                }
+            }, 1200);
         else console.log('Game not over');
 
         console.log('New Board updated!');
@@ -220,7 +235,19 @@ class MyGameBoard{
             this.updateTurn();
             this.parseMoveResponse(row, col, direction, data);
             
-            if (this.checkGameOver()) console.log('Game Over!');
+            let winner= this.checkGameOver();
+            console.log(winner)
+            if (winner != false) 
+                setTimeout(() => { 
+                    this.resetBoard();
+                    this.scene.resetCamera();
+                    if (winner == 'white') {
+                        this.playerBlack.incrementScore();
+                    }
+                    if (winner == 'black') {
+                        this.playerWhite.incrementScore();
+                    }
+                }, 1200);
             else console.log('Game not over');
             
             // setTimeout(() => this.startCounter(), 1400);
@@ -365,10 +392,15 @@ class MyGameBoard{
     updateTurn() {
         this.canUndo = true;
 
+
         if (this.currentState == 1) {
             this.currentState++;
-            this.resetTimer();
-            this.startCounter();
+
+            if(this.currentMode == 0) {
+                this.resetTimer();
+                this.stopCounter();
+                this.startCounter();
+            }
         }
         else if (this.currentState == 2) {
             this.currentState++;
@@ -379,13 +411,22 @@ class MyGameBoard{
                     this.scene.rotateCam();
             }, 3000);
 
-            setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.startCounter(), 3000);
+            if (this.currentMode == 0) {
+
+                setTimeout(() => this.resetTimer(), 3000);
+                setTimeout(() => this.stopCounter(), 3100);
+                setTimeout(() => this.startCounter(), 3200);
+            }
         }
         else if (this.currentState == 3) {
             this.currentState++;
-            this.resetTimer();
-            this.startCounter();
+
+            if(this.currentMode == 0) {
+
+                this.resetTimer();
+                this.stopCounter();
+                this.startCounter();
+            }
         }
         else if (this.currentState == 4) {
             this.currentState = 1;
@@ -396,8 +437,12 @@ class MyGameBoard{
                     this.scene.rotateCam(); 
             }, 3000);
 
-            setTimeout(() => this.resetTimer(), 3000);
-            setTimeout(() => this.startCounter(), 3000);
+            if(this.currentMode == 0) {
+
+                setTimeout(() => this.resetTimer(), 3000);
+                setTimeout(() => this.stopCounter(), 3100);
+                setTimeout(() => this.startCounter(), 3200);
+            }
         }
         console.log(this.currentState);
     }
@@ -439,26 +484,38 @@ class MyGameBoard{
    
 
     getScore() {
-        return "White wins: " + parseInt(this.white_wins) + "\n" + 
-        "Black wins: " + parseInt(this.black_wins) + "\n";
+        return "White wins: " + parseInt(this.playerWhite.score) + "\n" + 
+        "Black wins: " + parseInt(this.playerBlack.score) + "\n";
     }
 
     checkGameOver() {
 
         //First line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[0][i] != 'empty') return true;
+            if (this.board[0][i] != 'empty') return this.board[0][i];
         
         //Last line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[6][i] != 'empty') return true;
+            if (this.board[6][i] != 'empty') return this.board[6][i];
 
 
         //First and last cells of each middle line
         for (var i=0; i < this.board.length; i++)
-            if (this.board[i][0] != 'empty' || this.board[i][6] != 'empty') return true;
+            if (this.board[i][0] != 'empty') return this.board[i][0];
+            else if (this.board[i][6] != 'empty') return this.board[i][6];
 
         return false;
+    }
+
+    resetBoard() {
+        for (let i = 0; i < this.pieces.length; i++) {
+            let piece = this.pieces[i];
+            this.currentState = 1;
+            console.log("updated state machine")
+            piece.resetPos();
+            this.scene.graph.components[piece.componentID].resetTransf();
+            this.getInitialBoard();
+        }
     }
 
 }

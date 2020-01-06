@@ -1,12 +1,13 @@
 class MyPiece {
-    constructor(component, rowCoords, colCoords, color, initialPos) {
+    constructor(component, rowCoords, colCoords, color) {
 
         this.componentID = component;
         this.rowPos = this.translateCoordsToPos(rowCoords);
         this.colPos = this.translateCoordsToPos(colCoords);
         this.color = color;
 
-        this.initialPos = initialPos;
+        this.initialRow = this.rowPos;
+        this.initialCol = this.colPos;
     }
 
     translatePosToCoords(pos) {
@@ -22,18 +23,9 @@ class MyPiece {
         this.colPos = col;
     }
 
-    move(direction) {
-        switch(direction) {
-            case '':
-
-            case '':
-
-            case '':
-
-            case '':
-
-            default:
-                break;
-        }
+    resetPos() {
+        this.rowPos = this.initialRow;
+        this.colPos = this.initialCol;
     }
+
 }

@@ -186,7 +186,6 @@ class XMLscene extends CGFscene {
                 return;
             }
 
-
             // managing times
             let deltaT = currTime - this.cameraAnimationLastTime;
             this.cameraAnimationLastTime = currTime;
@@ -257,7 +256,7 @@ class XMLscene extends CGFscene {
                 document.getElementById("player").innerText = "Currently establishing connection to server...\n";
             } else if (this.gameboard.currentState > 0) {
                 document.getElementById("player").innerText = "Player: " + this.gameboard.getPlayer() + "\n";
-                document.getElementById("score").innerText = "Score: \n" + this.gameboard.getScore() + "\n";
+                document.getElementById("score").innerText = this.gameboard.getScore() + "\n";
                 if (this.gameboard.getPlayer() == 'white') {
                     document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
                     
@@ -304,12 +303,14 @@ class XMLscene extends CGFscene {
                 
                 var player = this.gameboard.getPlayer();
                 if (player == 'white' && !this.gameboard.clockStarted) {
+                    this.gameboard.stopCounter();
                     this.gameboard.startCounter();
                     this.gameboard.clockStarted = 1;
                     console.log('STARTING FIRST TIME');
                 }
                 else if (player == 'black' && !this.gameboard.clockStarted) {
                     console.log('STARTING FIRST TIME');
+                    this.gameboard.stopCounter();
                     this.gameboard.startCounter();
                     this.gameboard.clockStarted = 1;
                 }
@@ -336,6 +337,7 @@ class XMLscene extends CGFscene {
                 if (this.gameboard.currentState == 1 || this.gameboard.currentState == 2) {
                     this.logPicking();
                 } else if (this.gameboard.currentState == 3 || this.gameboard.currentState == 4) {
+                    console.log("bot move -----------------")
                     if (!this.gameboard.botMoveMade) this.gameboard.oneBotMove();
                 }
             }
@@ -453,19 +455,29 @@ class XMLscene extends CGFscene {
         // }
     }
 
+    resetCamera() {
+        this.camera1.setPosition(this.resetCameraFrom);
+        this.camera1.setTarget(this.resetCameraTo);
+    }
+
     start_game() {
-        if (this.gameboard == null) {
             
-            if (this.selectedMode == 'player_vs_player') {
-                this.gameboard = new MyGameBoard(this, 0);
-                this.gameboard.pieces = this.pieces;
-            } else if (this.selectedMode == 'player_vs_bot') {
-                this.gameboard = new MyGameBoard(this, 1);
-                this.gameboard.pieces = this.pieces;
-            } else if (this.selectedMode == 'bot_vs_bot') {
-                this.gameboard = new MyGameBoard(this, 2);
-                this.gameboard.pieces = this.pieces;
-            }
+        if(this.gameboard != null) this.gameboard.stopBotCicle();
+
+        this.resetCamera();
+
+        if (this.selectedMode == 'player_vs_player') {
+            this.gameboard = new MyGameBoard(this, 0);
+        } else if (this.selectedMode == 'player_vs_bot') {
+            this.gameboard = new MyGameBoard(this, 1);
+        } else if (this.selectedMode == 'bot_vs_bot') {
+            this.gameboard = new MyGameBoard(this, 2);
         }
+        this.gameboard.pieces = this.pieces;
+        
+        this.gameboard.resetBoard();
+
+        
+
     }
 }
