@@ -32,7 +32,6 @@ class XMLscene extends CGFscene {
         this.pieceComponents = [];
 
         this.defaultShader = this.activeShader;
-        this.transparencyShader=new CGFshader(this.gl, "shaders/scale.vert", "shaders/transparency.frag");
 
 
         this.initCameras();
@@ -243,7 +242,6 @@ class XMLscene extends CGFscene {
                             this.gameboard.resetTimer();
 
                             this.gameboard.movePlayer(this.pickedCells[0], this.pickedCells[1], player);
-                            console.log('State after move:' + this.gameboard.currentState);
                             this.pickedCells = [];
                         }
 						console.log("Picked object: " + obj + ", with pick id " + customId);						
@@ -266,14 +264,17 @@ class XMLscene extends CGFscene {
             } else if (this.gameboard.currentState > 0) {
                 document.getElementById("player").innerText = "Player: " + this.gameboard.getPlayer() + "\n";
                 document.getElementById("score").innerText = this.gameboard.getScore() + "\n";
-                if (this.gameboard.getPlayer() == 'white') {
-                    document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+                if (this.gameboard.currentMode == 0) {
                     
-                    if (this.gameboard.playerWhite.getPlayTime() <= 3)
-                        document.getElementById("time").style.color="red";
-                }
-                else if (this.gameboard.getPlayer() == 'black') {
-                    document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+                    if (this.gameboard.getPlayer() == 'white') {
+                        document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+                        
+                        if (this.gameboard.playerWhite.getPlayTime() <= 3)
+                            document.getElementById("time").style.color="red";
+                    }
+                    else if (this.gameboard.getPlayer() == 'black') {
+                        document.getElementById("time").innerText = "Time to play: " + this.gameboard.playTime + "\n";
+                    }
                 }
             }
         }
@@ -289,7 +290,6 @@ class XMLscene extends CGFscene {
             this.secCam.display();
         }
         
-        this.setActiveShader(this.transparencyShader);
 
         this.setActiveShader(this.defaultShader);
         
@@ -315,29 +315,20 @@ class XMLscene extends CGFscene {
                     this.gameboard.stopCounter();
                     this.gameboard.startCounter();
                     this.gameboard.clockStarted = 1;
-                    console.log('STARTING FIRST TIME');
                 }
                 else if (player == 'black' && !this.gameboard.clockStarted) {
-                    console.log('STARTING FIRST TIME');
                     this.gameboard.stopCounter();
                     this.gameboard.startCounter();
                     this.gameboard.clockStarted = 1;
                 }
                 
                 if (player == 'white' && this.gameboard.playerWhite.getPlayTime() == 0 && !this.gameboard.turning) {
-                    console.log('turning');
                     this.gameboard.turning = 1;
-                    // this.gameboard.playerWhite.resetTimer();
                     this.gameboard.updateTurn();
-                    // console.log(this.gameboard.currentState);
-                    // this.rotateCam();
                 } else this.logPicking();
                 
                 if (player == 'black' && this.gameboard.playerBlack.getPlayTime() == 0) {
-                    console.log('turning')
                     this.gameboard.updateTurn();
-                    console.log(this.gameboard.currentState);
-                    // this.rotateCam();
                 } else this.logPicking();
     
             } else if (this.gameboard.currentMode == this.gameboard.mode.BOT_VS_BOT && this.gameboard.currentState > 0 ) {
@@ -346,8 +337,9 @@ class XMLscene extends CGFscene {
                 if (this.gameboard.currentState == 1 || this.gameboard.currentState == 2) {
                     this.logPicking();
                 } else if (this.gameboard.currentState == 3 || this.gameboard.currentState == 4) {
-                    console.log("bot move -----------------")
-                    if (!this.gameboard.botMoveMade) this.gameboard.oneBotMove();
+                    if (!this.gameboard.botMoveMade) {
+                        this.gameboard.oneBotMove();
+                    }
                 }
             }
          
@@ -423,13 +415,6 @@ class XMLscene extends CGFscene {
 
         this.gameboard.pieces = this.pieces;
         }
-
-        // for (let i = 0; i < this.pieces.length; i++) {
-        //     let piece = this.pieces[i];
-        //     console.log(piece)
-        //     console.log(this.graph.components[piece.componentID])
-        //     this.graph.components[piece.componentID].transformation = piece.initialPos;
-        // }
     }
 
     player_vs_bot() {
@@ -439,13 +424,6 @@ class XMLscene extends CGFscene {
 
         this.gameboard.pieces = this.pieces;
         }
-
-        // for (let i = 0; i < this.pieces.length; i++) {
-        //     let piece = this.pieces[i];
-        //     console.log(piece)
-        //     console.log(this.graph.components[piece.componentID])
-        //     this.graph.components[piece.componentID].transformation = piece.initialPos;
-        // }
     }
 
     bot_vs_bot() {
@@ -455,13 +433,6 @@ class XMLscene extends CGFscene {
 
         this.gameboard.pieces = this.pieces;
         }
-
-        // for (let i = 0; i < this.pieces.length; i++) {
-        //     let piece = this.pieces[i];
-        //     console.log(piece)
-        //     console.log(this.graph.components[piece.componentID])
-        //     this.graph.components[piece.componentID].transformation = piece.initialPos;
-        // }
     }
 
     resetCamera() {
